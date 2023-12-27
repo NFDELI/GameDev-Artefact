@@ -15,11 +15,18 @@ public class PlayerIdleState : PlayerBaseState
         {
             if(player.movementInput.y == 0)
             {
+                // Walking.
                 player.SwitchState(player.WalkingState);
             }
             else if(player.movementInput.y > 0 && player.isLanded)
             {
+                // Jumping.
                 player.SwitchState(player.JumpingState);
+            }
+            else if(player.movementInput.y < 0)
+            {
+                // Crouching.
+                player.SwitchState(player.CrouchState);
             }
             
         }

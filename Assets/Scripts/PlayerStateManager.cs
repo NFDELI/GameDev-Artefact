@@ -12,6 +12,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerIdleState IdleState = new PlayerIdleState();
     public PlayerWalkingState WalkingState = new PlayerWalkingState();
     public PlayerJumpingState JumpingState = new PlayerJumpingState();
+    public PlayerCrouchState CrouchState = new PlayerCrouchState();
 
     // Variables
     public Vector2 movementInput;
