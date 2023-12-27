@@ -30,6 +30,16 @@ public class PlayerIdleState : PlayerBaseState
             }
             
         }
+
+        // Sprite-Flip Check.
+        if(player.spriteFlip)
+        {
+            player.spriteRenderer.flipX = true;
+        }
+        else
+        {
+            player.spriteRenderer.flipX = false;
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)

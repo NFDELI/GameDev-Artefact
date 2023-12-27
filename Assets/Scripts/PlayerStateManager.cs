@@ -17,17 +17,21 @@ public class PlayerStateManager : MonoBehaviour
     // Variables
     public Vector2 movementInput;
     public Rigidbody2D rb;
+    public Rigidbody2D bossRb;
     public Animator animator;
+    public SpriteRenderer spriteRenderer;
     public float movementSpeed = 1.0f;
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
     public bool isLanded = true;
+    public bool spriteFlip = false;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
 
         currentState = IdleState;
 
@@ -43,6 +47,17 @@ public class PlayerStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        if(rb.position.x < bossRb.position.x)
+        {
+            // Player is on the left of the boss.
+            spriteFlip = true;
+        }
+        else
+        {
+            // Player is on the right of the boss.
+            spriteFlip = false;
+        }
     }
 
     public void SwitchState(PlayerBaseState state)

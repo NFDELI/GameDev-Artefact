@@ -17,13 +17,27 @@ public class PlayerJumpingState : PlayerBaseState
             {
                 // Diagonal Right/Back Jump. (Back Diagonal Jump have same animation as Neutral Jump)
                 player.rb.AddForce(new Vector2(player.diagonalJumpForce, player.jumpForce), ForceMode2D.Impulse);
-                player.animator.SetTrigger("JumpNeutral");
+                if(player.spriteFlip)
+                {
+                    player.animator.SetTrigger("JumpDiagonal");
+                }
+                else
+                {
+                    player.animator.SetTrigger("JumpNeutral");
+                }
             }
             else
             {
                 // Diagonal Left/Forward Jump. 
                 player.rb.AddForce(new Vector2(-player.diagonalJumpForce, player.jumpForce), ForceMode2D.Impulse);
-                player.animator.SetTrigger("JumpDiagonal");
+                if(player.spriteFlip)
+                {
+                    player.animator.SetTrigger("JumpNeutral");
+                }
+                else
+                {
+                    player.animator.SetTrigger("JumpDiagonal");
+                }
             }
         }
         Debug.Log("Entered Jumping State");
