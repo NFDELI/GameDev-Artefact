@@ -26,6 +26,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool isLanded = true;
     public bool spriteFlip = false;
     public int attackCounter = 1;
+    public bool canAttackChain = false;
 
     // Player Attributes
     public float health = 100.0f;
@@ -91,5 +92,18 @@ public class PlayerStateManager : MonoBehaviour
     private void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
+    }
+
+    public void FlagAttackAnimationFinished()
+    {
+        // This function is used in the Animator.
+        currentState = IdleState;
+        currentState.EnterState(this);
+    }
+
+    public void FlagAttackAnimationChain()
+    {
+        // This function is used in the Animator to cancel attack animation quickly when attacks lands.
+        canAttackChain = true;
     }
 }

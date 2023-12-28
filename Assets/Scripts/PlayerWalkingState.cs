@@ -11,7 +11,7 @@ public class PlayerWalkingState : PlayerBaseState
     {
         if(player.movementInput == Vector2.zero)
         {
-            // No Movement Input.
+            // No Movement Input. (Movement Input Stopped)
             player.animator.SetBool("isWalkTowards", false);
             player.animator.SetBool("isWalkBackwards", false);
             player.SwitchState(player.IdleState);
@@ -65,6 +65,17 @@ public class PlayerWalkingState : PlayerBaseState
                 player.animator.SetBool("isWalkBackwards", false);
                 player.SwitchState(player.CrouchState);
             }
+        }
+
+        // Check for Attack Input.
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            player.SwitchState(player.RegularAttackState);
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            player.SwitchState(player.PlayerSpecialAttackState);
         }
     }
 

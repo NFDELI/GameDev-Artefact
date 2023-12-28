@@ -7,6 +7,7 @@ public class PlayerIdleState : PlayerBaseState
         Debug.Log("Entered Idle State");
         player.isLanded = true;
         player.rb.velocity = new Vector2(0, 0);
+        player.attackCounter = 1;
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -28,7 +29,7 @@ public class PlayerIdleState : PlayerBaseState
             {
                 // Crouching.
                 player.SwitchState(player.CrouchState);
-             }
+            }
         }
 
         // Check for Attack Input.
