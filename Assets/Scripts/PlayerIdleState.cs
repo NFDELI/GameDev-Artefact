@@ -13,6 +13,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         if(player.movementInput != Vector2.zero)
         {
+            // Check for Movement Input.
             if(player.movementInput.y == 0)
             {
                 // Walking.
@@ -27,8 +28,18 @@ public class PlayerIdleState : PlayerBaseState
             {
                 // Crouching.
                 player.SwitchState(player.CrouchState);
-            }
-            
+             }
+        }
+
+        // Check for Attack Input.
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            player.SwitchState(player.RegularAttackState);
+        }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            player.SwitchState(player.PlayerSpecialAttackState);
         }
 
         // Sprite-Flip Check.

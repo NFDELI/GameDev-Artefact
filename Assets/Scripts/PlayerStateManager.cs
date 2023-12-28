@@ -25,6 +25,7 @@ public class PlayerStateManager : MonoBehaviour
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
     public bool spriteFlip = false;
+    public int attackCounter = 1;
 
     // Player Attributes
     public float health = 100.0f;
