@@ -21,12 +21,18 @@ public class PlayerRegularAttackState : PlayerBaseState
         // The 'attackCounter' determines the next attack being performed. 
         switch (player.attackCounter)
         {
+            case 0:
+                player.animator.SetTrigger("triggerAttackCrouch");
+                player.attackCounter = 2;
+                player.rb.AddForce(new Vector2(0.5f * forceDirection, 0), ForceMode2D.Impulse);
+                break;
             case 1:
                 player.animator.SetTrigger("triggerAttackOne");
                 player.attackCounter++;
                 player.rb.AddForce(new Vector2(2 * forceDirection, 0), ForceMode2D.Impulse);
                 break;
             case 2:
+                player.animator.SetBool("isCrouch", false);
                 player.animator.SetTrigger("triggerAttackTwo");
                 player.attackCounter++;
                 player.rb.AddForce(new Vector2(2 * forceDirection, 0), ForceMode2D.Impulse);

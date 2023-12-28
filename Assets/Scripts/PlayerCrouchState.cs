@@ -6,6 +6,7 @@ public class PlayerCrouchState : PlayerBaseState
     {
         Debug.Log("Entered Crouch State");
         player.animator.SetBool("isCrouch", true);
+        player.attackCounter = 0;
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -14,6 +15,13 @@ public class PlayerCrouchState : PlayerBaseState
         {
             player.animator.SetBool("isCrouch", false);
             player.SwitchState(player.IdleState);
+        }
+
+        // Check for Attack Input.
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            player.SwitchState(player.RegularAttackState);
+            //player.animator.SetBool("isCrouch", false);
         }
     }
 

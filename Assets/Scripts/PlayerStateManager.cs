@@ -101,6 +101,13 @@ public class PlayerStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
+    public void FlagAttackAnimationFinishedCrouched()
+    {
+        // This function is used in the Animator.
+        currentState = CrouchState;
+        currentState.EnterState(this);
+    }
+
     public void FlagAttackAnimationChain()
     {
         // This function is used in the Animator to cancel attack animation quickly when attacks lands.
