@@ -14,6 +14,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerJumpingState JumpingState = new PlayerJumpingState();
     public PlayerCrouchState CrouchState = new PlayerCrouchState();
     public PlayerDeathState DeathState = new PlayerDeathState();
+    public PlayerRegularAttackState RegularAttackState = new PlayerRegularAttackState();
+    public PlayerSpecialAttackState PlayerSpecialAttackState = new PlayerSpecialAttackState();
 
     // Variables
     public Vector2 movementInput;
