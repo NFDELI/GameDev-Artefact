@@ -12,8 +12,7 @@ public class PlayerWalkingState : PlayerBaseState
         if(player.movementInput == Vector2.zero)
         {
             // No Movement Input. (Movement Input Stopped)
-            player.animator.SetBool("isWalkTowards", false);
-            player.animator.SetBool("isWalkBackwards", false);
+            StopMovingAnimation(player);
             player.SwitchState(player.IdleState);
         }
         else 
@@ -54,15 +53,13 @@ public class PlayerWalkingState : PlayerBaseState
             if(player.movementInput.y > 0)
             {
                 // Jump.
-                player.animator.SetBool("isWalkTowards", false);
-                player.animator.SetBool("isWalkBackwards", false);
+                StopMovingAnimation(player);
                 player.SwitchState(player.JumpingState);
             }
             else if(player.movementInput.y < 0)
             {
                 // Crouch.
-                player.animator.SetBool("isWalkTowards", false);
-                player.animator.SetBool("isWalkBackwards", false);
+                StopMovingAnimation(player);
                 player.SwitchState(player.CrouchState);
             }
         }
@@ -70,11 +67,13 @@ public class PlayerWalkingState : PlayerBaseState
         // Check for Attack Input.
         if (Input.GetKeyDown(KeyCode.U))
         {
+            StopMovingAnimation(player);
             player.SwitchState(player.RegularAttackState);
         }
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            StopMovingAnimation(player);
             player.SwitchState(player.PlayerSpecialAttackState);
         }
     }
@@ -96,5 +95,11 @@ public class PlayerWalkingState : PlayerBaseState
         player.animator.SetBool("isWalkBackwards", false);
         player.animator.SetBool("isWalkTowards", true);
         player.rb.MovePosition(player.rb.position + new Vector2(-1, 0) * player.movementSpeed * Time.fixedDeltaTime);
+    }
+
+    private void StopMovingAnimation(PlayerStateManager player)
+    {
+        player.animator.SetBool("isWalkTowards", false);
+        player.animator.SetBool("isWalkBackwards", false);
     }
 }

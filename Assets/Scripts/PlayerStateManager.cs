@@ -27,6 +27,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool spriteFlip = false;
     public int attackCounter = 1;
     public bool canAttackChain = false;
+    public int forceDirection = 1;
 
     // Player Attributes
     public float health = 100.0f;
@@ -76,8 +77,18 @@ public class PlayerStateManager : MonoBehaviour
             // Boss wins one round.
         }
 
+        // Ensures that the attack force is applied in the correct Direction.
+        if (!spriteRenderer.flipX)
+        {
+            forceDirection = -1;
+        }
+        else
+        {
+            forceDirection = 1;
+        }
+
         // Debugging
-        if(Input.GetKeyDown(KeyCode.Keypad0))
+        if (Input.GetKeyDown(KeyCode.Keypad0))
         {
             health = 0;
         }
