@@ -80,7 +80,11 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
     {
+    }
 
+    public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
+    {
+        //Debug.Log("Collision Detected while Walking");
     }
 
     public void MoveRight(PlayerStateManager player)

@@ -5,7 +5,7 @@ public class PlayerDeathState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Death State");
-        player.animator.SetTrigger("triggerDeath");
+        player.animator.SetTrigger("triggerFall");
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -18,6 +18,11 @@ public class PlayerDeathState : PlayerBaseState
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
+    {
+
+    }
+
+    public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
 
     }

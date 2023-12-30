@@ -7,10 +7,10 @@ public class FireballScript : MonoBehaviour
 {
     [SerializeField]
     private float speed = 1;
-    [SerializeField]
-    private float damage = 1;
-    [SerializeField]
-    private int hitCount = 1;
+    //[SerializeField]
+    //private float damage = 1;
+    //[SerializeField]
+    //private int hitCount = 1;
     private int forceDirection = -1;
 
     private Vector2 standbyPosition;

@@ -16,6 +16,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerDeathState DeathState = new PlayerDeathState();
     public PlayerRegularAttackState RegularAttackState = new PlayerRegularAttackState();
     public PlayerSpecialAttackState PlayerSpecialAttackState = new PlayerSpecialAttackState();
+    
 
     // Variables
     public Vector2 movementInput;
@@ -34,6 +35,10 @@ public class PlayerStateManager : MonoBehaviour
     public float movementSpeed = 1.0f;
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
+
+    // Variables for Hit Reaction. (These variables should be set from the boss's Script)
+    public int nextPlayerHitReaction = 0;
+    public float nextPlayerHitStunDuration = 3.0f;
 
     // Player Attack Variables.
     public bool isSpinnigKickForce = false;
@@ -57,6 +62,11 @@ public class PlayerStateManager : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         currentState.OnCollisionEnter(this, collision);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        currentState.OnTriggerEnter2D(this, collision);
     }
 
     // Update is called once per frame

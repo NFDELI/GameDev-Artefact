@@ -48,9 +48,20 @@ public class PlayerRegularAttackState : PlayerBaseState
         {
             player.SwitchState(player.RegularAttackState);
         }
+
+        // Check for Special Attack Input.
+        if (Input.GetKeyDown(KeyCode.I) && player.canAttackChain)
+        {
+            player.SwitchState(player.PlayerSpecialAttackState);
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
+    {
+
+    }
+
+    public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
 
     }

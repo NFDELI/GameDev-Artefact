@@ -75,6 +75,11 @@ public class PlayerSpecialAttackState : PlayerBaseState
 
     }
 
+    public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
+    {
+
+    }
+
     private void DragonPunchForce(PlayerStateManager player)
     {
         player.rb.AddForce(new Vector2(1.5f * player.forceDirection, 5), ForceMode2D.Impulse);
