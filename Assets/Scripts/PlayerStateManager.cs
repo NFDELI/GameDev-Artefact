@@ -35,6 +35,13 @@ public class PlayerStateManager : MonoBehaviour
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
 
+    // Player Attack Variables.
+    public bool isSpinnigKickForce = false;
+    public float spinningKickSpeed = 1f;
+
+    // Reference to Player's fireball.
+    public FireballScript fireballScript;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,6 +75,7 @@ public class PlayerStateManager : MonoBehaviour
             spriteFlip = false;
         }
 
+        // Need to Move this Health check during damage check.
         if(health <= 0 && currentState != DeathState)
         {
             // Player loses all HP and Dies.
@@ -123,5 +131,27 @@ public class PlayerStateManager : MonoBehaviour
     {
         // This function is used in the Animator to cancel attack animation quickly when attacks lands.
         canAttackChain = true;
+    }
+
+    public void FlagDragonPunchForce()
+    {
+        // Used in the Animator, this function adds a force to push the player character upwards.
+        rb.AddForce(new Vector2(1 * forceDirection, 6), ForceMode2D.Impulse);
+    }
+
+    public void FlagSpinningKickStart()
+    {
+        isSpinnigKickForce = true;  
+    }
+
+    public void FlagSpinningKickEnd()
+    {
+        isSpinnigKickForce = false;
+    }
+    
+    public void SpawnFireball()
+    {
+        fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);
+        fireballScript.FireballSpawned();
     }
 }

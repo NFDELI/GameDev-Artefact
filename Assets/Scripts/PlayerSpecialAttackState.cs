@@ -16,7 +16,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
-                    DragonPunchForce(player);
+                    //DragonPunchForce(player);
                 }
                 else
                 {
@@ -38,19 +38,36 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
-                    DragonPunchForce(player);
+                    //DragonPunchForce(player);
                 }
             }
         }
         else
         {
             // Neutral Direction. (Fireball)
-            player.animator.SetTrigger("triggerSpecialOne");
+            if (player.fireballScript.isSpawned)
+            {
+                // Do not allow the player to spawn multiple fireballs at the scene.
+                player.SwitchState(player.IdleState);
+            }
+            else
+            {
+                // Fireball is spawned from Animator.
+                player.animator.SetTrigger("triggerSpecialOne");
+            }
+            
+            // Spawn Fireball.
+            //player.SpawnFireball();
         }
     }
 
     public override void UpdateState(PlayerStateManager player)
     {
+        if(player.isSpinnigKickForce)
+        {
+            // Apply the x-velocity while doing a spinning kick.
+            player.rb.MovePosition(player.rb.position + new Vector2(player.spinningKickSpeed * player.forceDirection, 0) * player.movementSpeed * Time.fixedDeltaTime);
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)

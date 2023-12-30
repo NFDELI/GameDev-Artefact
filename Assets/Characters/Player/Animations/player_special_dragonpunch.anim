@@ -31,18 +31,22 @@ AnimationClip:
     - time: 0.26666668
       value: {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 87a1a3905061de34ea1e9ff2fa609e72, type: 3}
+      value: {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
     - time: 0.4
-      value: {fileID: 21300000, guid: 06e049bb419be914d9484bc5c474d0fb, type: 3}
+      value: {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
     - time: 0.46666667
-      value: {fileID: 21300000, guid: 572d9973c34aca44aa36068c2c0b0730, type: 3}
+      value: {fileID: 21300000, guid: 87a1a3905061de34ea1e9ff2fa609e72, type: 3}
     - time: 0.53333336
-      value: {fileID: 21300000, guid: 18a6979121d14ea4f9d5810a8620b85d, type: 3}
+      value: {fileID: 21300000, guid: 06e049bb419be914d9484bc5c474d0fb, type: 3}
     - time: 0.6
-      value: {fileID: 21300000, guid: 1d7d181b00db627488b968c9e65df8ce, type: 3}
+      value: {fileID: 21300000, guid: 572d9973c34aca44aa36068c2c0b0730, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: e7d0aa6707ceba1479cdbc9d08bba4a2, type: 3}
+      value: {fileID: 21300000, guid: 18a6979121d14ea4f9d5810a8620b85d, type: 3}
     - time: 0.73333335
+      value: {fileID: 21300000, guid: 1d7d181b00db627488b968c9e65df8ce, type: 3}
+    - time: 0.8
+      value: {fileID: 21300000, guid: e7d0aa6707ceba1479cdbc9d08bba4a2, type: 3}
+    - time: 0.8666667
       value: {fileID: 21300000, guid: 978ba96a7087d7947b983cbc67b4ff01, type: 3}
     attribute: m_Sprite
     path: 
@@ -71,6 +75,8 @@ AnimationClip:
     - {fileID: 21300000, guid: cabe013dde626a844ae74418b52a5d7c, type: 3}
     - {fileID: 21300000, guid: f5a0e1d8e2f4a2c439cf6b23131bdeb1, type: 3}
     - {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
+    - {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
+    - {fileID: 21300000, guid: 4dd83a734157d7d4abb472f71a214832, type: 3}
     - {fileID: 21300000, guid: 87a1a3905061de34ea1e9ff2fa609e72, type: 3}
     - {fileID: 21300000, guid: 06e049bb419be914d9484bc5c474d0fb, type: 3}
     - {fileID: 21300000, guid: 572d9973c34aca44aa36068c2c0b0730, type: 3}
@@ -83,7 +89,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.8
+    m_StopTime: 0.93333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -103,7 +109,14 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.73333335
+  - time: 0.2
+    functionName: FlagDragonPunchForce
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8666667
     functionName: FlagAttackAnimationFinished
     data: 
     objectReferenceParameter: {fileID: 0}
