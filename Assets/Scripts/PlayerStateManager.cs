@@ -39,7 +39,9 @@ public class PlayerStateManager : MonoBehaviour
 
     // Variables for Hit Reaction. (These variables should be set from the boss's Script)
     public int nextPlayerHitReaction = 0;
-    public float nextPlayerHitStunDuration = 3.0f;
+    public float nextPlayerHitStunDuration = 1.0f;
+    public float nextPlayerDamageReceived = 0f;
+    public Vector2 nextPlayerForceReceived = new Vector2(0, 0);
 
     // Player Attack Variables.
     public bool isSpinnigKickForce = false;
@@ -115,7 +117,7 @@ public class PlayerStateManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.R))
         {
             currentState = HitReactionState;
-            nextPlayerHitReaction = 2;
+            nextPlayerHitReaction = 0;
             currentState.EnterState(this);
         }
     }

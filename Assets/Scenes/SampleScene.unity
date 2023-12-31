@@ -1075,6 +1075,14 @@ PrefabInstance:
       propertyPath: diagonalJumpForce
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: nextPlayerHitReaction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: nextPlayerHitStunDuration
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
