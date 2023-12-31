@@ -16,8 +16,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerDeathState DeathState = new PlayerDeathState();
     public PlayerRegularAttackState RegularAttackState = new PlayerRegularAttackState();
     public PlayerSpecialAttackState PlayerSpecialAttackState = new PlayerSpecialAttackState();
+    public PlayerHitReactionState HitReactionState = new PlayerHitReactionState();
     
-
     // Variables
     public Vector2 movementInput;
     public Rigidbody2D rb;
@@ -29,6 +29,7 @@ public class PlayerStateManager : MonoBehaviour
     public int attackCounter = 1;
     public bool canAttackChain = false;
     public int forceDirection = 1;
+    public bool canGetUp = false;
 
     // Player Attributes
     public float health = 100.0f;
@@ -110,6 +111,13 @@ public class PlayerStateManager : MonoBehaviour
         {
             health = 0;
         }
+        
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            currentState = HitReactionState;
+            nextPlayerHitReaction = 2;
+            currentState.EnterState(this);
+        }
     }
 
     public void SwitchState(PlayerBaseState state)
@@ -159,6 +167,11 @@ public class PlayerStateManager : MonoBehaviour
         isSpinnigKickForce = false;
     }
     
+    public void FlagAllowPlayerToGetUp()
+    {
+        canGetUp = true;
+    }
+
     public void SpawnFireball()
     {
         fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);

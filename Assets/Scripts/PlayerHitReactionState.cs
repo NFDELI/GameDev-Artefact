@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class PlayerHitReactionState : PlayerBaseState
 {
+    private int hitReactionIndex;
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Hit Reaction State");
+
+        hitReactionIndex = player.nextPlayerHitReaction;
 
         switch (player.nextPlayerHitReaction)
         {
@@ -22,7 +25,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 break;
             case 3:
                 // Grabbed.
-                player.animator.SetTrigger("triggerGetUp");
+
                 break;
             case 4:
                 // High Block.
@@ -48,6 +51,10 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Dazed/Stunned.
                 player.animator.SetTrigger("triggerStunned");
                 break;
+            case 10:
+                // Get Up Animation.
+                player.animator.SetTrigger("triggerGetUp");
+                break;
             default:
                 break;
         }
@@ -55,7 +62,17 @@ public class PlayerHitReactionState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-
+        if(player.movementInput != Vector2.zero)
+        {
+            // Movement Input Detected.
+            if(hitReactionIndex == 2 && player.canGetUp)
+            {
+                // To make the player get up from falling.
+                player.nextPlayerHitReaction = 10;
+                player.canGetUp = false;
+                player.SwitchState(player.HitReactionState);
+            }
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
