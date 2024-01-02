@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class JumpCollisionScript : MonoBehaviour
+public class BossJumpCollisionScript : MonoBehaviour
 {
     BoxCollider2D boxCollider;
-    public PlayerStateManager stateManager;
+    public BossStateManager stateManager;
 
     void Start()
     {

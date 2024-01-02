@@ -21,7 +21,7 @@ public class BossStateManager : MonoBehaviour
     // Variables
     public Vector2 movementInput;
     public Rigidbody2D rb;
-    public Rigidbody2D bossRb;
+    public Rigidbody2D playerRb;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
@@ -77,7 +77,7 @@ public class BossStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
-        if(rb.position.x < bossRb.position.x)
+        if(rb.position.x < playerRb.position.x)
         {
             // Boss is on the left of the boss.
             spriteFlip = true;
