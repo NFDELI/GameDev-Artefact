@@ -1413,7 +1413,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1634,7 +1634,7 @@ PrefabInstance:
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: bossRb
       value: 
-      objectReference: {fileID: 924498610}
+      objectReference: {fileID: 2007554647}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: health
       value: 100
