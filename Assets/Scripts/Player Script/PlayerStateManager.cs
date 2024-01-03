@@ -51,6 +51,8 @@ public class PlayerStateManager : MonoBehaviour
     // Reference to Player's fireball.
     public FireballScript fireballScript;
 
+    public BossStateManager bossStateManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +73,14 @@ public class PlayerStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnTriggerEnter2D(this, collision);
+        if (collision.tag == "BossRangeCheck")
+        {
+            // The player is in range of boss's attack.
+            bossStateManager.hasReachedPlayer = true;
+            bossStateManager.animator.SetBool("isWalkTowards", false);
+            bossStateManager.animator.SetBool("isWalkBackwards", false);
+            bossStateManager.SwitchState(bossStateManager.RegularAttackState);
+        }
     }
 
     // Update is called once per frame

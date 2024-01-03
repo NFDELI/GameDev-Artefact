@@ -55,6 +55,13 @@ public class BossStateManager : MonoBehaviour
 
     public PlayerStateManager playerStateManager;
 
+    public float aiDecisionTimer = 2f;
+    public float defaultAiDecisionTimer = 2f;
+
+    // Regular Attack State Variables.
+    public bool hasReachedPlayer = false;
+    public BoxCollider2D rangeCheckBox;
+
     // Start is called before the first frame update
     void Start()
     {

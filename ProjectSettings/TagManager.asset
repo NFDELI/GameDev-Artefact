@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - Wall
   - BossAttackHigh
+  - BossRangeCheck
   layers:
   - Default
   - TransparentFX

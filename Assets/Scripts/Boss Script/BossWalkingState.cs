@@ -5,20 +5,22 @@ public class BossWalkingState : BossBaseState
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Walking State");
+        boss.hasReachedPlayer = false;
+        boss.rangeCheckBox.enabled = true;
     }
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.movementInput == Vector2.zero)
+        if(boss.hasReachedPlayer)
         {
-            // No Movement Input. (Movement Input Stopped)
+            // Boss has reached the player to do close range attacks. (Change States)
             StopMovingAnimation(boss);
-            boss.SwitchState(boss.IdleState);
+            boss.SwitchState(boss.RegularAttackState);
         }
         else 
         {
-            // Movement Input Detected.
-            if(boss.movementInput.x > 0)
+            // Boss not reached player yet. Go towards player.
+            if (boss.rb.position.x < boss.playerRb.position.x)
             {
                 // Move Right.
                 if(boss.spriteFlip)
@@ -34,7 +36,7 @@ public class BossWalkingState : BossBaseState
                 boss.rb.MovePosition(boss.rb.position + new Vector2(1, 0) * boss.movementSpeed * Time.fixedDeltaTime);
 
             }
-            else if(boss.movementInput.x < 0)
+            else if(boss.rb.position.x > boss.playerRb.position.x)
             {
                 // Move Left.
                 if(boss.spriteFlip) 
@@ -84,7 +86,7 @@ public class BossWalkingState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-        //Debug.Log("Collision Detected while Walking");
+
     }
 
     public void MoveRight(BossStateManager boss)

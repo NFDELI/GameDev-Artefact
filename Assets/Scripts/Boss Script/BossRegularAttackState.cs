@@ -1,44 +1,30 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossRegularAttackState : BossBaseState
 {
+    int attackPatternChoice;
+    int currentAttackPatternIndex;
+    int[] attackPatternChosen;
+    int[] attackPatternOne = { 1, 2, 3, 4, 0 };
+    int[] attackPatternTwo = { 2, 3, 4, 1, 0 };
+
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Regular Attack State");
-        boss.canAttackChain = false;
+        boss.canAttackChain = true;
+        currentAttackPatternIndex = 0;
 
-        // The 'attackCounter' determines the next attack being performed. 
-        switch (boss.attackCounter)
+        attackPatternChoice = Random.Range(1, 3);
+
+        // Choose a Random Attack Pattern.
+        switch (attackPatternChoice) 
         {
-            case 0:
-                boss.animator.SetTrigger("triggerAttackCrouch");
-                boss.attackCounter = 2;
-                boss.rb.AddForce(new Vector2(0.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                break;
             case 1:
-                boss.animator.SetTrigger("triggerAttackOne");
-                boss.attackCounter++;
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                attackPatternChosen = attackPatternOne;
                 break;
             case 2:
-                boss.animator.SetBool("isCrouch", false);
-                boss.animator.SetTrigger("triggerAttackTwo");
-                boss.attackCounter++;
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
-                break;
-            case 3:
-                boss.animator.SetTrigger("triggerAttackThree");
-                boss.attackCounter++;
-                boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
-                break;
-            case 4:
-                boss.animator.SetTrigger("triggerAttackFour");
-                boss.attackCounter = 1;
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 2, 5);
+                attackPatternChosen = attackPatternTwo;
                 break;
             default:
                 break;
@@ -47,16 +33,17 @@ public class BossRegularAttackState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.K) && boss.canAttackChain)
+        if(boss.canAttackChain)
         {
-            boss.SwitchState(boss.RegularAttackState);
-        }
+            PerformAttack(boss, attackPatternChosen[currentAttackPatternIndex]);
+            boss.canAttackChain = false;
+            currentAttackPatternIndex++;
 
-        // Check for Special Attack Input.
-        if (Input.GetKeyDown(KeyCode.L) && boss.canAttackChain)
-        {
-            boss.SwitchState(boss.BossSpecialAttackState);
+            if(attackPatternChosen[currentAttackPatternIndex] == 0)
+            {
+                // End of Attack Pattern.
+                boss.SwitchState(boss.IdleState);
+            }
         }
     }
 
@@ -68,5 +55,40 @@ public class BossRegularAttackState : BossBaseState
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
 
+    }
+
+    public void PerformAttack(BossStateManager boss, int attackId)
+    {
+        // The 'attackId' determines the next attack being performed. 
+        switch (attackId)
+        {
+            case 0:
+                boss.animator.SetTrigger("triggerAttackCrouch");
+                boss.rb.AddForce(new Vector2(0.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                break;
+            case 1:
+                boss.animator.SetTrigger("triggerAttackOne");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                break;
+            case 2:
+                boss.animator.SetBool("isCrouch", false);
+                boss.animator.SetTrigger("triggerAttackTwo");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                break;
+            case 3:
+                boss.animator.SetTrigger("triggerAttackThree");
+                boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                break;
+            case 4:
+                boss.animator.SetTrigger("triggerAttackFour");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 2, 5);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -8,30 +8,44 @@ public class BossIdleState : BossBaseState
         boss.isLanded = true;
         boss.rb.velocity = new Vector2(0, 0);
         boss.attackCounter = 1;
+
+        // Reset decision making timer.
+        boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
+        boss.rangeCheckBox.enabled = false;
     }
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.movementInput != Vector2.zero)
+        if(boss.aiDecisionTimer <= 0)
         {
-            // Check for Movement Input.
-            if(boss.movementInput.y == 0)
-            {
-                // Walking.
-                boss.SwitchState(boss.WalkingState);
-            }
-            else if(boss.movementInput.y > 0 && boss.isLanded)
-            {
-                // Jumping.
-                boss.SwitchState(boss.JumpingState);
-            }
-            else if(boss.movementInput.y < 0)
-            {
-                // Crouching.
-                boss.SwitchState(boss.CrouchState);
-            }
+            // Choose which action to do.
+
+            // Boss chooses to approach the player for close range attack.
+            boss.SwitchState(boss.WalkingState);
+        }
+        else
+        {
+            // Wait, decrease timer.
+            boss.aiDecisionTimer -= Time.deltaTime;
         }
 
+        // Check for Movement Input.
+        //if (boss.movementInput.y == 0)
+        //{
+        //    // Walking.
+        //    boss.SwitchState(boss.WalkingState);
+        //}
+        //else if(boss.movementInput.y > 0 && boss.isLanded)
+        //{
+        //    // Jumping.
+        //    boss.SwitchState(boss.JumpingState);
+        //}
+        //else if(boss.movementInput.y < 0)
+        //{
+        //    // Crouching.
+        //    boss.SwitchState(boss.CrouchState);
+        //}
+        
         // Check for Attack Input.
         if(Input.GetKeyDown(KeyCode.K))
         {
