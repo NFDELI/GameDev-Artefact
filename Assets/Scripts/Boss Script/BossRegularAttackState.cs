@@ -19,22 +19,26 @@ public class BossRegularAttackState : BossBaseState
                 boss.animator.SetTrigger("triggerAttackOne");
                 boss.attackCounter++;
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
                 break;
             case 2:
                 boss.animator.SetBool("isCrouch", false);
                 boss.animator.SetTrigger("triggerAttackTwo");
                 boss.attackCounter++;
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
                 break;
             case 3:
                 boss.animator.SetTrigger("triggerAttackThree");
                 boss.attackCounter++;
                 boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
                 break;
             case 4:
                 boss.animator.SetTrigger("triggerAttackFour");
                 boss.attackCounter = 1;
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1, 0), 2, 5);
                 break;
             default:
                 break;
@@ -44,13 +48,13 @@ public class BossRegularAttackState : BossBaseState
     public override void UpdateState(BossStateManager boss)
     {
         // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U) && boss.canAttackChain)
+        if (Input.GetKeyDown(KeyCode.K) && boss.canAttackChain)
         {
             boss.SwitchState(boss.RegularAttackState);
         }
 
         // Check for Special Attack Input.
-        if (Input.GetKeyDown(KeyCode.I) && boss.canAttackChain)
+        if (Input.GetKeyDown(KeyCode.L) && boss.canAttackChain)
         {
             boss.SwitchState(boss.BossSpecialAttackState);
         }

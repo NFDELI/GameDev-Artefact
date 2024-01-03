@@ -33,12 +33,12 @@ public class BossIdleState : BossBaseState
         }
 
         // Check for Attack Input.
-        if(Input.GetKeyDown(KeyCode.U))
+        if(Input.GetKeyDown(KeyCode.K))
         {
             boss.SwitchState(boss.RegularAttackState);
         }
 
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.L))
         {
             boss.SwitchState(boss.BossSpecialAttackState);
         }

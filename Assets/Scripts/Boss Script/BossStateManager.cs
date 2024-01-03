@@ -50,6 +50,11 @@ public class BossStateManager : MonoBehaviour
     // Reference to Boss's fireball.
     public FireballScript fireballScript;
 
+    // Attack Collision Boxes.
+    public BoxCollider2D attackOneCollider2D;
+
+    public PlayerStateManager playerStateManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -178,5 +183,23 @@ public class BossStateManager : MonoBehaviour
     {
         fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);
         fireballScript.FireballSpawned();
+    }
+
+    public void TurnOnAttackBoxCollider()
+    {
+        attackOneCollider2D.enabled = true;
+    }
+
+    public void TurnOffAttackBoxCollider()
+    {
+        attackOneCollider2D.enabled = false;
+    }
+
+    public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration)
+    {
+        playerStateManager.nextPlayerDamageReceived = damage;
+        playerStateManager.nextPlayerForceReceived = force;
+        playerStateManager.nextPlayerHitReaction = hitreactionId;
+        playerStateManager.nextPlayerHitStunDuration = stunduration;
     }
 }

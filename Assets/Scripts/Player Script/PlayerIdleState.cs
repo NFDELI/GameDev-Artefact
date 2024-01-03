@@ -6,6 +6,7 @@ public class PlayerIdleState : PlayerBaseState
     {
         Debug.Log("Entered Idle State");
         player.isLanded = true;
+        player.isInvincible = false;
         player.rb.velocity = new Vector2(0, 0);
         player.attackCounter = 1;
     }
@@ -56,11 +57,13 @@ public class PlayerIdleState : PlayerBaseState
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
     {
-        
     }
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
-
+        if(collision.tag == "BossAttackHigh")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
     }
 }

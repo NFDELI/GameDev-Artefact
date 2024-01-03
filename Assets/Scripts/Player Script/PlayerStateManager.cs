@@ -30,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool canAttackChain = false;
     public int forceDirection = 1;
     public bool canGetUp = false;
+    public bool isInvincible = false;
 
     // Player Attributes
     public float health = 100.0f;
@@ -178,5 +179,15 @@ public class PlayerStateManager : MonoBehaviour
     {
         fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);
         fireballScript.FireballSpawned();
+    }
+
+    public void TurnOninvincibility()
+    {
+        isInvincible = true;
+    }
+
+    public void TurnOffinvincibility()
+    {
+        isInvincible = false;
     }
 }

@@ -84,10 +84,13 @@ public class PlayerHitReactionState : PlayerBaseState
             }
         }
 
-        if(timerStarted)
+        if(hitReactionIndex != 2)
         {
-            hitStunTime -= Time.deltaTime;
-            if(hitStunTime <= 0) { StunFinished(player); }
+            if (timerStarted)
+            {
+                hitStunTime -= Time.deltaTime;
+                if (hitStunTime <= 0) { StunFinished(player); }
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.E))
@@ -104,7 +107,13 @@ public class PlayerHitReactionState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
-
+        if(!player.isInvincible)
+        {
+            if (collision.tag == "BossAttackHigh")
+            {
+                player.SwitchState(player.HitReactionState);
+            }
+        }
     }
 
     private void StunFinished(PlayerStateManager player)
