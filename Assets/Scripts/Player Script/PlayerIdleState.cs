@@ -5,6 +5,7 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Idle State");
+        player.spriteRenderer.color = Color.white;
         player.isLanded = true;
         player.isInvincible = false;
         player.rb.velocity = new Vector2(0, 0);

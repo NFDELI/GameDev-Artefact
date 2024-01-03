@@ -13,6 +13,7 @@ public class PlayerHitReactionState : PlayerBaseState
 
         hitReactionIndex = player.nextPlayerHitReaction;
         hitStunTime = player.nextPlayerHitStunDuration;
+        player.spriteRenderer.color = Color.red;
 
         switch (player.nextPlayerHitReaction)
         {
@@ -37,19 +38,23 @@ public class PlayerHitReactionState : PlayerBaseState
                 // High Block.
                 player.animator.SetTrigger("triggerBlockHigh");
                 timerStarted= true;
+                player.spriteRenderer.color = Color.yellow;
                 break;
             case 5:
                 // Low Block.
                 player.animator.SetTrigger("triggerBlockLow");
                 timerStarted = true;
+                player.spriteRenderer.color = Color.yellow;
                 break;
             case 6:
                 // High Parry.
                 player.animator.SetTrigger("triggerParryHigh");
+                player.spriteRenderer.color = Color.blue;
                 break;
             case 7:
                 // Low Parry.
                 player.animator.SetTrigger("triggerParryLow");
+                player.spriteRenderer.color = Color.blue;
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
