@@ -194,7 +194,7 @@ public class PlayerStateManager : MonoBehaviour
     public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration)
     {
         nextPlayerDamageReceived = damage;
-        nextPlayerForceReceived = force;
+        nextPlayerForceReceived = force * (forceDirection);
         nextPlayerHitReaction = hitreactionId;
         nextPlayerHitStunDuration = stunduration;
     }

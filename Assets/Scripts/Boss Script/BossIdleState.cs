@@ -47,10 +47,12 @@ public class BossIdleState : BossBaseState
         if(boss.spriteFlip)
         {
             boss.spriteRenderer.flipX = true;
+            boss.attackOneCollider2D.offset = new Vector2(0.2685299f, 0);
         }
         else
         {
             boss.spriteRenderer.flipX = false;
+            boss.attackOneCollider2D.offset = new Vector2(-0.2685299f, 0);
         }
     }
 

@@ -198,7 +198,7 @@ public class BossStateManager : MonoBehaviour
     public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration)
     {
         playerStateManager.nextPlayerDamageReceived = damage;
-        playerStateManager.nextPlayerForceReceived = force;
+        playerStateManager.nextPlayerForceReceived = force * forceDirection;
         playerStateManager.nextPlayerHitReaction = hitreactionId;
         playerStateManager.nextPlayerHitStunDuration = stunduration;
     }

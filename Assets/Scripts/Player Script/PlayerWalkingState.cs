@@ -90,7 +90,7 @@ public class PlayerWalkingState : PlayerBaseState
         {
             if (player.animator.GetBool("isWalkBackwards"))
             {
-                player.AttackHitPropertySelf(0, new Vector2(0.5f, 0), 4, player.nextPlayerHitStunDuration / 2);
+                player.AttackHitPropertySelf(0, new Vector2(3f * player.nextPlayerForceReceived.x, 0), 4, player.nextPlayerHitStunDuration / 2);
             }
             player.SwitchState(player.HitReactionState);
         }

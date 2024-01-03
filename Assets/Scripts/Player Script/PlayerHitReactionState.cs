@@ -73,6 +73,10 @@ public class PlayerHitReactionState : PlayerBaseState
             default:
                 break;
         }
+
+        // Apply Hit Attributes Here.
+        player.health -= player.nextPlayerDamageReceived;
+        player.rb.AddForce(player.nextPlayerForceReceived, ForceMode2D.Impulse);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -107,7 +111,6 @@ public class PlayerHitReactionState : PlayerBaseState
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
     {
-        //Debug.Log("Collision Detected");
     }
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
@@ -116,6 +119,7 @@ public class PlayerHitReactionState : PlayerBaseState
         {
             if (collision.tag == "BossAttackHigh")
             {
+                timerStarted = false;
                 player.SwitchState(player.HitReactionState);
             }
         }
