@@ -190,4 +190,12 @@ public class PlayerStateManager : MonoBehaviour
     {
         isInvincible = false;
     }
+
+    public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration)
+    {
+        nextPlayerDamageReceived = damage;
+        nextPlayerForceReceived = force;
+        nextPlayerHitReaction = hitreactionId;
+        nextPlayerHitStunDuration = stunduration;
+    }
 }

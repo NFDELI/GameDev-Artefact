@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerWalkingState : PlayerBaseState
@@ -85,6 +86,14 @@ public class PlayerWalkingState : PlayerBaseState
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
         //Debug.Log("Collision Detected while Walking");
+        if(collision.tag == "BossAttackHigh")
+        {
+            if (player.animator.GetBool("isWalkBackwards"))
+            {
+                player.AttackHitPropertySelf(0, new Vector2(0.5f, 0), 4, player.nextPlayerHitStunDuration / 2);
+            }
+            player.SwitchState(player.HitReactionState);
+        }
     }
 
     public void MoveRight(PlayerStateManager player)
