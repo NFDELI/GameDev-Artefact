@@ -10,6 +10,7 @@ public class PlayerJumpingState : PlayerBaseState
             // Neutral Jump.
             player.rb.AddForce(new Vector2(player.rb.velocity.x, player.jumpForce), ForceMode2D.Impulse);
             player.animator.SetTrigger("JumpNeutral");
+            player.audioScript.PlayJumpSound();
         }
         else
         {

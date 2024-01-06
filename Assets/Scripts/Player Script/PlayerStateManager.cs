@@ -17,6 +17,9 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerRegularAttackState RegularAttackState = new PlayerRegularAttackState();
     public PlayerSpecialAttackState PlayerSpecialAttackState = new PlayerSpecialAttackState();
     public PlayerHitReactionState HitReactionState = new PlayerHitReactionState();
+
+    // Audio Script
+    public AudioScript audioScript;
     
     // Variables
     public Vector2 movementInput;
