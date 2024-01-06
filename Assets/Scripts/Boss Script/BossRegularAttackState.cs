@@ -6,8 +6,8 @@ public class BossRegularAttackState : BossBaseState
     int attackPatternChoice;
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
-    int[] attackPatternOne = { 1, 2, 3, 4, 0 };
-    int[] attackPatternTwo = { 2, 3, 4, 1, 0 };
+    int[] attackPatternOne = { 2, 3, 4, 0 };   //2, 3, 4, 0
+    int[] attackPatternTwo = { 3, 4, 1, 0 };   //3, 4, 1, 0
 
     public override void EnterState(BossStateManager boss)
     {
@@ -64,28 +64,28 @@ public class BossRegularAttackState : BossBaseState
         {
             case 0:
                 boss.animator.SetTrigger("triggerAttackCrouch");
-                boss.rb.AddForce(new Vector2(0.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(0.2f * boss.forceDirection, 0), ForceMode2D.Impulse);
                 break;
             case 1:
                 boss.animator.SetTrigger("triggerAttackOne");
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                boss.rb.AddForce(new Vector2(2f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(0.75f, 0), 0, 1);
                 break;
             case 2:
                 boss.animator.SetBool("isCrouch", false);
                 boss.animator.SetTrigger("triggerAttackTwo");
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                boss.rb.AddForce(new Vector2(1f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(1f, 0), 0, 1);
                 break;
             case 3:
                 boss.animator.SetTrigger("triggerAttackThree");
                 boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 0, 1);
+                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 1);
                 break;
             case 4:
                 boss.animator.SetTrigger("triggerAttackFour");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1, 0), 2, 5);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 5);
                 break;
             default:
                 break;

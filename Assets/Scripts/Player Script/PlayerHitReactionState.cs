@@ -6,6 +6,8 @@ public class PlayerHitReactionState : PlayerBaseState
 {
     private int hitReactionIndex;
     private float hitStunTime;
+    private float hitDamage;
+    private Vector2 hitForce;
     private bool timerStarted = false;
     public override void EnterState(PlayerStateManager player)
     {
@@ -13,6 +15,8 @@ public class PlayerHitReactionState : PlayerBaseState
 
         hitReactionIndex = player.nextPlayerHitReaction;
         hitStunTime = player.nextPlayerHitStunDuration;
+        hitForce = player.nextPlayerForceReceived;
+        hitDamage = player.nextPlayerDamageReceived;
         player.spriteRenderer.color = Color.red;
 
         switch (player.nextPlayerHitReaction)
@@ -39,12 +43,20 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerBlockHigh");
                 timerStarted= true;
                 player.spriteRenderer.color = Color.yellow;
+
+                // Ensure that the player takes less damage while blocking and take less knockback.
+                hitDamage = hitDamage / 4;
+                hitForce = hitForce / 2;
                 break;
             case 5:
                 // Low Block.
                 player.animator.SetTrigger("triggerBlockLow");
                 timerStarted = true;
                 player.spriteRenderer.color = Color.yellow;
+
+                // Ensure that the player takes less damage while blocking and take less knockback.
+                hitDamage = hitDamage / 4;
+                hitForce = hitForce / 2;
                 break;
             case 6:
                 // High Parry.
@@ -75,8 +87,8 @@ public class PlayerHitReactionState : PlayerBaseState
         }
 
         // Apply Hit Attributes Here.
-        player.health -= player.nextPlayerDamageReceived;
-        player.rb.AddForce(player.nextPlayerForceReceived, ForceMode2D.Impulse);
+        player.health -= hitDamage;
+        player.rb.AddForce(hitForce, ForceMode2D.Impulse);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -117,6 +129,7 @@ public class PlayerHitReactionState : PlayerBaseState
     {
         if(!player.isInvincible)
         {
+            // Player gets hit by an attack again.
             if (collision.tag == "BossAttackHigh")
             {
                 timerStarted = false;
