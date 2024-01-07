@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - BossAttackHigh
   - BossRangeCheck
+  - PlayerAttackHigh
   layers:
   - Default
   - TransparentFX
@@ -16,8 +17,8 @@ TagManager:
   - Character
   - Water
   - UI
-  - 
-  - 
+  - Attack Box
+  - Wall or Floor
   - 
   - 
   - 

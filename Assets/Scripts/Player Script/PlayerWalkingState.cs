@@ -91,7 +91,7 @@ public class PlayerWalkingState : PlayerBaseState
             if (player.animator.GetBool("isWalkBackwards"))
             {
                 // Ensures that the player goes into blocking state.
-                player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration);
+                player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
             }
             player.SwitchState(player.HitReactionState);
         }

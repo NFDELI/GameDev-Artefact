@@ -89,6 +89,7 @@ public class PlayerHitReactionState : PlayerBaseState
         // Apply Hit Attributes Here.
         player.health -= hitDamage;
         player.rb.AddForce(hitForce, ForceMode2D.Impulse);
+        player.audioScript.SoundIndexPlay(player.nextPlayerHitSoundIndex);
     }
 
     public override void UpdateState(PlayerStateManager player)

@@ -6,13 +6,17 @@ public class BossHitReactionState : BossBaseState
 {
     private int hitReactionIndex;
     private float hitStunTime;
+    private float hitDamage;
+    private Vector2 hitForce;
     private bool timerStarted = false;
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Hit Reaction State");
-
         hitReactionIndex = boss.nextBossHitReaction;
         hitStunTime = boss.nextBossHitStunDuration;
+        hitForce = boss.nextBossForceReceived;
+        hitDamage = boss.nextBossDamageReceived;
+        boss.spriteRenderer.color = Color.red;
 
         switch (boss.nextBossHitReaction)
         {
@@ -68,6 +72,14 @@ public class BossHitReactionState : BossBaseState
             default:
                 break;
         }
+
+        // Apply Hit Attributes Here -Boss.
+        boss.health -= hitDamage;
+        boss.rb.AddForce(hitForce, ForceMode2D.Impulse);
+        boss.audioScript.SoundIndexPlay(boss.nextBossHitSoundIndex);
+
+        // Turn off Player's attack hitbox so that it can be re-registered for the next hit.
+        boss.playerStateManager.attackBoxCollider.enabled = false;
     }
 
     public override void UpdateState(BossStateManager boss)
@@ -104,7 +116,10 @@ public class BossHitReactionState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-
+        if (collision.tag == "PlayerAttackHigh")
+        {
+            boss.SwitchState(boss.HitReactionState);
+        }
     }
 
     private void StunFinished(BossStateManager boss)

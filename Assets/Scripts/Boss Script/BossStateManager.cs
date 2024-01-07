@@ -17,7 +17,11 @@ public class BossStateManager : MonoBehaviour
     public BossRegularAttackState RegularAttackState = new BossRegularAttackState();
     public BossSpecialAttackState BossSpecialAttackState = new BossSpecialAttackState();
     public BossHitReactionState HitReactionState = new BossHitReactionState();
-    
+
+    // Audio Script
+    public AudioScript audioScript;
+    public int nextBossHitSoundIndex; // When the boss GETS hit.
+
     // Variables
     public Vector2 movementInput;
     public Rigidbody2D rb;
@@ -202,11 +206,21 @@ public class BossStateManager : MonoBehaviour
         attackOneCollider2D.enabled = false;
     }
 
-    public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration)
+    public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
     {
         playerStateManager.nextPlayerDamageReceived = damage;
         playerStateManager.nextPlayerForceReceived = force * forceDirection;
         playerStateManager.nextPlayerHitReaction = hitreactionId;
         playerStateManager.nextPlayerHitStunDuration = stunduration;
+        playerStateManager.nextPlayerHitSoundIndex = hitsoundId;
+    }
+
+    public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
+    {
+        nextBossDamageReceived = damage;
+        nextBossForceReceived = force * (forceDirection);
+        nextBossHitReaction = hitreactionId;
+        nextBossHitStunDuration = stunduration;
+        nextBossHitSoundIndex = hitsoundId;
     }
 }

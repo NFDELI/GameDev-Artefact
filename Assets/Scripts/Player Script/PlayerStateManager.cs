@@ -20,11 +20,13 @@ public class PlayerStateManager : MonoBehaviour
 
     // Audio Script
     public AudioScript audioScript;
+    public int nextPlayerHitSoundIndex; // When the player GETS hit.
     
     // Variables
     public Vector2 movementInput;
     public Rigidbody2D rb;
     public Rigidbody2D bossRb;
+    public BoxCollider2D attackBoxCollider;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
@@ -54,6 +56,7 @@ public class PlayerStateManager : MonoBehaviour
     // Reference to Player's fireball.
     public FireballScript fireballScript;
 
+    // Reference to Boss's State Manager.
     public BossStateManager bossStateManager;
 
     // Start is called before the first frame update
@@ -194,6 +197,16 @@ public class PlayerStateManager : MonoBehaviour
         fireballScript.FireballSpawned();
     }
 
+    public void TurnOnAttackBoxCollider()
+    {
+        attackBoxCollider.enabled = true;
+    }
+
+    public void TurnOffAttackBoxCollider()
+    {
+        attackBoxCollider.enabled = false;
+    }
+
     public void TurnOninvincibility()
     {
         isInvincible = true;
@@ -204,11 +217,21 @@ public class PlayerStateManager : MonoBehaviour
         isInvincible = false;
     }
 
-    public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration)
+    public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
+    {
+        bossStateManager.nextBossDamageReceived = damage;
+        bossStateManager.nextBossForceReceived = force * forceDirection;
+        bossStateManager.nextBossHitReaction = hitreactionId;
+        bossStateManager.nextBossHitStunDuration = stunduration;
+        bossStateManager.nextBossHitSoundIndex = hitsoundId;
+    }
+
+    public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
     {
         nextPlayerDamageReceived = damage;
         nextPlayerForceReceived = force * (forceDirection);
         nextPlayerHitReaction = hitreactionId;
         nextPlayerHitStunDuration = stunduration;
+        nextPlayerHitSoundIndex = hitsoundId;
     }
 }

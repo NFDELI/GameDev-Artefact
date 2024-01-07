@@ -49,10 +49,12 @@ public class PlayerIdleState : PlayerBaseState
         if(player.spriteFlip)
         {
             player.spriteRenderer.flipX = true;
+            player.attackBoxCollider.offset = new Vector2(0.95f, 0);
         }
         else
         {
             player.spriteRenderer.flipX = false;
+            player.attackBoxCollider.offset = new Vector2(0, 0);
         }
     }
 
