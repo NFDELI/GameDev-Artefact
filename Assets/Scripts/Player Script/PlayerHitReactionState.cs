@@ -9,6 +9,7 @@ public class PlayerHitReactionState : PlayerBaseState
     private float hitDamage;
     private Vector2 hitForce;
     private bool timerStarted = false;
+    private bool wasBlocking = true;
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Hit Reaction State");
@@ -134,6 +135,12 @@ public class PlayerHitReactionState : PlayerBaseState
             if (collision.tag == "BossAttackHigh")
             {
                 timerStarted = false;
+
+                //if()
+                //{
+                //
+                //}
+
                 player.SwitchState(player.HitReactionState);
             }
         }

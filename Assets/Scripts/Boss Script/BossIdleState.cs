@@ -16,18 +16,18 @@ public class BossIdleState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        //if(boss.aiDecisionTimer <= 0)
-        //{
-        //    // Choose which action to do.
-        //
-        //    // Boss chooses to approach the player for close range attack.
-        //    boss.SwitchState(boss.WalkingState);
-        //}
-        //else
-        //{
-        //    // Wait, decrease timer.
-        //    boss.aiDecisionTimer -= Time.deltaTime;
-        //}
+        if(boss.aiDecisionTimer <= 0)
+        {
+            // Choose which action to do.
+        
+            // Boss chooses to approach the player for close range attack.
+            boss.SwitchState(boss.WalkingState);
+        }
+        else
+        {
+            // Wait, decrease timer.
+            boss.aiDecisionTimer -= Time.deltaTime;
+        }
 
         // Check for Movement Input.
         //if (boss.movementInput.y == 0)
