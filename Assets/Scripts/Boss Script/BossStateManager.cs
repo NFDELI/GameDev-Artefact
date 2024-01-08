@@ -20,6 +20,7 @@ public class BossStateManager : MonoBehaviour
 
     // Audio Script
     public AudioScript audioScript;
+    public int nextBossSwingSoundIndex;
     public int nextBossHitSoundIndex; // When the boss GETS hit.
 
     // Variables
@@ -118,10 +119,12 @@ public class BossStateManager : MonoBehaviour
         if (!spriteRenderer.flipX)
         {
             forceDirection = -1;
+            rangeCheckBox.offset = new Vector2(-0.3f, 0f);
         }
         else
         {
             forceDirection = 1;
+            rangeCheckBox.offset = new Vector2(0.61f, 0f);
         }
 
         // Debugging
@@ -198,11 +201,22 @@ public class BossStateManager : MonoBehaviour
 
     public void TurnOnAttackBoxCollider()
     {
+        if (spriteRenderer.flipX)
+        {
+            attackOneCollider2D.offset = new Vector2(0.60f, 0f);
+        }
+        else
+        {
+            attackOneCollider2D.offset = new Vector2(-0.34f, 0f);
+        }
+
         attackOneCollider2D.enabled = true;
     }
 
     public void TurnOffAttackBoxCollider()
     {
+        attackOneCollider2D.offset = new Vector2(999f, 999f);
+
         attackOneCollider2D.enabled = false;
     }
 
@@ -213,6 +227,8 @@ public class BossStateManager : MonoBehaviour
         playerStateManager.nextPlayerHitReaction = hitreactionId;
         playerStateManager.nextPlayerHitStunDuration = stunduration;
         playerStateManager.nextPlayerHitSoundIndex = hitsoundId;
+        
+        //Player Swing sound here?
     }
 
     public void AttackHitPropertySelf(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
@@ -222,5 +238,10 @@ public class BossStateManager : MonoBehaviour
         nextBossHitReaction = hitreactionId;
         nextBossHitStunDuration = stunduration;
         nextBossHitSoundIndex = hitsoundId;
+    }
+
+    public void PlayAttackSwingSound()
+    {
+        audioScript.SoundIndexPlay(nextBossSwingSoundIndex);
     }
 }

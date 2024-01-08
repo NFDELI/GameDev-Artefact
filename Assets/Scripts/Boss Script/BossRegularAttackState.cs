@@ -6,14 +6,15 @@ public class BossRegularAttackState : BossBaseState
     int attackPatternChoice;
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
-    int[] attackPatternOne = { 2, 3, 4, 0 };   //2, 3, 4, 0
-    int[] attackPatternTwo = { 3, 4, 1, 0 };   //3, 4, 1, 0
+    int[] attackPatternOne = { 1, 2, 3, 4, 0 };   //2, 3, 4, 0
+    int[] attackPatternTwo = { 2, 3, 4, 0 };   //3, 4, 1, 0
 
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Regular Attack State");
         boss.canAttackChain = true;
         currentAttackPatternIndex = 0;
+        boss.rangeCheckBox.enabled = false;
 
         attackPatternChoice = Random.Range(1, 3);
 
@@ -36,8 +37,8 @@ public class BossRegularAttackState : BossBaseState
         if(boss.canAttackChain)
         {
             PerformAttack(boss, attackPatternChosen[currentAttackPatternIndex]);
-            boss.canAttackChain = false;
             currentAttackPatternIndex++;
+            boss.canAttackChain = false;
 
             if(attackPatternChosen[currentAttackPatternIndex] == 0)
             {
@@ -69,27 +70,31 @@ public class BossRegularAttackState : BossBaseState
             case 1:
                 boss.animator.SetTrigger("triggerAttackOne");
                 boss.rb.AddForce(new Vector2(2f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.75f, 0), 0, 1, 3);
-                boss.audioScript.PlayLightAttackSound();
+                boss.AttackHitProperty(10, new Vector2(0.75f, 0), 0, 0.5f, 3);
+                boss.nextBossSwingSoundIndex = 0;
+                //boss.audioScript.PlayLightAttackSound();
                 break;
             case 2:
                 boss.animator.SetBool("isCrouch", false);
                 boss.animator.SetTrigger("triggerAttackTwo");
                 boss.rb.AddForce(new Vector2(1f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(1f, 0), 0, 1, 4);
-                boss.audioScript.PlayMediumAttackSound();
+                boss.AttackHitProperty(10, new Vector2(1f, 0), 0, 0.5f, 4);
+                boss.nextBossSwingSoundIndex = 1;
+                //boss.audioScript.PlayMediumAttackSound();
                 break;
             case 3:
                 boss.animator.SetTrigger("triggerAttackThree");
                 boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 1, 4);
-                boss.audioScript.PlayMediumAttackSound();
+                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 0.5f, 4);
+                boss.nextBossSwingSoundIndex = 2;
+                //boss.audioScript.PlayMediumAttackSound();
                 break;
             case 4:
                 boss.animator.SetTrigger("triggerAttackFour");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 5, 6);
-                boss.audioScript.PlayHeavyAttackSound();
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 6);
+                boss.nextBossSwingSoundIndex = 2;
+                //boss.audioScript.PlayHeavyAttackSound();
                 break;
             default:
                 break;

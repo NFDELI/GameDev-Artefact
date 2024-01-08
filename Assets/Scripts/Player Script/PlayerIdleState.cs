@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerBaseState
         player.isInvincible = false;
         player.rb.velocity = new Vector2(0, 0);
         player.attackCounter = 1;
+        player.wasBlocking = false;
     }
 
     public override void UpdateState(PlayerStateManager player)

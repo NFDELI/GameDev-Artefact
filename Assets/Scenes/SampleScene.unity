@@ -187,7 +187,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2685299, y: 0}
+  m_Offset: {x: -0.34, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -443,7 +443,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 755074768}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -468,7 +468,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2926616, y: 0}
+  m_Offset: {x: -0.3, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1687,6 +1687,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioScript: {fileID: 519420034}
+  nextBossSwingSoundIndex: 0
   nextBossHitSoundIndex: 0
   movementInput: {x: 0, y: 0}
   rb: {fileID: 2007554647}
@@ -1814,6 +1815,10 @@ PrefabInstance:
       propertyPath: bossRb
       value: 
       objectReference: {fileID: 2007554647}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: health
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: audioScript
       value: 

@@ -36,6 +36,7 @@ public class PlayerStateManager : MonoBehaviour
     public int forceDirection = 1;
     public bool canGetUp = false;
     public bool isInvincible = false;
+    public bool wasBlocking = false;
 
     // Player Attributes
     public float health = 100.0f;

@@ -9,7 +9,6 @@ public class PlayerHitReactionState : PlayerBaseState
     private float hitDamage;
     private Vector2 hitForce;
     private bool timerStarted = false;
-    private bool wasBlocking = true;
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Hit Reaction State");
@@ -18,7 +17,7 @@ public class PlayerHitReactionState : PlayerBaseState
         hitStunTime = player.nextPlayerHitStunDuration;
         hitForce = player.nextPlayerForceReceived;
         hitDamage = player.nextPlayerDamageReceived;
-        player.spriteRenderer.color = Color.red;
+        //player.spriteRenderer.color = Color.red;
 
         switch (player.nextPlayerHitReaction)
         {
@@ -43,11 +42,13 @@ public class PlayerHitReactionState : PlayerBaseState
                 // High Block.
                 player.animator.SetTrigger("triggerBlockHigh");
                 timerStarted= true;
-                player.spriteRenderer.color = Color.yellow;
+                //player.spriteRenderer.color = Color.yellow;
 
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
                 hitForce = hitForce / 2;
+
+                player.wasBlocking = true;
                 break;
             case 5:
                 // Low Block.
@@ -91,6 +92,9 @@ public class PlayerHitReactionState : PlayerBaseState
         player.health -= hitDamage;
         player.rb.AddForce(hitForce, ForceMode2D.Impulse);
         player.audioScript.SoundIndexPlay(player.nextPlayerHitSoundIndex);
+
+        // Turn off Boss's attack hitbox so that it can be re-registered for the next hit.
+        player.bossStateManager.attackOneCollider2D.enabled = false;
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -136,10 +140,11 @@ public class PlayerHitReactionState : PlayerBaseState
             {
                 timerStarted = false;
 
-                //if()
-                //{
-                //
-                //}
+                if(player.wasBlocking)
+                {
+                    // Ensures that the player goes into blocking state.
+                    player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
+                }
 
                 player.SwitchState(player.HitReactionState);
             }
