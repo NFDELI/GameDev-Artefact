@@ -199,11 +199,22 @@ public class PlayerStateManager : MonoBehaviour
 
     public void TurnOnAttackBoxCollider()
     {
+        if(spriteRenderer.flipX)
+        {
+            attackBoxCollider.offset = new Vector2(0.95f, 0f);
+        }
+        else
+        {
+            attackBoxCollider.offset = new Vector2(0f, 0f);
+        }
+
         attackBoxCollider.enabled = true;
     }
 
     public void TurnOffAttackBoxCollider()
     {
+        // Teleport the Collision box to another place.
+        attackBoxCollider.offset = new Vector2(999f, 999f);
         attackBoxCollider.enabled = false;
     }
 
