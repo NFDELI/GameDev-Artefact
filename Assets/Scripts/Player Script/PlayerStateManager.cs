@@ -15,8 +15,9 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerCrouchState CrouchState = new PlayerCrouchState();
     public PlayerDeathState DeathState = new PlayerDeathState();
     public PlayerRegularAttackState RegularAttackState = new PlayerRegularAttackState();
-    public PlayerSpecialAttackState PlayerSpecialAttackState = new PlayerSpecialAttackState();
+    public PlayerSpecialAttackState SpecialAttackState = new PlayerSpecialAttackState();
     public PlayerHitReactionState HitReactionState = new PlayerHitReactionState();
+    public PlayerParryAttemptState ParryAttemptState = new PlayerParryAttemptState();
 
     // Audio Script
     public AudioScript audioScript;

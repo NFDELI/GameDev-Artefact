@@ -62,7 +62,13 @@ public class PlayerRegularAttackState : PlayerBaseState
         // Check for Special Attack Input.
         if (Input.GetKeyDown(KeyCode.I) && player.canAttackChain)
         {
-            player.SwitchState(player.PlayerSpecialAttackState);
+            player.SwitchState(player.SpecialAttackState);
+        }
+
+        // Check for Parry Input.
+        if (Input.GetKeyDown(KeyCode.Space) && player.canAttackChain)
+        {
+            player.SwitchState(player.ParryAttemptState);
         }
     }
 

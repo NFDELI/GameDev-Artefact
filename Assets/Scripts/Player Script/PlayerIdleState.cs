@@ -43,7 +43,13 @@ public class PlayerIdleState : PlayerBaseState
 
         if(Input.GetKeyDown(KeyCode.I))
         {
-            player.SwitchState(player.PlayerSpecialAttackState);
+            player.SwitchState(player.SpecialAttackState);
+        }
+
+        // Check for Parry Input.
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            player.SwitchState(player.ParryAttemptState);
         }
 
         // Sprite-Flip Check.

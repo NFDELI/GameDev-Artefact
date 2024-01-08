@@ -75,7 +75,13 @@ public class PlayerWalkingState : PlayerBaseState
         if (Input.GetKeyDown(KeyCode.I))
         {
             StopMovingAnimation(player);
-            player.SwitchState(player.PlayerSpecialAttackState);
+            player.SwitchState(player.SpecialAttackState);
+        }
+
+        // Check for Parry Input.
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player.SwitchState(player.ParryAttemptState);
         }
     }
 
