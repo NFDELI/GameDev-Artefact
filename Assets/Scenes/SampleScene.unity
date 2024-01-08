@@ -336,6 +336,9 @@ MonoBehaviour:
   HeavyHitSound: {fileID: 8300000, guid: 0398dbf0bc9fe064cb98371d21c10d71, type: 3}
   HeavySecondHitSound: {fileID: 8300000, guid: 99f38d4bb108676439b6ab8cdeafdc49, type: 3}
   BlockAttackSound: {fileID: 8300000, guid: a993aff5f3f9ea04387942ccb9a9c406, type: 3}
+  ParryAttackSound: {fileID: 8300000, guid: ea4fe1ef8f501c64daaee3ea63d2d642, type: 3}
+  ParryRyuVoiceSound: {fileID: 8300000, guid: f8fc5df1e686e784d80fee9de5a2dd1a, type: 3}
+  ParryBossVoiceSound: {fileID: 8300000, guid: 8a7c52cf1df682e4597e0821e0c746bd, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1713,8 +1716,8 @@ MonoBehaviour:
   fireballScript: {fileID: 1937929084}
   attackOneCollider2D: {fileID: 100525027}
   playerStateManager: {fileID: 3992531850973660271}
-  aiDecisionTimer: 2
-  defaultAiDecisionTimer: 2
+  aiDecisionTimer: 1.5
+  defaultAiDecisionTimer: 1.5
   hasReachedPlayer: 0
   rangeCheckBox: {fileID: 755074770}
 --- !u!114 &2007554651

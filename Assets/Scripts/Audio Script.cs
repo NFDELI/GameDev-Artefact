@@ -20,6 +20,9 @@ public class AudioScript : MonoBehaviour
 
     // Attack Block Sounds.
     public AudioClip BlockAttackSound;
+    public AudioClip ParryAttackSound;
+    public AudioClip ParryRyuVoiceSound;
+    public AudioClip ParryBossVoiceSound;
 
     public void PlayJumpSound()
     {
@@ -53,6 +56,15 @@ public class AudioScript : MonoBehaviour
                 break;
             case 7:
                 PlayBlockAttackSound();
+                break;
+            case 8:
+                PlayParryAttackSound();
+                break;
+            case 9:
+                PlayParryRyuVoiceSound();
+                break;
+            case 10:
+                PlayParryBossVoiceSound();
                 break;
             default:
                 break;
@@ -97,5 +109,20 @@ public class AudioScript : MonoBehaviour
     public void PlayBlockAttackSound()
     {
         source.PlayOneShot(BlockAttackSound);
+    }
+
+    public void PlayParryAttackSound()
+    {
+        source.PlayOneShot(ParryAttackSound);
+    }
+
+    public void PlayParryRyuVoiceSound()
+    {
+        source.PlayOneShot(ParryRyuVoiceSound);
+    }
+
+    public void PlayParryBossVoiceSound()
+    {
+        source.PlayOneShot(ParryBossVoiceSound);
     }
 }

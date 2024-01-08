@@ -22,11 +22,13 @@ public class PlayerParryAttemptState : PlayerBaseState
     {
         if (collision.tag == "BossAttackHigh")
         {
-            if (player.animator.GetBool("triggerParryHighAttempt"))
-            {
+            //if (player.animator.GetBool("triggerParryHighAttempt"))
+            //{
                 // Ensures that the player goes into blocking state.
-                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 7);
-            }
+                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
+            //}
+
+            // Parry success is also part of HitReactionState.
             player.SwitchState(player.HitReactionState);
         }
     }
