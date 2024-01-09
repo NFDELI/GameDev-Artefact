@@ -7,9 +7,10 @@ public class BossRegularAttackState : BossBaseState
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
     int[] attackPatternOne = { 1, 2, 3, 4, 0 };   //2, 3, 4, 0
-    int[] attackPatternTwo = { 2, 3, 2, 4, 1, 4, 0 };   //3, 4, 1, 0
+    int[] attackPatternTwo = { 2, 3, 1, 4, 0 };   //3, 4, 1, 0
     int[] attackPatternThree = { 2, 3, 4, 0 }; //2, 3, 4
     int[] attackPatternFour = { 4, 4, 0 };
+
 
     public override void EnterState(BossStateManager boss)
     {
