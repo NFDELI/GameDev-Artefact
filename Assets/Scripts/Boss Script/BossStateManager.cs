@@ -56,7 +56,8 @@ public class BossStateManager : MonoBehaviour
     public FireballScript fireballScript;
 
     // Attack Collision Boxes.
-    public BoxCollider2D attackOneCollider2D;
+    public BoxCollider2D attackHighBoxCollider2D;
+    public BoxCollider2D attackLowBoxCollider2D;
 
     public PlayerStateManager playerStateManager;
 
@@ -203,21 +204,42 @@ public class BossStateManager : MonoBehaviour
     {
         if (spriteRenderer.flipX)
         {
-            attackOneCollider2D.offset = new Vector2(0.60f, 0f);
+            attackHighBoxCollider2D.offset = new Vector2(0.60f, 0f);
         }
         else
         {
-            attackOneCollider2D.offset = new Vector2(-0.34f, 0f);
+            attackHighBoxCollider2D.offset = new Vector2(-0.34f, 0f);
         }
 
-        attackOneCollider2D.enabled = true;
+        attackHighBoxCollider2D.enabled = true;
     }
 
     public void TurnOffAttackBoxCollider()
     {
-        attackOneCollider2D.offset = new Vector2(999f, 999f);
+        attackHighBoxCollider2D.offset = new Vector2(999f, 999f);
 
-        attackOneCollider2D.enabled = false;
+        attackHighBoxCollider2D.enabled = false;
+    }
+
+    public void TurnOnLowAttackBoxCollider()
+    {
+        if (spriteRenderer.flipX)
+        {
+            attackLowBoxCollider2D.offset = new Vector2(0.77f, -0.37f);
+        }
+        else
+        {
+            attackLowBoxCollider2D.offset = new Vector2(-0.33f, -0.37f);
+        }
+
+        attackLowBoxCollider2D.enabled = true;
+    }
+
+    public void TurnOffLowAttackBoxCollider()
+    {
+        attackLowBoxCollider2D.offset = new Vector2(999f, 999f);
+
+        attackLowBoxCollider2D.enabled = false;
     }
 
     public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)

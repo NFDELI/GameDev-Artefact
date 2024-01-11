@@ -10,6 +10,7 @@ public class BossRegularAttackState : BossBaseState
     int[] attackPatternTwo = { 2, 3, 1, 4, 0 };   //3, 4, 1, 0
     int[] attackPatternThree = { 2, 3, 4, 0 }; //2, 3, 4
     int[] attackPatternFour = { 4, 4, 0 };
+    int[] attackPatternFive = { 2, 3, 5, 0}; 
 
 
     public override void EnterState(BossStateManager boss)
@@ -19,7 +20,8 @@ public class BossRegularAttackState : BossBaseState
         currentAttackPatternIndex = 0;
         boss.rangeCheckBox.enabled = false;
 
-        attackPatternChoice = Random.Range(1, 5);
+        attackPatternChoice = 5;
+                              //Random.Range(1, 6);
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice) 
@@ -36,6 +38,9 @@ public class BossRegularAttackState : BossBaseState
             case 4:
                 attackPatternChosen = attackPatternFour;
                 break;
+            case 5:
+                attackPatternChosen = attackPatternFive;
+                break;
             default:
                 break;
         }
@@ -45,14 +50,16 @@ public class BossRegularAttackState : BossBaseState
     {
         if(boss.canAttackChain)
         {
-            PerformAttack(boss, attackPatternChosen[currentAttackPatternIndex]);
-            currentAttackPatternIndex++;
-            boss.canAttackChain = false;
-
-            if(attackPatternChosen[currentAttackPatternIndex] == 0)
+            if (attackPatternChosen[currentAttackPatternIndex] == 0)
             {
                 // End of Attack Pattern.
                 boss.SwitchState(boss.IdleState);
+            }
+            else
+            {
+                PerformAttack(boss, attackPatternChosen[currentAttackPatternIndex]);
+                currentAttackPatternIndex++;
+                boss.canAttackChain = false;
             }
         }
     }
@@ -64,7 +71,7 @@ public class BossRegularAttackState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-
+        // Make sure boss has armor.
     }
 
     public void PerformAttack(BossStateManager boss, int attackId)
@@ -86,7 +93,7 @@ public class BossRegularAttackState : BossBaseState
             case 2:
                 boss.animator.SetBool("isCrouch", false);
                 boss.animator.SetTrigger("triggerAttackTwo");
-                boss.rb.AddForce(new Vector2(1f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(2f * boss.forceDirection, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(1f, 0), 0, 0.5f, 4);
                 boss.nextBossSwingSoundIndex = 1;
                 //boss.audioScript.PlayMediumAttackSound();
@@ -94,7 +101,7 @@ public class BossRegularAttackState : BossBaseState
             case 3:
                 boss.animator.SetTrigger("triggerAttackThree");
                 boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 0.5f, 4);
+                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 0.25f, 4);
                 boss.nextBossSwingSoundIndex = 2;
                 //boss.audioScript.PlayMediumAttackSound();
                 break;
@@ -104,6 +111,13 @@ public class BossRegularAttackState : BossBaseState
                 boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 6);
                 boss.nextBossSwingSoundIndex = 2;
                 //boss.audioScript.PlayHeavyAttackSound();
+                break;
+            case 5:
+                // This attack is a low attack.
+                boss.animator.SetTrigger("triggerHeavyKickLow");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 5);
+                boss.nextBossSwingSoundIndex = 2;
                 break;
             default:
                 break;

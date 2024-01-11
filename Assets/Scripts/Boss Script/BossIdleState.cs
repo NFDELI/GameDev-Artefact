@@ -10,6 +10,7 @@ public class BossIdleState : BossBaseState
         boss.attackCounter = 1;
 
         // Reset decision making timer.
+        boss.animator.SetTrigger("triggerIdle");
         boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
         boss.rangeCheckBox.enabled = false;
     }
@@ -61,12 +62,12 @@ public class BossIdleState : BossBaseState
         if(boss.spriteFlip)
         {
             boss.spriteRenderer.flipX = true;
-            boss.attackOneCollider2D.offset = new Vector2(0.2685299f, 0);
+            boss.attackHighBoxCollider2D.offset = new Vector2(0.2685299f, 0);
         }
         else
         {
             boss.spriteRenderer.flipX = false;
-            boss.attackOneCollider2D.offset = new Vector2(-0.2685299f, 0);
+            boss.attackHighBoxCollider2D.offset = new Vector2(-0.2685299f, 0);
         }
     }
 

@@ -32,6 +32,24 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
+        // Blocks Low Attacks While Crouching.
+        if (collision.tag == "BossAttackLow")
+        {
+            if (player.animator.GetBool("isCrouch"))
+            {
+                // Ensures that the player goes into blocking state.
+                player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 5, player.nextPlayerHitStunDuration, 7);
+            }
+
+            player.animator.SetBool("isCrouch", false);
+            player.SwitchState(player.HitReactionState);
+        }
+        else if(collision.tag == "BossAttackHigh")
+        {
+            // Gets Hit by High Attacks.
+            player.animator.SetBool("isCrouch", false);
+            player.SwitchState(player.HitReactionState);
+        }
 
     }
 }

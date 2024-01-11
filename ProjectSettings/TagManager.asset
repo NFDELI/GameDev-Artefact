@@ -10,6 +10,7 @@ TagManager:
   - BossAttackHigh
   - BossRangeCheck
   - PlayerAttackHigh
+  - BossAttackLow
   layers:
   - Default
   - TransparentFX

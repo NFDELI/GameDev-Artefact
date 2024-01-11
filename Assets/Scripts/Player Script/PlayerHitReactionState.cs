@@ -94,7 +94,7 @@ public class PlayerHitReactionState : PlayerBaseState
         player.audioScript.SoundIndexPlay(player.nextPlayerHitSoundIndex);
 
         // Turn off Boss's attack hitbox so that it can be re-registered for the next hit.
-        player.bossStateManager.attackOneCollider2D.enabled = false;
+        player.bossStateManager.attackHighBoxCollider2D.enabled = false;
     }
 
     public override void UpdateState(PlayerStateManager player)

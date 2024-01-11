@@ -91,7 +91,7 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
-        //Debug.Log("Collision Detected while Walking");
+        // Blocks High Attacks.
         if(collision.tag == "BossAttackHigh")
         {
             if (player.animator.GetBool("isWalkBackwards"))
@@ -99,6 +99,13 @@ public class PlayerWalkingState : PlayerBaseState
                 // Ensures that the player goes into blocking state.
                 player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
             }
+
+            player.SwitchState(player.HitReactionState);
+        }
+
+        // Gets Hit by Low Attacks.
+        else if(collision.tag == "BossAttackLow")
+        {
             player.SwitchState(player.HitReactionState);
         }
     }

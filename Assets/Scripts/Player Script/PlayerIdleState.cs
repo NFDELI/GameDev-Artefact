@@ -5,6 +5,8 @@ public class PlayerIdleState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Idle State");
+        player.animator.SetBool("isWalkTowards", false);
+        player.animator.SetBool("isWalkBackwards", false);
         player.animator.SetTrigger("triggerIdle");
         player.spriteRenderer.color = Color.white;
         player.isLanded = true;
