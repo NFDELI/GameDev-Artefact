@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Windows;
 
 public class PlayerStateManager : MonoBehaviour
 {
@@ -60,6 +61,26 @@ public class PlayerStateManager : MonoBehaviour
 
     // Reference to Boss's State Manager.
     public BossStateManager bossStateManager;
+
+    // New Input System Varaibles.
+    private PlayerInputActions input = null;
+
+    private void Awake()
+    {
+        input = new PlayerInputActions();
+    }
+
+    private void OnEnable()
+    {
+        input.Enable();
+        input.Player.Parry.performed += OnParryPerformed;
+    }
+
+    private void OnDisable()
+    {
+        input.Disable();
+        input.Player.Parry.performed -= OnParryPerformed;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -128,28 +149,23 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         // Debugging
-        if (Input.GetKeyDown(KeyCode.Keypad0))
-        {
-            health = 0;
-        }
-        
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            currentState = HitReactionState;
-            nextPlayerHitReaction = 0;
-            currentState.EnterState(this);
-        }
+        //if (Input.GetKeyDown(KeyCode.Keypad0))
+        //{
+        //    health = 0;
+        //}
+        //
+        //if(Input.GetKeyDown(KeyCode.R))
+        //{
+        //    currentState = HitReactionState;
+        //    nextPlayerHitReaction = 0;
+        //    currentState.EnterState(this);
+        //}
     }
 
     public void SwitchState(PlayerBaseState state)
     {
         currentState = state;
         state.EnterState(this);
-    }
-
-    private void OnMove(InputValue movementValue)
-    {
-        movementInput = movementValue.Get<Vector2>();
     }
 
     public void FlagAttackAnimationFinished()
@@ -246,5 +262,15 @@ public class PlayerStateManager : MonoBehaviour
         nextPlayerHitReaction = hitreactionId;
         nextPlayerHitStunDuration = stunduration;
         nextPlayerHitSoundIndex = hitsoundId;
+    }
+
+    private void OnMove(InputValue movementValue)
+    {
+        movementInput = movementValue.Get<Vector2>();
+    }
+
+    private void OnParryPerformed(InputAction.CallbackContext value)
+    {
+        currentState.OnParryPerformed(this);
     }
 }

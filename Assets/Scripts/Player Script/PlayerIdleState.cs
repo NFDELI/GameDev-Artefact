@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerIdleState : PlayerBaseState
 {
@@ -50,10 +51,10 @@ public class PlayerIdleState : PlayerBaseState
         }
 
         // Check for Parry Input.
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            player.SwitchState(player.ParryAttemptState);
-        }
+        //if(Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    player.SwitchState(player.ParryAttemptState);
+        //}
 
         // Sprite-Flip Check.
         if(player.spriteFlip)
@@ -78,5 +79,10 @@ public class PlayerIdleState : PlayerBaseState
         {
             player.SwitchState(player.HitReactionState);
         }
+    }
+
+    public override void OnParryPerformed(PlayerStateManager player)
+    {
+        player.SwitchState(player.HitReactionState);
     }
 }

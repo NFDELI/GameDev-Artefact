@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerCrouchState : PlayerBaseState
 {
@@ -52,4 +53,10 @@ public class PlayerCrouchState : PlayerBaseState
         }
 
     }
+
+    public override void OnParryPerformed(PlayerStateManager player)
+    {
+        player.SwitchState(player.ParryAttemptState);
+    }
+
 }
