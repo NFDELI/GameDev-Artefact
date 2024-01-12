@@ -7,6 +7,7 @@ public class PlayerCrouchState : PlayerBaseState
     {
         Debug.Log("Entered Crouch State");
         player.animator.SetBool("isCrouch", true);
+        player.animator.SetTrigger("forceCrouch");
         player.attackCounter = 0;
     }
 

@@ -8,6 +8,7 @@ public class PlayerIdleState : PlayerBaseState
         Debug.Log("Entered Idle State");
         player.animator.SetBool("isWalkTowards", false);
         player.animator.SetBool("isWalkBackwards", false);
+        player.animator.SetBool("isCrouch", false);
         player.animator.SetTrigger("triggerIdle");
         player.spriteRenderer.color = Color.white;
         player.isLanded = true;
@@ -79,10 +80,14 @@ public class PlayerIdleState : PlayerBaseState
         {
             player.SwitchState(player.HitReactionState);
         }
+        if(collision.tag == "BossAttackLow")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
     }
 
     public override void OnParryPerformed(PlayerStateManager player)
     {
-        player.SwitchState(player.HitReactionState);
+        player.SwitchState(player.ParryAttemptState);
     }
 }

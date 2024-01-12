@@ -2,10 +2,28 @@ using UnityEngine;
 
 public class PlayerParryAttemptState : PlayerBaseState
 {
+    private bool isHighParryAttempt = false; 
+    private bool isLowParryAttempt = false; 
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Parry State");
-        player.animator.SetTrigger("triggerParryHighAttempt");
+
+        if (player.animator.GetBool("isCrouch"))
+        {
+            isLowParryAttempt = true;
+            isHighParryAttempt = false;
+
+            player.animator.SetTrigger("triggerParryLowAttempt");
+            Debug.Log("LOW PARYYYYY");
+        }
+        else
+        {
+            isHighParryAttempt = true;
+            isLowParryAttempt = false;
+            player.animator.SetTrigger("triggerParryHighAttempt");
+            Debug.Log("HIGH PARYYYYY");
+        }
+
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -22,13 +40,22 @@ public class PlayerParryAttemptState : PlayerBaseState
     {
         if (collision.tag == "BossAttackHigh")
         {
-            //if (player.animator.GetBool("triggerParryHighAttempt"))
-            //{
-                // Ensures that the player goes into blocking state.
-                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
-            //}
+            if (isHighParryAttempt)
+            {
+              // Ensures that the player goes into successful parrying state.
+              player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
+            }
 
             // Parry success is also part of HitReactionState.
+            player.SwitchState(player.HitReactionState);
+        }
+        else if (collision.tag == "BossAttackLow")
+        {
+            if (isLowParryAttempt)
+            {
+                // Ensures that the player goes into successful low state.
+                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 7, player.nextPlayerHitStunDuration, 8);
+            }
             player.SwitchState(player.HitReactionState);
         }
     }
