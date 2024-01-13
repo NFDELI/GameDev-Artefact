@@ -11,6 +11,8 @@ TagManager:
   - BossRangeCheck
   - PlayerAttackHigh
   - BossAttackLow
+  - PlayerFireball
+  - BossFireball
   layers:
   - Default
   - TransparentFX

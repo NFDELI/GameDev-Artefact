@@ -41,6 +41,7 @@ public class BossHitReactionState : BossBaseState
                 // High Block.
                 boss.animator.SetTrigger("triggerBlockHigh");
                 timerStarted= true;
+                boss.blocksUntilParry--;
                 break;
             case 5:
                 // Low Block.

@@ -61,8 +61,12 @@ public class BossStateManager : MonoBehaviour
 
     public PlayerStateManager playerStateManager;
 
+    // Boss AI Variables.
     public float aiDecisionTimer = 2f;
     public float defaultAiDecisionTimer = 2f;
+
+    // When this number goes to 0, boss will start parrying everything until it is reset.
+    public int blocksUntilParry = 3;
 
     // Regular Attack State Variables.
     public bool hasReachedPlayer = false;

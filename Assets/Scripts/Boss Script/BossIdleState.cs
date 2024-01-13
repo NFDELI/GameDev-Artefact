@@ -22,7 +22,7 @@ public class BossIdleState : BossBaseState
             // Choose which action to do.
         
             // Boss chooses to approach the player for close range attack.
-            boss.SwitchState(boss.WalkingState);
+            //boss.SwitchState(boss.WalkingState);
         }
         else
         {
@@ -80,6 +80,22 @@ public class BossIdleState : BossBaseState
     {
         if (collision.tag == "PlayerAttackHigh")
         {
+            // React to the player's Regular attack.
+            boss.SwitchState(boss.HitReactionState);
+        }
+        if (collision.tag == "PlayerFireball")
+        {
+            // React to the player's Fireball attack.
+            if(boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the incoming attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 8);
+            }
+            else
+            {
+                // Boss blocks the incoming attack.
+                boss.AttackHitPropertySelf(boss.nextBossDamageReceived * 0.25f, Vector2.zero, 4, 0, 11);
+            }
             boss.SwitchState(boss.HitReactionState);
         }
     }

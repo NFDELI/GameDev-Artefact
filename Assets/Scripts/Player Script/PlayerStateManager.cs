@@ -212,6 +212,7 @@ public class PlayerStateManager : MonoBehaviour
     public void SpawnFireball()
     {
         fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);
+        audioScript.PlayFireballShotSound();
         fireballScript.FireballSpawned();
     }
 

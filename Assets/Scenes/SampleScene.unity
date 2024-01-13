@@ -331,14 +331,17 @@ MonoBehaviour:
   LightAttackSound: {fileID: 8300000, guid: dfbab8faeeefaf24cb88ddd6f0784479, type: 3}
   MediumAttackSound: {fileID: 8300000, guid: 7fbb9034d46f0e944884782b7488545e, type: 3}
   HeavyAttackSound: {fileID: 8300000, guid: 8f17a86b0dc2dfd43922bbee4fe01400, type: 3}
+  FireballShotSound: {fileID: 8300000, guid: 2c51ec52e82b5104c9d618351d014d5d, type: 3}
   LightHitSound: {fileID: 8300000, guid: 2a8b484955440214f978ff04cdbd3d4f, type: 3}
   MediumHitSound: {fileID: 8300000, guid: 8394485c74171f34981d6e87b61823b0, type: 3}
   HeavyHitSound: {fileID: 8300000, guid: 0398dbf0bc9fe064cb98371d21c10d71, type: 3}
   HeavySecondHitSound: {fileID: 8300000, guid: 99f38d4bb108676439b6ab8cdeafdc49, type: 3}
+  FireballHitSound: {fileID: 8300000, guid: 8153a11ea3e81434fa826ab4067662bf, type: 3}
   BlockAttackSound: {fileID: 8300000, guid: a993aff5f3f9ea04387942ccb9a9c406, type: 3}
   ParryAttackSound: {fileID: 8300000, guid: ea4fe1ef8f501c64daaee3ea63d2d642, type: 3}
   ParryRyuVoiceSound: {fileID: 8300000, guid: f8fc5df1e686e784d80fee9de5a2dd1a, type: 3}
   ParryBossVoiceSound: {fileID: 8300000, guid: 8a7c52cf1df682e4597e0821e0c746bd, type: 3}
+  FireballBlockSound: {fileID: 8300000, guid: 620f41ade6c1a3e48ba8ed436881f878, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0

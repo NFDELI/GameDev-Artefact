@@ -12,17 +12,23 @@ public class AudioScript : MonoBehaviour
     public AudioClip MediumAttackSound;
     public AudioClip HeavyAttackSound;
 
+    public AudioClip FireballShotSound;
+
     // Attack Hit Sounds.
     public AudioClip LightHitSound;
     public AudioClip MediumHitSound;
     public AudioClip HeavyHitSound;
     public AudioClip HeavySecondHitSound;
 
+    public AudioClip FireballHitSound;
+
     // Attack Block Sounds.
     public AudioClip BlockAttackSound;
     public AudioClip ParryAttackSound;
     public AudioClip ParryRyuVoiceSound;
     public AudioClip ParryBossVoiceSound;
+
+    public AudioClip FireballBlockSound;
 
     public void PlayJumpSound()
     {
@@ -65,6 +71,9 @@ public class AudioScript : MonoBehaviour
                 break;
             case 10:
                 PlayParryBossVoiceSound();
+                break;
+            case 11:
+                PlayFireballBlockSound();
                 break;
             default:
                 break;
@@ -124,5 +133,20 @@ public class AudioScript : MonoBehaviour
     public void PlayParryBossVoiceSound()
     {
         source.PlayOneShot(ParryBossVoiceSound);
+    }
+
+    public void PlayFireballShotSound()
+    {
+        source.PlayOneShot(FireballShotSound);
+    }
+
+    public void PlayFireballHitSound()
+    {
+        source.PlayOneShot(FireballHitSound);
+    }
+
+    public void PlayFireballBlockSound()
+    {
+        source.PlayOneShot(FireballBlockSound);
     }
 }

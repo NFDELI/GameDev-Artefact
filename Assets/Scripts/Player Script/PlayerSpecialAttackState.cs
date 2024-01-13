@@ -56,7 +56,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 player.animator.SetTrigger("triggerSpecialOne");
             }
             
-            // Spawn Fireball.
+            // Spawn Fireball. (Fireball is Spawned from the Animator)
             //player.SpawnFireball();
         }
     }

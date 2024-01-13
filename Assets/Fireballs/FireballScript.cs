@@ -57,13 +57,24 @@ public class FireballScript : MonoBehaviour
         }
     }
 
+    public void FireballReset()
+    {
+        isSpawned = false;
+        rb.position = standbyPosition;
+        animator.SetTrigger("FireballTravel");
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Wall")
         {
             // Reset Position.
-            isSpawned = false;
-            rb.position = standbyPosition;
+            FireballReset();
+        }
+        if(collision.tag == "Boss")
+        {
+            // Fireball hits the boss.
+            animator.SetTrigger("FireballHit");
         }
     }
 }
