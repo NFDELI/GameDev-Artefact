@@ -60,6 +60,7 @@ public class BossStateManager : MonoBehaviour
     public BoxCollider2D attackLowBoxCollider2D;
 
     public PlayerStateManager playerStateManager;
+    public FireballScript playerFireballScript;
 
     // Boss AI Variables.
     public float aiDecisionTimer = 2f;

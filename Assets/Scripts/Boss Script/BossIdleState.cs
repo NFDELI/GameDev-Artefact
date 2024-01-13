@@ -94,7 +94,7 @@ public class BossIdleState : BossBaseState
             else
             {
                 // Boss blocks the incoming attack.
-                boss.AttackHitPropertySelf(boss.nextBossDamageReceived * 0.25f, Vector2.zero, 4, 0, 11);
+                boss.AttackHitPropertySelf(boss.playerFireballScript.damage * 0.25f, Vector2.zero, 4, boss.playerFireballScript.stunDuration, 11);
             }
             boss.SwitchState(boss.HitReactionState);
         }

@@ -503,8 +503,8 @@ GameObject:
   - component: {fileID: 772667956}
   m_Layer: 0
   m_Name: BFireball
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_TagString: BossFireball
+  m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -654,6 +654,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.5
+  defaultSpeed: 0
+  damage: 15
+  hitCount: 1
+  stunDuration: 0.25
   rb: {fileID: 772667958}
   ownerSprite: {fileID: 2007554645}
   isSpawned: 0
@@ -1423,12 +1427,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: ownerSprite
       value: 
       objectReference: {fileID: 3992531850973660267}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: defaultSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: stunDuration
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 4768404041565664799, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: m_Name
       value: PFireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768404041565664799, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: m_TagString
+      value: PlayerFireball
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222750770652445226, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5222750770652445226, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: m_Offset.y
+      value: -1.28
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1594,7 +1622,7 @@ GameObject:
   m_Layer: 0
   m_Name: Boss
   m_TagString: Boss
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1798,12 +1826,14 @@ MonoBehaviour:
   nextBossForceReceived: {x: 0, y: 0}
   isSpinnigKickForce: 0
   spinningKickSpeed: 1
-  fireballScript: {fileID: 1937929084}
+  fireballScript: {fileID: 772667957}
   attackHighBoxCollider2D: {fileID: 100525027}
   attackLowBoxCollider2D: {fileID: 1073022591}
   playerStateManager: {fileID: 3992531850973660271}
+  playerFireballScript: {fileID: 1937929084}
   aiDecisionTimer: 1.5
   defaultAiDecisionTimer: 1.5
+  blocksUntilParry: 3
   hasReachedPlayer: 0
   rangeCheckBox: {fileID: 755074770}
 --- !u!114 &2007554651

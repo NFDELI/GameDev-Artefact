@@ -6,12 +6,14 @@ using UnityEngine;
 public class FireballScript : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 1;
-    //[SerializeField]
-    //private float damage = 1;
-    //[SerializeField]
-    //private int hitCount = 1;
+    public float speed = 1;
+    public float defaultSpeed;
+    [SerializeField]
+    public float damage = 1;
+    [SerializeField]
+    public int hitCount = 1;
     private int forceDirection = -1;
+    public float stunDuration = 0.25f;
 
     private Vector2 standbyPosition;
 
@@ -34,6 +36,7 @@ public class FireballScript : MonoBehaviour
         boxCollider = GetComponent<BoxCollider2D>();
 
         standbyPosition = new Vector2(0, -2);
+        speed = defaultSpeed;
     }
 
     void Update()
@@ -60,8 +63,9 @@ public class FireballScript : MonoBehaviour
     public void FireballReset()
     {
         isSpawned = false;
+        speed = defaultSpeed;
         rb.position = standbyPosition;
-        animator.SetTrigger("FireballTravel");
+        animator.SetBool("FireballTravel", true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -74,7 +78,9 @@ public class FireballScript : MonoBehaviour
         if(collision.tag == "Boss")
         {
             // Fireball hits the boss.
+            animator.SetBool("FireballTravel", false);
             animator.SetTrigger("FireballHit");
+            speed = 0.1f;
         }
     }
 }
