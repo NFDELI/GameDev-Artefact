@@ -54,10 +54,12 @@ public class FireballScript : MonoBehaviour
         if (spriteRenderer.flipX)
         {
             forceDirection = 1;
+            boxCollider.offset = new Vector2(-0.2f, -1.28f);
         }
         else
         {
             forceDirection = -1;
+            boxCollider.offset = new Vector2(0.2f, -1.28f);
         }
     }
 
@@ -68,12 +70,14 @@ public class FireballScript : MonoBehaviour
         rb.position = standbyPosition;
         animator.SetBool("FireballTravel", true);
         animator.ResetTrigger("FireballHit");
+        boxCollider.enabled = true;
     }
     public void FireballHit()
     {
         animator.SetBool("FireballTravel", false);
         animator.SetTrigger("FireballHit");
         speed = 0.1f;
+        boxCollider.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -32,17 +32,23 @@ public class StickPreventionScript : MonoBehaviour
         if(collision.tag == "Boss")
         {
             // Prevent the player from landing on the boss.
-            if (playerStateManager.spriteFlip)
+            if (playerStateManager.jumpDirection)
             {
-                playerStateManager.rb.MovePosition(playerStateManager.rb.position + new Vector2(0.25f, -0.125f));
+                if(playerStateManager.isLanding)
+                {
+                    playerStateManager.rb.MovePosition(playerStateManager.rb.position + new Vector2(0.125f, -0.125f));
+                }
             }
             else
             {
-                playerStateManager.rb.MovePosition(playerStateManager.rb.position + new Vector2(-0.25f, -0.125f));
+                if(playerStateManager.isLanding)
+                {
+                    playerStateManager.rb.MovePosition(playerStateManager.rb.position + new Vector2(-0.125f, -0.125f));
+                }
             }
 
-            timerStarted = true;
-            playerStateManager.playerBoxCollider2D.enabled = false;
+            //timerStarted = true;
+            //playerStateManager.playerBoxCollider2D.enabled = false;
         }
     }
 }

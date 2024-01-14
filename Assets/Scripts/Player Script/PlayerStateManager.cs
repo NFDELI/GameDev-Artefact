@@ -30,6 +30,7 @@ public class PlayerStateManager : MonoBehaviour
     public Rigidbody2D bossRb;
     public BoxCollider2D attackBoxCollider;
     public BoxCollider2D playerBoxCollider2D;
+    public BoxCollider2D playerLandCollider2D;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
@@ -67,6 +68,7 @@ public class PlayerStateManager : MonoBehaviour
     private PlayerInputActions input = null;
 
     public bool isLanding = false;
+    public bool jumpDirection = false;
 
     private void Awake()
     {
@@ -280,11 +282,33 @@ public class PlayerStateManager : MonoBehaviour
 
     public void PlayerLandingTrue()
     {
+        //if(spriteFlip)
+        //{
+        //    jumpDirection = true;
+        //}
+        //else
+        //{
+        //    jumpDirection = false;
+        //}
+
         isLanding = true;
+        playerLandCollider2D.enabled = true;
+        playerBoxCollider2D.enabled = true;
     }
 
     public void PlayerLandingFalse()
     {
+        if (spriteFlip)
+        {
+            jumpDirection = true;
+        }
+        else
+        {
+            jumpDirection = false;
+        }
+
         isLanding = false;
+        playerLandCollider2D.enabled = false;
+        playerBoxCollider2D.enabled = false;
     }
 }

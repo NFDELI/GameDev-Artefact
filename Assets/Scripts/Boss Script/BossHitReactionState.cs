@@ -18,6 +18,9 @@ public class BossHitReactionState : BossBaseState
         hitDamage = boss.nextBossDamageReceived;
         boss.spriteRenderer.color = Color.red;
 
+        // Boss can takeknockback when getting hit.
+        boss.rb.mass = 1f;
+
         switch (boss.nextBossHitReaction)
         {
             case 0:

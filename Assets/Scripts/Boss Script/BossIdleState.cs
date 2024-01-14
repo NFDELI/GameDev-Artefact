@@ -13,6 +13,9 @@ public class BossIdleState : BossBaseState
         boss.animator.SetTrigger("triggerIdle");
         boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
         boss.rangeCheckBox.enabled = false;
+
+        // The boss is unmovable when Idle.
+        boss.rb.mass = 1000;
     }
 
     public override void UpdateState(BossStateManager boss)
