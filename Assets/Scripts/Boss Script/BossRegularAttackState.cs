@@ -10,8 +10,8 @@ public class BossRegularAttackState : BossBaseState
     int[] attackPatternTwo = { 2, 3, 1, 4, 0 };   //3, 4, 1, 0
     int[] attackPatternThree = { 2, 3, 4, 0 }; //2, 3, 4
     int[] attackPatternFour = { 4, 4, 0 };
-    int[] attackPatternFive = { 2, 3, 5, 0}; 
-
+    int[] attackPatternFive = { 2, 3, 5, 0 };
+    int[] attackPatternSix = { 20, 0 };
 
     public override void EnterState(BossStateManager boss)
     {
@@ -20,7 +20,7 @@ public class BossRegularAttackState : BossBaseState
         currentAttackPatternIndex = 0;
         boss.rangeCheckBox.enabled = false;
 
-        attackPatternChoice = 5;
+        attackPatternChoice = 6;
                               //Random.Range(1, 6);
 
         // Choose a Random Attack Pattern.
@@ -40,6 +40,9 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 5:
                 attackPatternChosen = attackPatternFive;
+                break;
+            case 6:
+                attackPatternChosen = attackPatternSix;
                 break;
             default:
                 break;

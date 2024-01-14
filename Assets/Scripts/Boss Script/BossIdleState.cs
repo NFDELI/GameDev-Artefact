@@ -20,9 +20,12 @@ public class BossIdleState : BossBaseState
         if(boss.aiDecisionTimer <= 0)
         {
             // Choose which action to do.
-        
+
             // Boss chooses to approach the player for close range attack.
             //boss.SwitchState(boss.WalkingState);
+
+            // Boss chooses to do long range attack.
+            boss.SwitchState(boss.RegularAttackState);
         }
         else
         {

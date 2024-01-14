@@ -75,6 +75,9 @@ public class AudioScript : MonoBehaviour
             case 11:
                 PlayFireballBlockSound();
                 break;
+            case 12:
+                PlayFireballHitSound();
+                break;
             default:
                 break;
         }

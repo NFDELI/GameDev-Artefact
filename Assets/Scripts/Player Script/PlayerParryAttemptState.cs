@@ -14,14 +14,12 @@ public class PlayerParryAttemptState : PlayerBaseState
             isHighParryAttempt = false;
 
             player.animator.SetTrigger("triggerParryLowAttempt");
-            Debug.Log("LOW PARYYYYY");
         }
         else
         {
             isHighParryAttempt = true;
             isLowParryAttempt = false;
             player.animator.SetTrigger("triggerParryHighAttempt");
-            Debug.Log("HIGH PARYYYYY");
         }
 
     }
@@ -55,6 +53,16 @@ public class PlayerParryAttemptState : PlayerBaseState
             {
                 // Ensures that the player goes into successful low state.
                 player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 7, player.nextPlayerHitStunDuration, 8);
+            }
+            player.SwitchState(player.HitReactionState);
+        }
+
+        if(collision.tag == "BossFireball")
+        {
+            if(isHighParryAttempt)
+            {
+                // Ensures that the player goes into successful parrying state.
+                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
             }
             player.SwitchState(player.HitReactionState);
         }

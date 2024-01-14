@@ -53,7 +53,7 @@ public class BossStateManager : MonoBehaviour
     public float spinningKickSpeed = 1f;
 
     // Reference to Boss's fireball.
-    public FireballScript fireballScript;
+    public BossFireballScript fireballScript;
 
     // Attack Collision Boxes.
     public BoxCollider2D attackHighBoxCollider2D;
@@ -201,7 +201,8 @@ public class BossStateManager : MonoBehaviour
 
     public void SpawnFireball()
     {
-        fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.4f);
+        fireballScript.rb.position = new Vector2(rb.position.x + (0.8f * forceDirection), rb.position.y + 0.6f);
+        audioScript.PlayFireballShotSound();
         fireballScript.FireballSpawned();
     }
 

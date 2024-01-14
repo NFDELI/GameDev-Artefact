@@ -1,6 +1,7 @@
 using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BossFireballScript : MonoBehaviour
@@ -15,12 +16,18 @@ public class BossFireballScript : MonoBehaviour
     private int forceDirection = -1;
     public float stunDuration = 0.25f;
 
+    [SerializeField]
+    public Vector2 knockbackForce;
+
     private Vector2 standbyPosition;
 
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private BoxCollider2D boxCollider;
+
+    [SerializeField]
+    private PlayerStateManager playerStateManager;
 
     [SerializeField]
     private SpriteRenderer ownerSprite;
@@ -77,7 +84,7 @@ public class BossFireballScript : MonoBehaviour
         }
         if (collision.tag == "Player")
         {
-            // Fireball hits the boss.
+            // Fireball hits the Player.
             animator.SetBool("FireballTravel", false);
             animator.SetTrigger("FireballHit");
             speed = 0.1f;

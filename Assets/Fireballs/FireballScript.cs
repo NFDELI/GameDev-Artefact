@@ -16,6 +16,7 @@ public class FireballScript : MonoBehaviour
     public float stunDuration = 0.25f;
 
     private Vector2 standbyPosition;
+    private Vector2 knockbackForce;
 
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;

@@ -104,8 +104,14 @@ public class PlayerWalkingState : PlayerBaseState
         }
 
         // Gets Hit by Low Attacks.
-        else if(collision.tag == "BossAttackLow")
+        if(collision.tag == "BossAttackLow")
         {
+            player.SwitchState(player.HitReactionState);
+        }
+
+        if(collision.tag == "BossFireball")
+        {
+            player.nextPlayerHitReaction = 12;
             player.SwitchState(player.HitReactionState);
         }
     }

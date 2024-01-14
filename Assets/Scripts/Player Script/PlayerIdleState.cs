@@ -84,6 +84,11 @@ public class PlayerIdleState : PlayerBaseState
         {
             player.SwitchState(player.HitReactionState);
         }
+        if(collision.tag == "BossFireball")
+        {
+            player.nextPlayerHitReaction = 11;
+            player.SwitchState(player.HitReactionState);
+        }
     }
 
     public override void OnParryPerformed(PlayerStateManager player)

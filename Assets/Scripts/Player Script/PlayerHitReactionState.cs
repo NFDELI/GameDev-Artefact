@@ -84,6 +84,22 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Get Up Animation.
                 player.animator.SetTrigger("triggerGetUp");
                 break;
+            case 11:
+                // Get Hit by Fireball. (Fireball has special hit sounds and effects)
+                player.animator.SetTrigger("triggerHitReactionHigh");
+                timerStarted = true;
+                player.nextPlayerHitSoundIndex = 12;
+                hitForce = player.bossStateManager.fireballScript.knockbackForce;
+                hitDamage = player.bossStateManager.fireballScript.damage;
+                break;
+            case 12:
+                // Blocks Fireball Attack.
+                player.animator.SetTrigger("triggerBlockHigh");
+                timerStarted = true;
+                player.nextPlayerHitSoundIndex = 11;
+                hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
+                hitDamage = player.bossStateManager.fireballScript.damage / 4;
+                break;
             default:
                 break;
         }

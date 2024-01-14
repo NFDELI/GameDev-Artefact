@@ -685,6 +685,7 @@ MonoBehaviour:
   damage: 1
   hitCount: 1
   stunDuration: 0.4
+  knockbackForce: {x: 0, y: 0}
   rb: {fileID: 772667958}
   ownerSprite: {fileID: 2007554645}
   isSpawned: 0
@@ -1826,7 +1827,7 @@ MonoBehaviour:
   nextBossForceReceived: {x: 0, y: 0}
   isSpinnigKickForce: 0
   spinningKickSpeed: 1
-  fireballScript: {fileID: 0}
+  fireballScript: {fileID: 772667959}
   attackHighBoxCollider2D: {fileID: 100525027}
   attackLowBoxCollider2D: {fileID: 1073022591}
   playerStateManager: {fileID: 3992531850973660271}
