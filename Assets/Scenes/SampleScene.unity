@@ -499,8 +499,8 @@ GameObject:
   - component: {fileID: 772667954}
   - component: {fileID: 772667953}
   - component: {fileID: 772667958}
-  - component: {fileID: 772667957}
   - component: {fileID: 772667956}
+  - component: {fileID: 772667959}
   m_Layer: 0
   m_Name: BFireball
   m_TagString: BossFireball
@@ -641,26 +641,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64774454, y: 0.5610359}
   m_EdgeRadius: 0
---- !u!114 &772667957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 772667952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 807f4aaa214fe604b8c5a62a29c0da66, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1.5
-  defaultSpeed: 0
-  damage: 15
-  hitCount: 1
-  stunDuration: 0.25
-  rb: {fileID: 772667958}
-  ownerSprite: {fileID: 2007554645}
-  isSpawned: 0
 --- !u!50 &772667958
 Rigidbody2D:
   serializedVersion: 4
@@ -688,6 +668,26 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &772667959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772667952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9118529ab093e49459536ee4db7c299a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1.7
+  defaultSpeed: 1.7
+  damage: 1
+  hitCount: 1
+  stunDuration: 0.4
+  rb: {fileID: 772667958}
+  ownerSprite: {fileID: 2007554645}
+  isSpawned: 0
 --- !u!1 &924498607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1826,7 @@ MonoBehaviour:
   nextBossForceReceived: {x: 0, y: 0}
   isSpinnigKickForce: 0
   spinningKickSpeed: 1
-  fireballScript: {fileID: 772667957}
+  fireballScript: {fileID: 0}
   attackHighBoxCollider2D: {fileID: 100525027}
   attackLowBoxCollider2D: {fileID: 1073022591}
   playerStateManager: {fileID: 3992531850973660271}

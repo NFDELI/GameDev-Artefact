@@ -119,6 +119,10 @@ public class BossRegularAttackState : BossBaseState
                 boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 5);
                 boss.nextBossSwingSoundIndex = 2;
                 break;
+            case 20:
+                // Boss performs a foreball Attack.
+                boss.animator.SetTrigger("triggerSpecialOne");
+                break;
             default:
                 break;
         }
