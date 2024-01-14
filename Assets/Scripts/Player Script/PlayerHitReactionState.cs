@@ -164,6 +164,12 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 player.SwitchState(player.HitReactionState);
             }
+
+            if(collision.tag == "BossAttackLow")
+            {
+                timerStarted = false;
+                player.SwitchState(player.HitReactionState);
+            }
         }
     }
 

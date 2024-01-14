@@ -67,6 +67,13 @@ public class FireballScript : MonoBehaviour
         speed = defaultSpeed;
         rb.position = standbyPosition;
         animator.SetBool("FireballTravel", true);
+        animator.ResetTrigger("FireballHit");
+    }
+    public void FireballHit()
+    {
+        animator.SetBool("FireballTravel", false);
+        animator.SetTrigger("FireballHit");
+        speed = 0.1f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -79,9 +86,12 @@ public class FireballScript : MonoBehaviour
         if(collision.tag == "Boss")
         {
             // Fireball hits the boss.
-            animator.SetBool("FireballTravel", false);
-            animator.SetTrigger("FireballHit");
-            speed = 0.1f;
+            FireballHit();
+        }
+        if(collision.tag == "BossFireball")
+        {
+            // Fireballs cancel out one another.
+            FireballHit();
         }
     }
 }

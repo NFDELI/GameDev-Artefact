@@ -53,6 +53,13 @@ public class PlayerCrouchState : PlayerBaseState
             player.SwitchState(player.HitReactionState);
         }
 
+        if (collision.tag == "BossFireball")
+        {
+            // Gets hit by Fireball. (Cannot block fireball while crouching)
+            player.nextPlayerHitReaction = 11;
+            player.SwitchState(player.HitReactionState);
+        }
+
     }
 
     public override void OnParryPerformed(PlayerStateManager player)

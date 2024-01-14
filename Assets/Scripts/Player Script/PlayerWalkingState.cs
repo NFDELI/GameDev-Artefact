@@ -111,7 +111,15 @@ public class PlayerWalkingState : PlayerBaseState
 
         if(collision.tag == "BossFireball")
         {
-            player.nextPlayerHitReaction = 12;
+            // Fireball have special states/attributes.
+            if (player.animator.GetBool("isWalkBackwards"))
+            {
+                player.nextPlayerHitReaction = 12;
+            }
+            else
+            {
+                player.nextPlayerHitReaction = 11;
+            }
             player.SwitchState(player.HitReactionState);
         }
     }

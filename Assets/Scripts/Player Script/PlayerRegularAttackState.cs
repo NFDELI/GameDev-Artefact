@@ -79,6 +79,18 @@ public class PlayerRegularAttackState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
-
+        if (collision.tag == "BossAttackHigh")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
+        if (collision.tag == "BossAttackLow")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
+        if (collision.tag == "BossFireball")
+        {
+            player.nextPlayerHitReaction = 11;
+            player.SwitchState(player.HitReactionState);
+        }
     }
 }
