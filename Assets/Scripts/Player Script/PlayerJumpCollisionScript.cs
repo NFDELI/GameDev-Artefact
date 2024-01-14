@@ -27,4 +27,12 @@ public class PlayerJumpCollisionScript : MonoBehaviour
             stateManager.isLanded = false;
         }
     }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Floor")
+        {
+            stateManager.playerBoxCollider2D.enabled = true;
+        }
+    }
 }

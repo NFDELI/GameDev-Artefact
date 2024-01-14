@@ -29,6 +29,7 @@ public class PlayerStateManager : MonoBehaviour
     public Rigidbody2D rb;
     public Rigidbody2D bossRb;
     public BoxCollider2D attackBoxCollider;
+    public BoxCollider2D playerBoxCollider2D;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
@@ -64,6 +65,8 @@ public class PlayerStateManager : MonoBehaviour
 
     // New Input System Varaibles.
     private PlayerInputActions input = null;
+
+    public bool isLanding = false;
 
     private void Awake()
     {
@@ -102,7 +105,7 @@ public class PlayerStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnTriggerEnter2D(this, collision);
-        if (collision.tag == "BossRangeCheck")
+        if(collision.tag == "BossRangeCheck")
         {
             // The player is in range of boss's attack.
             bossStateManager.hasReachedPlayer = true;
@@ -139,7 +142,7 @@ public class PlayerStateManager : MonoBehaviour
         }
 
         // Ensures that the attack force is applied in the correct Direction.
-        if (!spriteRenderer.flipX)
+        if(!spriteRenderer.flipX)
         {
             forceDirection = -1;
         }
@@ -273,5 +276,15 @@ public class PlayerStateManager : MonoBehaviour
     private void OnParryPerformed(InputAction.CallbackContext value)
     {
         currentState.OnParryPerformed(this);
+    }
+
+    public void PlayerLandingTrue()
+    {
+        isLanding = true;
+    }
+
+    public void PlayerLandingFalse()
+    {
+        isLanding = false;
     }
 }

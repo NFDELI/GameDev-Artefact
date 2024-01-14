@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5149759794069269481}
   - component: {fileID: 4623753165768107147}
   - component: {fileID: 7817772391949347164}
+  - component: {fileID: 1805139726362585481}
   m_Layer: 0
   m_Name: Land-Collision
   m_TagString: Untagged
@@ -144,6 +145,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stateManager: {fileID: 8180965022550339384}
+--- !u!114 &1805139726362585481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5144675758682238566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9f5ae436e68f5b4da824af57229ce7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStateManager: {fileID: 8180965022550339384}
 --- !u!1 &6046234461313306555
 GameObject:
   m_ObjectHideFlags: 0
@@ -283,6 +297,7 @@ MonoBehaviour:
   movementInput: {x: 0, y: 0}
   rb: {fileID: 0}
   bossRb: {fileID: 0}
+  attackBoxCollider: {fileID: 0}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   isLanded: 1
@@ -292,6 +307,7 @@ MonoBehaviour:
   forceDirection: 1
   canGetUp: 0
   isInvincible: 0
+  wasBlocking: 0
   health: 100
   movementSpeed: 1.5
   jumpForce: 8
