@@ -84,11 +84,11 @@ public class BossRegularAttackState : BossBaseState
         {
             case 0:
                 boss.animator.SetTrigger("triggerAttackCrouch");
-                boss.rb.AddForce(new Vector2(0.2f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(0.2f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 break;
             case 1:
                 boss.animator.SetTrigger("triggerAttackOne");
-                boss.rb.AddForce(new Vector2(2f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(2f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.75f, 0), 0, 0.5f, 3);
                 boss.nextBossSwingSoundIndex = 0;
                 //boss.audioScript.PlayLightAttackSound();
@@ -96,21 +96,21 @@ public class BossRegularAttackState : BossBaseState
             case 2:
                 boss.animator.SetBool("isCrouch", false);
                 boss.animator.SetTrigger("triggerAttackTwo");
-                boss.rb.AddForce(new Vector2(2f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(2f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(1f, 0), 0, 0.5f, 4);
                 boss.nextBossSwingSoundIndex = 1;
                 //boss.audioScript.PlayMediumAttackSound();
                 break;
             case 3:
                 boss.animator.SetTrigger("triggerAttackThree");
-                boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(1.5f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 0.25f, 4);
                 boss.nextBossSwingSoundIndex = 2;
                 //boss.audioScript.PlayMediumAttackSound();
                 break;
             case 4:
                 boss.animator.SetTrigger("triggerAttackFour");
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 6);
                 boss.nextBossSwingSoundIndex = 2;
                 //boss.audioScript.PlayHeavyAttackSound();
@@ -118,7 +118,7 @@ public class BossRegularAttackState : BossBaseState
             case 5:
                 // This attack is a low attack.
                 boss.animator.SetTrigger("triggerHeavyKickLow");
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 5);
                 boss.nextBossSwingSoundIndex = 2;
                 break;

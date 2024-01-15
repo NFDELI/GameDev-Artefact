@@ -2233,6 +2233,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937929084}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: postureCurrent
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: postureDefault
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: bossStateManager
       value: 
       objectReference: {fileID: 2007554650}

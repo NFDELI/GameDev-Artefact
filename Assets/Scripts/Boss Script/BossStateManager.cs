@@ -288,7 +288,7 @@ public class BossStateManager : MonoBehaviour
     {
         // Boss takes Posture damage.
         postureCurrent -= postureDamage;
-        Debug.Log("Posture Reduced!");
+        //Debug.Log("Posture Reduced!");
 
         if (postureCurrent <= 0)
         {

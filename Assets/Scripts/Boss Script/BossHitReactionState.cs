@@ -54,6 +54,8 @@ public class BossHitReactionState : BossBaseState
             case 6:
                 // High Parry.
                 boss.animator.SetTrigger("triggerParryHigh");
+                boss.playerStateManager.TakePostureDamage(1f);
+                boss.audioScript.PlayParryAttackSound();
                 break;
             case 7:
                 // Low Parry.
@@ -73,6 +75,10 @@ public class BossHitReactionState : BossBaseState
                 // Get Up Animation.
                 boss.animator.SetTrigger("triggerGetUp");
                 break;
+            case 11:
+                // High Parry. (Fireball Parried)
+                boss.animator.SetTrigger("triggerParryHigh");
+                break;
             default:
                 break;
         }
@@ -88,22 +94,33 @@ public class BossHitReactionState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.movementInput != Vector2.zero)
+        // Movement Input Detected.
+        if((hitReactionIndex == 2 && boss.canGetUp) && !(boss.health <= 0))
         {
-            // Movement Input Detected.
-            if((hitReactionIndex == 2 && boss.canGetUp) && !(boss.health <= 0))
-            {
-                // To make the boss get up from falling.
-                boss.nextBossHitReaction = 10;
-                boss.canGetUp = false;
-                boss.SwitchState(boss.HitReactionState);
-            }
+            // To make the boss get up from falling.
+            boss.nextBossHitReaction = 10;
+            boss.canGetUp = false;
+            boss.nextBossHitStunDuration = 1f;
+            boss.nextBossHitSoundIndex = -1;
+            boss.nextBossDamageReceived = 0;
+            boss.nextBossForceReceived = Vector2.zero;
+            boss.SwitchState(boss.HitReactionState);
         }
 
         if(timerStarted)
         {
             hitStunTime -= Time.deltaTime;
-            if(hitStunTime <= 0) { StunFinished(boss); }
+            if(hitStunTime <= 0) 
+            {
+                if (hitReactionIndex == 2)
+                {
+                    boss.canGetUp = true;
+                }
+                else
+                {
+                    StunFinished(boss);
+                }
+            }
         }
 
         if(Input.GetKeyDown(KeyCode.E))

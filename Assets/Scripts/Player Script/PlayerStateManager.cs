@@ -45,6 +45,8 @@ public class PlayerStateManager : MonoBehaviour
 
     // Player Attributes
     public float health = 100.0f;
+    public float postureDefault;
+    public float postureCurrent;
     public float movementSpeed = 1.0f;
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
@@ -98,6 +100,8 @@ public class PlayerStateManager : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         currentState = IdleState;
+
+        postureCurrent = postureDefault;
 
         currentState.EnterState(this);
     }
@@ -315,5 +319,34 @@ public class PlayerStateManager : MonoBehaviour
         isLanding = false;
         playerLandCollider2D.enabled = false;
         playerBoxCollider2D.enabled = false;
+    }
+
+    public void TakePostureDamage(float postureDamage)
+    {
+        // Player takes Posture damage.
+        postureCurrent -= postureDamage;
+        Debug.Log("Posture Reduced!");
+
+        if (postureCurrent <= 0)
+        {
+            nextPlayerHitStunDuration = 4;
+            nextPlayerHitReaction = 8;
+            nextPlayerDamageReceived = 0;
+            nextPlayerForceReceived = new Vector2(1.5f * -forceDirection, 0f);
+            SwitchState(HitReactionState);
+        }
+    }
+
+    public void IsPostureBroken()
+    {
+        // This function is called in the animator.
+        if (postureCurrent <= 0)
+        {
+            nextPlayerHitReaction = 9;
+            nextPlayerHitStunDuration = 4;
+            SwitchState(HitReactionState);
+            postureCurrent = postureDefault;
+            attackBoxCollider.enabled = false;
+        }
     }
 }

@@ -69,6 +69,17 @@ public class BossIdleState : BossBaseState
     {
         if (collision.tag == "PlayerAttackHigh")
         {
+            if(boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the incoming attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 10);
+            }
+            else
+            {
+                // Boss blocks the incoming attack.
+                boss.AttackHitPropertySelf(boss.nextBossDamageReceived * 0.25f, Vector2.zero, 4, -1, 7);
+            }
+
             // React to the player's Regular attack.
             boss.SwitchState(boss.HitReactionState);
         }
@@ -78,7 +89,7 @@ public class BossIdleState : BossBaseState
             if(boss.blocksUntilParry <= 0)
             {
                 // Boss parries the incoming attack.
-                boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 8);
+                boss.AttackHitPropertySelf(0, Vector2.zero, 11, 0, 8);
             }
             else
             {
