@@ -5,6 +5,7 @@ public class PlayerJumpingState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         player.isLanded = false;
+        player.playerAirCollider2D.enabled = true;
         if(player.movementInput.x == 0)
         {
             // Neutral Jump.

@@ -64,11 +64,13 @@ public class PlayerHitReactionState : PlayerBaseState
                 // High Parry.
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
+                player.bossStateManager.TakePostureDamage(1f);
                 break;
             case 7:
                 // Low Parry.
                 player.animator.SetTrigger("triggerParryLow");
                 player.spriteRenderer.color = Color.blue;
+                player.bossStateManager.TakePostureDamage(1f);
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
@@ -99,6 +101,11 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.nextPlayerHitSoundIndex = 11;
                 hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
                 hitDamage = player.bossStateManager.fireballScript.damage / 4;
+                break;
+            case 13:
+                // Parry a Fireball. (Does not do posture damage to the boss)
+                player.animator.SetTrigger("triggerParryHigh");
+                player.spriteRenderer.color = Color.blue;
                 break;
             default:
                 break;

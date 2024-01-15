@@ -62,7 +62,7 @@ public class PlayerParryAttemptState : PlayerBaseState
             if(isHighParryAttempt)
             {
                 // Ensures that the player goes into successful parrying state.
-                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
+                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 13, player.nextPlayerHitStunDuration, 8);
             }
             player.SwitchState(player.HitReactionState);
         }

@@ -25,7 +25,7 @@ public class BossIdleState : BossBaseState
             // Choose which action to do.
 
             // Boss chooses to approach the player for close range attack.
-            //boss.SwitchState(boss.WalkingState);
+            boss.SwitchState(boss.WalkingState);
 
             // Boss chooses to do long range attack.
             //boss.SwitchState(boss.RegularAttackState);
@@ -35,23 +35,6 @@ public class BossIdleState : BossBaseState
             // Wait, decrease timer.
             boss.aiDecisionTimer -= Time.deltaTime;
         }
-
-        // Check for Movement Input.
-        //if (boss.movementInput.y == 0)
-        //{
-        //    // Walking.
-        //    boss.SwitchState(boss.WalkingState);
-        //}
-        //else if(boss.movementInput.y > 0 && boss.isLanded)
-        //{
-        //    // Jumping.
-        //    boss.SwitchState(boss.JumpingState);
-        //}
-        //else if(boss.movementInput.y < 0)
-        //{
-        //    // Crouching.
-        //    boss.SwitchState(boss.CrouchState);
-        //}
         
         // Check for Attack Input.
         if(Input.GetKeyDown(KeyCode.K))

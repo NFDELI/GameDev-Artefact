@@ -10,6 +10,7 @@ public class PlayerIdleState : PlayerBaseState
         player.animator.SetBool("isWalkBackwards", false);
         player.animator.SetBool("isCrouch", false);
         player.animator.SetTrigger("triggerIdle");
+        player.playerAirCollider2D.enabled = false;
         player.spriteRenderer.color = Color.white;
         player.isLanded = true;
         player.isInvincible = false;

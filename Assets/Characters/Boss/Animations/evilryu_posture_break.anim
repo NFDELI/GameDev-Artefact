@@ -24,6 +24,10 @@ AnimationClip:
       value: {fileID: 21300000, guid: 973ce0a57632a074984e6bd23a0c6d5d, type: 3}
     - time: 0.1
       value: {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
+    - time: 0.2
+      value: {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
+    - time: 0.3
+      value: {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -48,12 +52,14 @@ AnimationClip:
     pptrCurveMapping:
     - {fileID: 21300000, guid: 973ce0a57632a074984e6bd23a0c6d5d, type: 3}
     - {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
+    - {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
+    - {fileID: 21300000, guid: 641fb7bfaca9cf44b83b65c4b4429116, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.2
+    m_StopTime: 0.4
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -72,4 +78,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.3
+    functionName: IsPostureBroken
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

@@ -20,7 +20,7 @@ public class BossRegularAttackState : BossBaseState
         currentAttackPatternIndex = 0;
         boss.rangeCheckBox.enabled = false;
 
-        attackPatternChoice = 6;
+        attackPatternChoice = Random.Range(1, 6);
                               //Random.Range(1, 6);
 
         // Choose a Random Attack Pattern.

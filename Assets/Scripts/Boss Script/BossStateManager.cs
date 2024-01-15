@@ -38,6 +38,8 @@ public class BossStateManager : MonoBehaviour
 
     // Boss Attributes
     public float health = 100.0f;
+    public float postureDefault;
+    public float postureCurrent = 3.0f;
     public float movementSpeed = 1.0f;
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
@@ -75,6 +77,8 @@ public class BossStateManager : MonoBehaviour
     public bool hasReachedPlayer = false;
     public BoxCollider2D rangeCheckBox;
 
+    public bool isVulnerable = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -82,6 +86,8 @@ public class BossStateManager : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bossBoxCollider2D = GetComponent<BoxCollider2D>();
+
+        postureCurrent = postureDefault;
 
         currentState = IdleState;
 
@@ -276,5 +282,42 @@ public class BossStateManager : MonoBehaviour
     public void PlayAttackSwingSound()
     {
         audioScript.SoundIndexPlay(nextBossSwingSoundIndex);
+    }
+
+    public void TakePostureDamage(float postureDamage)
+    {
+        // Boss takes Posture damage.
+        postureCurrent -= postureDamage;
+        Debug.Log("Posture Reduced!");
+
+        if (postureCurrent <= 0)
+        {
+            isVulnerable = true;
+            nextBossHitStunDuration = 4;
+            nextBossHitReaction = 8;
+            nextBossDamageReceived = 0;
+            nextBossForceReceived = new Vector2(1.5f * -forceDirection, 0f);
+            SwitchState(HitReactionState);
+        }
+    }
+
+    public void IsPostureBroken()
+    {
+        // This function is called in the animator.
+        if(postureCurrent <= 0 && isVulnerable)
+        {
+            nextBossHitReaction = 9;
+            nextBossHitStunDuration = 4;
+            SwitchState(HitReactionState);
+            postureCurrent = postureDefault;
+            attackHighBoxCollider2D.enabled = false;
+            attackLowBoxCollider2D.enabled = false;
+            isVulnerable = false;
+        }
+    }
+
+    public void TurnOffBossBoxCollider()
+    {
+
     }
 }

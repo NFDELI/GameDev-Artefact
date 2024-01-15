@@ -31,6 +31,7 @@ public class PlayerStateManager : MonoBehaviour
     public BoxCollider2D attackBoxCollider;
     public BoxCollider2D playerBoxCollider2D;
     public BoxCollider2D playerLandCollider2D;
+    public BoxCollider2D playerAirCollider2D;
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
