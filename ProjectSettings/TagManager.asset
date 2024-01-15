@@ -24,7 +24,7 @@ TagManager:
   - Attack Box
   - Wall or Floor
   - PlayerJumpCollider
-  - 
+  - CloseToWall
   - 
   - 
   - 

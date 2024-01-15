@@ -59,6 +59,8 @@ public class BossStateManager : MonoBehaviour
     public BoxCollider2D attackHighBoxCollider2D;
     public BoxCollider2D attackLowBoxCollider2D;
 
+    public BoxCollider2D bossBoxCollider2D;
+
     public PlayerStateManager playerStateManager;
     public FireballScript playerFireballScript;
 
@@ -79,6 +81,7 @@ public class BossStateManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        bossBoxCollider2D = GetComponent<BoxCollider2D>();
 
         currentState = IdleState;
 
@@ -126,11 +129,13 @@ public class BossStateManager : MonoBehaviour
         {
             forceDirection = -1;
             rangeCheckBox.offset = new Vector2(-0.3f, 0f);
+            bossBoxCollider2D.offset = new Vector2(-0.05f, -0.78f);
         }
         else
         {
             forceDirection = 1;
             rangeCheckBox.offset = new Vector2(0.61f, 0f);
+            bossBoxCollider2D.offset = new Vector2(0.05f, -0.78f);
         }
 
         // Debugging

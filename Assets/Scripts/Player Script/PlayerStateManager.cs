@@ -69,6 +69,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public bool isLanding = false;
     public bool jumpDirection = false;
+    public bool isCloseToWallLeft = false;
+    public bool isCloseToWallRight = false;
 
     private void Awake()
     {
@@ -147,10 +149,12 @@ public class PlayerStateManager : MonoBehaviour
         if(!spriteRenderer.flipX)
         {
             forceDirection = -1;
+            playerBoxCollider2D.offset = new Vector2(-0.053f, -0.78f);
         }
         else
         {
             forceDirection = 1;
+            playerBoxCollider2D.offset = new Vector2(0.053f, -0.78f);
         }
 
         // Debugging

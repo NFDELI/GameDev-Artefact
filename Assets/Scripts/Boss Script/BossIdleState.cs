@@ -28,7 +28,7 @@ public class BossIdleState : BossBaseState
             //boss.SwitchState(boss.WalkingState);
 
             // Boss chooses to do long range attack.
-            boss.SwitchState(boss.RegularAttackState);
+            //boss.SwitchState(boss.RegularAttackState);
         }
         else
         {
