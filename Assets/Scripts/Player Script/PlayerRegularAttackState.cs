@@ -79,6 +79,8 @@ public class PlayerRegularAttackState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
+
+        // Player gets Interrupted.
         if (collision.tag == "BossAttackHigh")
         {
             player.SwitchState(player.HitReactionState);
@@ -92,5 +94,7 @@ public class PlayerRegularAttackState : PlayerBaseState
             player.nextPlayerHitReaction = 11;
             player.SwitchState(player.HitReactionState);
         }
+
+        player.attackBoxCollider.enabled = false;
     }
 }

@@ -342,7 +342,11 @@ MonoBehaviour:
   ParryRyuVoiceSound: {fileID: 8300000, guid: f8fc5df1e686e784d80fee9de5a2dd1a, type: 3}
   ParryBossVoiceSound: {fileID: 8300000, guid: 8a7c52cf1df682e4597e0821e0c746bd, type: 3}
   FireballBlockSound: {fileID: 8300000, guid: 620f41ade6c1a3e48ba8ed436881f878, type: 3}
+  FireballBossVoice: {fileID: 8300000, guid: 893ce0ee48163f54eb0d54db120e6908, type: 3}
   FellOnGroundSound: {fileID: 8300000, guid: fb03073ca3d1b394c88d19fe15c26563, type: 3}
+  EvilRyuPostureBreakVoice: {fileID: 8300000, guid: d7a31738893aaa34e8e8128eab75e291, type: 3}
+  RyuPostureBreakVoice: {fileID: 8300000, guid: 01db1e507a3c5564f98ec4a92a403ca9, type: 3}
+  ArmourSound: {fileID: 8300000, guid: 99b4621fe7ef3214f9ddd52968c1786c, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,6 +1991,7 @@ MonoBehaviour:
   hasReachedPlayer: 0
   rangeCheckBox: {fileID: 755074770}
   isVulnerable: 1
+  shouldResetAiTimer: 1
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0

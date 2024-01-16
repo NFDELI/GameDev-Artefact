@@ -64,6 +64,8 @@ public class BossHitReactionState : BossBaseState
             case 8:
                 // Guard/Posture/Grab Break.
                 boss.animator.SetTrigger("triggerPostureBreak");
+                boss.audioScript.PlayBossPostureBreakVoice();
+                boss.nextBossHitSoundIndex = -1;
                 timerStarted = true;
                 break;
             case 9:

@@ -11,7 +11,13 @@ public class BossIdleState : BossBaseState
 
         // Reset decision making timer.
         boss.animator.SetTrigger("triggerIdle");
-        boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
+
+        if(boss.shouldResetAiTimer)
+        {
+            boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
+            boss.shouldResetAiTimer = true;
+        }
+
         boss.rangeCheckBox.enabled = false;
 
         // The boss is unmovable when Idle.
@@ -37,15 +43,15 @@ public class BossIdleState : BossBaseState
         }
         
         // Check for Attack Input.
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            boss.SwitchState(boss.RegularAttackState);
-        }
-
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            boss.SwitchState(boss.BossSpecialAttackState);
-        }
+        //if(Input.GetKeyDown(KeyCode.K))
+        //{
+        //    boss.SwitchState(boss.RegularAttackState);
+        //}
+        //
+        //if(Input.GetKeyDown(KeyCode.L))
+        //{
+        //    boss.SwitchState(boss.BossSpecialAttackState);
+        //}
 
         // Sprite-Flip Check.
         if(boss.spriteFlip)

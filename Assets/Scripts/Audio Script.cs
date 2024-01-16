@@ -29,18 +29,24 @@ public class AudioScript : MonoBehaviour
     public AudioClip ParryBossVoiceSound;
 
     public AudioClip FireballBlockSound;
+    public AudioClip FireballBossVoice;
 
     public AudioClip FellOnGroundSound;
+
+    public AudioClip EvilRyuPostureBreakVoice;
+    public AudioClip RyuPostureBreakVoice;
+
+    public AudioClip ArmourSound;
 
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
     }
-    
+
     public void SoundIndexPlay(int index)
     {
-        switch (index) 
-        { 
+        switch (index)
+        {
             case 0:
                 PlayLightAttackSound();
                 break;
@@ -110,7 +116,7 @@ public class AudioScript : MonoBehaviour
         source.PlayOneShot(MediumHitSound);
     }
 
-    public void PlayHeavyHitSound() 
+    public void PlayHeavyHitSound()
     {
         source.PlayOneShot(HeavyHitSound);
     }
@@ -155,8 +161,28 @@ public class AudioScript : MonoBehaviour
         source.PlayOneShot(FireballBlockSound);
     }
 
-    public void PlayFellToGroundSound() 
+    public void PlayFellToGroundSound()
     {
         source.PlayOneShot(FellOnGroundSound);
+    }
+
+    public void PlayPlayerPostureBreakVoice()
+    {
+        source.PlayOneShot(RyuPostureBreakVoice);
+    }
+
+    public void PlayBossPostureBreakVoice()
+    {
+        source.PlayOneShot(EvilRyuPostureBreakVoice);
+    }
+
+    public void PlayBossFireballVoice()
+    {
+        source.PlayOneShot(FireballBossVoice);
+    }
+
+    public void PlayArmorSound()
+    {
+        source.PlayOneShot(ArmourSound);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -21,10 +22,10 @@ public class BossRegularAttackState : BossBaseState
         boss.rangeCheckBox.enabled = false;
 
         attackPatternChoice = Random.Range(1, 6);
-                              //Random.Range(1, 6);
+        //Random.Range(1, 6);
 
         // Choose a Random Attack Pattern.
-        switch (attackPatternChoice) 
+        switch (attackPatternChoice)
         {
             case 1:
                 attackPatternChosen = attackPatternOne;
@@ -51,7 +52,7 @@ public class BossRegularAttackState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.canAttackChain)
+        if (boss.canAttackChain)
         {
             if (attackPatternChosen[currentAttackPatternIndex] == 0)
             {
@@ -74,7 +75,15 @@ public class BossRegularAttackState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-        // Make sure boss has armor.
+        if (collision.tag == "PlayerAttackHigh" || collision.tag == "Fireball")
+        {
+            // Make sure boss has armor.
+            boss.audioScript.PlayArmorSound();
+            boss.FlashBlue();
+
+            boss.health -= boss.nextBossDamageReceived * 0.25f;
+            boss.rb.AddForce(boss.nextBossForceReceived * 0.5f, ForceMode2D.Impulse);
+        }
     }
 
     public void PerformAttack(BossStateManager boss, int attackId)
@@ -123,8 +132,9 @@ public class BossRegularAttackState : BossBaseState
                 boss.nextBossSwingSoundIndex = 2;
                 break;
             case 20:
-                // Boss performs a foreball Attack.
+                // Boss performs a fireball Attack.
                 boss.animator.SetTrigger("triggerSpecialOne");
+                boss.audioScript.PlayBossFireballVoice();
                 break;
             default:
                 break;

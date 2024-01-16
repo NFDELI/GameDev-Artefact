@@ -67,17 +67,17 @@ public class BossWalkingState : BossBaseState
         }
 
         // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StopMovingAnimation(boss);
-            boss.SwitchState(boss.RegularAttackState);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            StopMovingAnimation(boss);
-            boss.SwitchState(boss.BossSpecialAttackState);
-        }
+        //if (Input.GetKeyDown(KeyCode.U))
+        //{
+        //    StopMovingAnimation(boss);
+        //    boss.SwitchState(boss.RegularAttackState);
+        //}
+        //
+        //if (Input.GetKeyDown(KeyCode.I))
+        //{
+        //    StopMovingAnimation(boss);
+        //    boss.SwitchState(boss.BossSpecialAttackState);
+        //}
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision collision)
@@ -86,7 +86,44 @@ public class BossWalkingState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
+        if (collision.tag == "PlayerAttackHigh")
+        {
+            if (boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the incoming attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 10);
+            }
+            else
+            {
+                // Boss blocks the incoming attack.
+                boss.AttackHitPropertySelf(boss.nextBossDamageReceived * 0.25f, Vector2.zero, 4, -1, 7);
+            }
 
+            // Player is Interrupting the boss, power through their attacks!
+            boss.shouldResetAiTimer = false;
+
+            // React to the player's Regular attack.
+            boss.SwitchState(boss.HitReactionState);
+        }
+        if (collision.tag == "PlayerFireball")
+        {
+            // React to the player's Fireball attack.
+            if (boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the incoming attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 11, 0, 8);
+            }
+            else
+            {
+                // Boss blocks the incoming attack.
+                boss.AttackHitPropertySelf(boss.playerFireballScript.damage * 0.25f, Vector2.zero, 4, boss.playerFireballScript.stunDuration, 11);
+            }
+
+            // Player is Interrupting the boss, power through their attacks!
+            boss.shouldResetAiTimer = false;
+
+            boss.SwitchState(boss.HitReactionState);
+        }
     }
 
     public void MoveRight(BossStateManager boss)

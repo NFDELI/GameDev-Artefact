@@ -78,6 +78,7 @@ public class BossStateManager : MonoBehaviour
     public BoxCollider2D rangeCheckBox;
 
     public bool isVulnerable = true;
+    public bool shouldResetAiTimer = true;
 
     // Start is called before the first frame update
     void Start()
@@ -318,6 +319,19 @@ public class BossStateManager : MonoBehaviour
 
     public void FellOnGroundSound()
     {
+        // Audio Played in Animator.
         audioScript.PlayFellToGroundSound();
+    }
+
+    public void FlashBlue()
+    {
+        StartCoroutine(FlashBlueCoroutine());
+    }
+
+    IEnumerator FlashBlueCoroutine()
+    {
+        spriteRenderer.color = Color.blue;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = Color.white;
     }
 }

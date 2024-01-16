@@ -76,6 +76,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Guard/Posture/Grab Break.
                 player.animator.SetTrigger("triggerPostureBreak");
                 timerStarted = true;
+                player.audioScript.PlayPlayerPostureBreakVoice();
                 break;
             case 9:
                 // Dazed/Stunned.
