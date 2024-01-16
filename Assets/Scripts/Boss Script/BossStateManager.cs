@@ -316,8 +316,8 @@ public class BossStateManager : MonoBehaviour
         }
     }
 
-    public void TurnOffBossBoxCollider()
+    public void FellOnGroundSound()
     {
-
+        audioScript.PlayFellToGroundSound();
     }
 }

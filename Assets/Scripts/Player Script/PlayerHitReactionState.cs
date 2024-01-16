@@ -129,6 +129,10 @@ public class PlayerHitReactionState : PlayerBaseState
             {
                 // To make the player get up from falling.
                 player.nextPlayerHitReaction = 10;
+                player.nextPlayerHitStunDuration = 1f;
+                player.nextPlayerHitSoundIndex = -1;
+                player.nextPlayerDamageReceived = 0;
+                player.nextPlayerForceReceived = Vector2.zero;
                 player.canGetUp = false;
                 player.SwitchState(player.HitReactionState);
             }

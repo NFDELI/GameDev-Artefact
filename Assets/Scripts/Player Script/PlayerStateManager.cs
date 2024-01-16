@@ -349,4 +349,9 @@ public class PlayerStateManager : MonoBehaviour
             attackBoxCollider.enabled = false;
         }
     }
+
+    public void FellOnGroundSound()
+    {
+        audioScript.PlayFellToGroundSound();
+    }
 }

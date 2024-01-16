@@ -30,6 +30,8 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip FireballBlockSound;
 
+    public AudioClip FellOnGroundSound;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -151,5 +153,10 @@ public class AudioScript : MonoBehaviour
     public void PlayFireballBlockSound()
     {
         source.PlayOneShot(FireballBlockSound);
+    }
+
+    public void PlayFellToGroundSound() 
+    {
+        source.PlayOneShot(FellOnGroundSound);
     }
 }

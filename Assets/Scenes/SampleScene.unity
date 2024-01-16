@@ -342,6 +342,7 @@ MonoBehaviour:
   ParryRyuVoiceSound: {fileID: 8300000, guid: f8fc5df1e686e784d80fee9de5a2dd1a, type: 3}
   ParryBossVoiceSound: {fileID: 8300000, guid: 8a7c52cf1df682e4597e0821e0c746bd, type: 3}
   FireballBlockSound: {fileID: 8300000, guid: 620f41ade6c1a3e48ba8ed436881f878, type: 3}
+  FellOnGroundSound: {fileID: 8300000, guid: fb03073ca3d1b394c88d19fe15c26563, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
