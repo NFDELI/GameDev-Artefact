@@ -84,7 +84,7 @@ public class BossHitReactionState : BossBaseState
             case 12:
                 // Get Hit by Spinning Kick
                 boss.animator.SetTrigger("triggerTatsuLaunch");
-                boss.rb.gravityScale = 2f;
+                //boss.rb.gravityScale = 2f;
 
                 // Boss Gets hit by Tatsu, allow player to recover quickly.
                 boss.playerStateManager.animator.SetTrigger("triggerTatsuRecovery");

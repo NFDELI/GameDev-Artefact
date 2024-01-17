@@ -22,8 +22,9 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
-                    player.AttackHitProperty(3, new Vector2(1f * player.forceDirection, 7f), 12, 5, 5);
+                    player.AttackHitProperty(3, new Vector2(1f, -7f), 12, 3, 5);
                     SpinningKickForce(player);
+                    Debug.Log("tatsu from right!");
                 }
             }
             else
@@ -33,8 +34,9 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
-                    player.AttackHitProperty(3, new Vector2(1f * player.forceDirection, 7f), 12, 5, 5);
+                    player.AttackHitProperty(3, new Vector2(1f , 7f), 12, 3, 5);
                     SpinningKickForce(player);
+                    Debug.Log("tatsu from left!");
                 }
                 else
                 {
