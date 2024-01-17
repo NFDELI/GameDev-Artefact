@@ -6,6 +6,7 @@ public class BossIdleState : BossBaseState
     {
         Debug.Log("Boss Entered Idle State");
         boss.isLanded = true;
+        boss.isLaunched = false;
         boss.rb.velocity = new Vector2(0, 0);
         boss.attackCounter = 1;
 

@@ -205,7 +205,7 @@ public class PlayerStateManager : MonoBehaviour
     public void FlagDragonPunchForce()
     {
         // Used in the Animator, this function adds a force to push the player character upwards.
-        rb.AddForce(new Vector2(1 * forceDirection, 6), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(2f * forceDirection, 6), ForceMode2D.Impulse);
     }
 
     public void FlagSpinningKickStart()
@@ -264,7 +264,8 @@ public class PlayerStateManager : MonoBehaviour
     public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
     {
         bossStateManager.nextBossDamageReceived = damage;
-        bossStateManager.nextBossForceReceived = force * forceDirection;
+        bossStateManager.nextBossForceReceived = force;
+        bossStateManager.nextBossForceReceived.x *= forceDirection;
         bossStateManager.nextBossHitReaction = hitreactionId;
         bossStateManager.nextBossHitStunDuration = stunduration;
         bossStateManager.nextBossHitSoundIndex = hitsoundId;
@@ -353,5 +354,10 @@ public class PlayerStateManager : MonoBehaviour
     public void FellOnGroundSound()
     {
         audioScript.PlayFellToGroundSound();
+    }
+
+    public void TurnOnAttackBoxOffset()
+    {
+        attackBoxCollider.offset = new Vector2(0f, 0.6f);
     }
 }

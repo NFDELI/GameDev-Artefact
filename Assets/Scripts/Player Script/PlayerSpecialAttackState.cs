@@ -16,15 +16,16 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
-                    //DragonPunchForce(player);
+                    player.AttackHitProperty(3, new Vector2(1.5f, 15f), 13, 4, 5);
                 }
                 else
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
-                    player.AttackHitProperty(3, new Vector2(1f, -7f), 12, 3, 5);
+
+                    // The Y-Axis Velocity is Negative due to a bug. -Jan 17 2024.
+                    player.AttackHitProperty(3, new Vector2(3, 7f), 12, 3, 5);
                     SpinningKickForce(player);
-                    Debug.Log("tatsu from right!");
                 }
             }
             else
@@ -34,15 +35,14 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
-                    player.AttackHitProperty(3, new Vector2(1f , 7f), 12, 3, 5);
+                    player.AttackHitProperty(3, new Vector2(3f , 7f), 12, 3, 5);
                     SpinningKickForce(player);
-                    Debug.Log("tatsu from left!");
                 }
                 else
                 {
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
-                    //DragonPunchForce(player);
+                    player.AttackHitProperty(3, new Vector2(1.5f, 18f), 13, 4, 5);
                 }
             }
         }

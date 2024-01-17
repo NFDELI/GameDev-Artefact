@@ -62,6 +62,7 @@ public class BossStateManager : MonoBehaviour
     public BoxCollider2D attackLowBoxCollider2D;
 
     public BoxCollider2D bossBoxCollider2D;
+    public BoxCollider2D bossAirBoxCollider2D;
 
     public PlayerStateManager playerStateManager;
     public FireballScript playerFireballScript;
@@ -80,6 +81,8 @@ public class BossStateManager : MonoBehaviour
 
     public bool isVulnerable = true;
     public bool shouldResetAiTimer = true;
+
+    public bool isLaunched = false;
 
     // Start is called before the first frame update
     void Start()
@@ -342,12 +345,21 @@ public class BossStateManager : MonoBehaviour
 
     public void FallGravityOn()
     {
-        rb.gravityScale = 0.4f;
+        rb.gravityScale = 1f;
     }
 
     public void FallGravityOff()
     {
         rb.gravityScale = 2f;
+    }
 
+    public void SetIsLaunchedWithDelay(float delay)
+    {
+        Invoke("TurnOnIsLaunched", delay);
+    }
+
+    public void TurnOnIsLaunched()
+    {
+        isLaunched = true;
     }
 }
