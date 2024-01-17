@@ -21,6 +21,9 @@ public class BossRegularAttackState : BossBaseState
         currentAttackPatternIndex = 0;
         boss.rangeCheckBox.enabled = false;
 
+        // Reset BlockUntilParry. (Give the player a chance to poke again.)
+        boss.blocksUntilParry = boss.blocksUntilParryDefault;
+
         attackPatternChoice = Random.Range(1, 6);
         //Random.Range(1, 6);
 

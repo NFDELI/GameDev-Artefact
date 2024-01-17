@@ -22,6 +22,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
+                    player.AttackHitProperty(3, new Vector2(1f * player.forceDirection, 7f), 12, 5, 5);
                     SpinningKickForce(player);
                 }
             }
@@ -32,6 +33,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
+                    player.AttackHitProperty(3, new Vector2(1f * player.forceDirection, 7f), 12, 5, 5);
                     SpinningKickForce(player);
                 }
                 else
@@ -54,6 +56,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
             {
                 // Fireball is spawned from Animator.
                 player.animator.SetTrigger("triggerSpecialOne");
+                player.AttackHitProperty(3, new Vector2(1f, 0), 1, 0.5f, 12);
             }
             
             // Spawn Fireball. (Fireball is Spawned from the Animator)

@@ -59,7 +59,7 @@ public class PlayerStateManager : MonoBehaviour
 
     // Player Attack Variables.
     public bool isSpinnigKickForce = false;
-    public float spinningKickSpeed = 1f;
+    public float spinningKickSpeed = 0.75f;
 
     // Reference to Player's fireball.
     public FireballScript fireballScript;

@@ -26,21 +26,21 @@ public class BossIdleState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.aiDecisionTimer <= 0)
-        {
-            // Choose which action to do.
-
-            // Boss chooses to approach the player for close range attack.
-            boss.SwitchState(boss.WalkingState);
-
-            // Boss chooses to do long range attack.
-            //boss.SwitchState(boss.RegularAttackState);
-        }
-        else
-        {
-            // Wait, decrease timer.
-            boss.aiDecisionTimer -= Time.deltaTime;
-        }
+        //if(boss.aiDecisionTimer <= 0)
+        //{
+        //    // Choose which action to do.
+        //
+        //    // Boss chooses to approach the player for close range attack.
+        //    boss.SwitchState(boss.WalkingState);
+        //
+        //    // Boss chooses to do long range attack.
+        //    //boss.SwitchState(boss.RegularAttackState);
+        //}
+        //else
+        //{
+        //    // Wait, decrease timer.
+        //    boss.aiDecisionTimer -= Time.deltaTime;
+        //}
         
         // Check for Attack Input.
         //if(Input.GetKeyDown(KeyCode.K))
@@ -73,9 +73,15 @@ public class BossIdleState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
+        //BossIdleDefense(boss, collision);
+        BossIdleOpen(boss, collision);
+    }
+
+    private void BossIdleDefense(BossStateManager boss, Collider2D collision)
+    {
         if (collision.tag == "PlayerAttackHigh")
         {
-            if(boss.blocksUntilParry <= 0)
+            if (boss.blocksUntilParry <= 0)
             {
                 // Boss parries the incoming attack.
                 boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 10);
@@ -92,7 +98,7 @@ public class BossIdleState : BossBaseState
         if (collision.tag == "PlayerFireball")
         {
             // React to the player's Fireball attack.
-            if(boss.blocksUntilParry <= 0)
+            if (boss.blocksUntilParry <= 0)
             {
                 // Boss parries the incoming attack.
                 boss.AttackHitPropertySelf(0, Vector2.zero, 11, 0, 8);
@@ -102,6 +108,14 @@ public class BossIdleState : BossBaseState
                 // Boss blocks the incoming attack.
                 boss.AttackHitPropertySelf(boss.playerFireballScript.damage * 0.25f, Vector2.zero, 4, boss.playerFireballScript.stunDuration, 11);
             }
+            boss.SwitchState(boss.HitReactionState);
+        }
+    }
+
+    private void BossIdleOpen(BossStateManager boss, Collider2D collision)
+    {
+        if(collision.tag == "PlayerAttackHigh")
+        {
             boss.SwitchState(boss.HitReactionState);
         }
     }

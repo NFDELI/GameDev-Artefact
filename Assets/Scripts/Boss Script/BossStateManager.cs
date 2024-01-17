@@ -72,6 +72,7 @@ public class BossStateManager : MonoBehaviour
 
     // When this number goes to 0, boss will start parrying everything until it is reset.
     public int blocksUntilParry = 3;
+    public int blocksUntilParryDefault = 3;
 
     // Regular Attack State Variables.
     public bool hasReachedPlayer = false;
@@ -91,6 +92,10 @@ public class BossStateManager : MonoBehaviour
         postureCurrent = postureDefault;
 
         currentState = IdleState;
+
+        //nextBossHitStunDuration = 9;
+        //nextBossHitReaction = 9;
+        //currentState = HitReactionState;
 
         currentState.EnterState(this);
     }
@@ -333,5 +338,16 @@ public class BossStateManager : MonoBehaviour
         spriteRenderer.color = Color.blue;
         yield return new WaitForSeconds(0.1f);
         spriteRenderer.color = Color.white;
+    }
+
+    public void FallGravityOn()
+    {
+        rb.gravityScale = 0.4f;
+    }
+
+    public void FallGravityOff()
+    {
+        rb.gravityScale = 2f;
+
     }
 }

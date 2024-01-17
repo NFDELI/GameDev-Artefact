@@ -81,6 +81,14 @@ public class BossHitReactionState : BossBaseState
                 // High Parry. (Fireball Parried)
                 boss.animator.SetTrigger("triggerParryHigh");
                 break;
+            case 12:
+                // Get Hit by Spinning Kick
+                boss.animator.SetTrigger("triggerTatsuLaunch");
+                boss.rb.gravityScale = 2f;
+
+                // Boss Gets hit by Tatsu, allow player to recover quickly.
+                boss.playerStateManager.animator.SetTrigger("triggerTatsuRecovery");
+                break;
             default:
                 break;
         }
@@ -97,7 +105,7 @@ public class BossHitReactionState : BossBaseState
     public override void UpdateState(BossStateManager boss)
     {
         // Movement Input Detected.
-        if((hitReactionIndex == 2 && boss.canGetUp) && !(boss.health <= 0))
+        if((hitReactionIndex == 2 && boss.canGetUp && hitStunTime <= 0) && !(boss.health <= 0))
         {
             // To make the boss get up from falling.
             boss.nextBossHitReaction = 10;
