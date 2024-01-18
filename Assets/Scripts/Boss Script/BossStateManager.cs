@@ -363,4 +363,14 @@ public class BossStateManager : MonoBehaviour
     {
         isLaunched = true;
     }
+
+    public void CanGetUp()
+    {
+        canGetUp = true;
+    }
+
+    public void GoIdleState()
+    {
+        SwitchState(IdleState);
+    }
 }

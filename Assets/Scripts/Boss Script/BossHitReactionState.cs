@@ -114,37 +114,28 @@ public class BossHitReactionState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        // Movement Input Detected.
-        //if((hitReactionIndex == 2 && boss.canGetUp && hitStunTime <= 0) && !(boss.health <= 0))
-        //{
-        //    // To make the boss get up from falling.
-        //    boss.nextBossHitReaction = 10;
-        //    boss.canGetUp = false;
-        //    boss.nextBossHitStunDuration = 1f;
-        //    boss.nextBossHitSoundIndex = -1;
-        //    boss.nextBossDamageReceived = 0;
-        //    boss.nextBossForceReceived = Vector2.zero;
-        //    boss.SwitchState(boss.HitReactionState);
-        //}
+        if(boss.canGetUp && !(boss.health <= 0)) 
+        {
+            // To make the boss get up from falling.
+            boss.canGetUp = false;
+            boss.AttackHitPropertySelf(0, new Vector2(0 ,0), 10, 0.1f, -1);
+            boss.bossBoxCollider2D.enabled = true;
+            boss.bossAirBoxCollider2D.enabled = false;
+            boss.SwitchState(boss.HitReactionState);
+        }
 
         if(timerStarted)
         {
             hitStunTime -= Time.deltaTime;
             if(hitStunTime <= 0) 
             {
-                if (hitReactionIndex == 2)
-                {
-                    boss.canGetUp = true;
-                }
-                else
-                {
-                    StunFinished(boss);
-                }
+                StunFinished(boss);
             }
         }
 
         if(boss.isLaunched)
         {
+            // The default boss's box collider is turned off so that the player's body does not push/collide with the airborne boss.
             boss.bossBoxCollider2D.enabled = false;
             boss.bossAirBoxCollider2D.enabled = true;
 

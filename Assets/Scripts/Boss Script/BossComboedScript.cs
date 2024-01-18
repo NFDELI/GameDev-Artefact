@@ -18,13 +18,14 @@ public class BossComboedScript : MonoBehaviour
         {
             if (boss.isLaunched)
             {
-                //boss.animator.ResetTrigger("triggerLaunchedLanded");
+                // Boss falls down then hitbox is disabled so that player cannot constantly combo.
                 boss.animator.SetTrigger("triggerLaunchedLanded");
                 // Make Normal collider true!!
                 boss.bossBoxCollider2D.enabled = false;
                 boss.bossAirBoxCollider2D.enabled = false;
                 boss.isLaunched = false;
-                Debug.Log("CALLED");
+
+                // Make sure to turn on Hitbox when the boss gets up.
             }
         }
     }
