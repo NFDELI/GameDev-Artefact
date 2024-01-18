@@ -85,15 +85,21 @@ public class PlayerSpecialAttackState : PlayerBaseState
         if (collision.tag == "BossAttackHigh")
         {
             player.SwitchState(player.HitReactionState);
+            player.attackBoxCollider.enabled = false;
+            player.PlayerLandingTrue();
         }
         if (collision.tag == "BossAttackLow")
         {
             player.SwitchState(player.HitReactionState);
+            player.attackBoxCollider.enabled = false;
+            player.PlayerLandingTrue();
         }
         if (collision.tag == "BossFireball")
         {
             player.nextPlayerHitReaction = 11;
             player.SwitchState(player.HitReactionState);
+            player.attackBoxCollider.enabled = false;
+            player.PlayerLandingTrue();
         }
     }
 

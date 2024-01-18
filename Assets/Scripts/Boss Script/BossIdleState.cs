@@ -27,32 +27,32 @@ public class BossIdleState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        //if(boss.aiDecisionTimer <= 0)
-        //{
-        //    // Choose which action to do.
-        //
-        //    // Boss chooses to approach the player for close range attack.
-        //    boss.SwitchState(boss.WalkingState);
-        //
-        //    // Boss chooses to do long range attack.
-        //    //boss.SwitchState(boss.RegularAttackState);
-        //}
-        //else
-        //{
-        //    // Wait, decrease timer.
-        //    boss.aiDecisionTimer -= Time.deltaTime;
-        //}
+        if(boss.aiDecisionTimer <= 0)
+        {
+            // Choose which action to do.
+        
+            // Boss chooses to approach the player for close range attack.
+            boss.SwitchState(boss.WalkingState);
+        
+            // Boss chooses to do long range attack.
+            //boss.SwitchState(boss.RegularAttackState);
+        }
+        else
+        {
+            // Wait, decrease timer.
+            boss.aiDecisionTimer -= Time.deltaTime;
+        }
         
         // Check for Attack Input.
-        //if(Input.GetKeyDown(KeyCode.K))
-        //{
-        //    boss.SwitchState(boss.RegularAttackState);
-        //}
-        //
-        //if(Input.GetKeyDown(KeyCode.L))
-        //{
-        //    boss.SwitchState(boss.BossSpecialAttackState);
-        //}
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            boss.SwitchState(boss.RegularAttackState);
+        }
+        
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            boss.SwitchState(boss.BossSpecialAttackState);
+        }
 
         // Sprite-Flip Check.
         if(boss.spriteFlip)

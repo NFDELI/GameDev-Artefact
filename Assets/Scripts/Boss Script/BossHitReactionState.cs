@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossHitReactionState : BossBaseState
@@ -20,6 +21,8 @@ public class BossHitReactionState : BossBaseState
 
         // Boss can takeknockback when getting hit.
         //boss.rb.gravityScale = 2f;
+        boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
 
         switch (boss.nextBossHitReaction)
         {

@@ -85,6 +85,9 @@ public class BossRegularAttackState : BossBaseState
             boss.FlashBlue();
 
             boss.health -= boss.nextBossDamageReceived * 0.25f;
+
+            // Boss cannot be launched while he is attacking.
+            boss.nextBossForceReceived = new Vector2(boss.nextBossForceReceived.x, 0f);
             boss.rb.AddForce(boss.nextBossForceReceived * 0.5f, ForceMode2D.Impulse);
         }
     }
