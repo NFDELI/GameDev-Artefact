@@ -345,6 +345,7 @@ public class BossStateManager : MonoBehaviour
 
     public void FallGravityOn()
     {
+        //0.2f
         rb.gravityScale = 1f;
     }
 

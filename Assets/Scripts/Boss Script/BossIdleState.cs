@@ -22,7 +22,7 @@ public class BossIdleState : BossBaseState
         boss.rangeCheckBox.enabled = false;
 
         // The boss is unmovable when Idle.
-        boss.rb.mass = 1000;
+        boss.rb.mass = 10;
     }
 
     public override void UpdateState(BossStateManager boss)

@@ -19,7 +19,8 @@ public class BossHitReactionState : BossBaseState
         boss.spriteRenderer.color = Color.red;
 
         // Boss can takeknockback when getting hit.
-        boss.rb.mass = 2f;
+        boss.rb.mass = 10f;
+        boss.rb.gravityScale = 2f;
 
         switch (boss.nextBossHitReaction)
         {
@@ -83,7 +84,8 @@ public class BossHitReactionState : BossBaseState
                 break;
             case 12:
                 // Get Hit by Spinning Kick
-                boss.rb.velocity = Vector2.zero;
+                //boss.rb.velocity = Vector2.zero;
+                boss.rb.totalForce = hitForce;
                 boss.SetIsLaunchedWithDelay(0.2f);
                 boss.animator.SetTrigger("triggerLaunched");
 
@@ -92,7 +94,8 @@ public class BossHitReactionState : BossBaseState
                 break;
             case 13:
                 // Boss Gets hit by Dragon Punch.
-                boss.rb.velocity = Vector2.zero;
+                //boss.rb.velocity = Vector2.zero;
+                boss.rb.totalForce = hitForce;
                 boss.SetIsLaunchedWithDelay(0.2f);
                 boss.animator.SetTrigger("triggerLaunched");
                 break;
@@ -112,17 +115,17 @@ public class BossHitReactionState : BossBaseState
     public override void UpdateState(BossStateManager boss)
     {
         // Movement Input Detected.
-        if((hitReactionIndex == 2 && boss.canGetUp && hitStunTime <= 0) && !(boss.health <= 0))
-        {
-            // To make the boss get up from falling.
-            boss.nextBossHitReaction = 10;
-            boss.canGetUp = false;
-            boss.nextBossHitStunDuration = 1f;
-            boss.nextBossHitSoundIndex = -1;
-            boss.nextBossDamageReceived = 0;
-            boss.nextBossForceReceived = Vector2.zero;
-            boss.SwitchState(boss.HitReactionState);
-        }
+        //if((hitReactionIndex == 2 && boss.canGetUp && hitStunTime <= 0) && !(boss.health <= 0))
+        //{
+        //    // To make the boss get up from falling.
+        //    boss.nextBossHitReaction = 10;
+        //    boss.canGetUp = false;
+        //    boss.nextBossHitStunDuration = 1f;
+        //    boss.nextBossHitSoundIndex = -1;
+        //    boss.nextBossDamageReceived = 0;
+        //    boss.nextBossForceReceived = Vector2.zero;
+        //    boss.SwitchState(boss.HitReactionState);
+        //}
 
         if(timerStarted)
         {
@@ -150,11 +153,6 @@ public class BossHitReactionState : BossBaseState
             {
                 boss.animator.SetTrigger("triggerPeaked");
             }
-        }
-
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            Debug.Log(hitStunTime);
         }
 
     }

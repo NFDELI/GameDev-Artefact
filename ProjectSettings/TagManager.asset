@@ -26,7 +26,7 @@ TagManager:
   - PlayerJumpCollider
   - CloseToWall
   - OnlyCollideWalls
-  - 
+  - IgnorePlayerAttackBox
   - 
   - 
   - 

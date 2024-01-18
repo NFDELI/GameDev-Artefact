@@ -20,7 +20,8 @@ public class BossComboedScript : MonoBehaviour
             {
                 //boss.animator.ResetTrigger("triggerLaunchedLanded");
                 boss.animator.SetTrigger("triggerLaunchedLanded");
-                boss.bossBoxCollider2D.enabled = true;
+                // Make Normal collider true!!
+                boss.bossBoxCollider2D.enabled = false;
                 boss.bossAirBoxCollider2D.enabled = false;
                 boss.isLaunched = false;
                 Debug.Log("CALLED");
