@@ -6,7 +6,7 @@ public class CloseToWallScripts : MonoBehaviour
 {
     public bool isWallLeft;
     public PlayerStateManager playerStateManager;
-    public float timeToResetDefault = 2f;
+    public float timeToResetDefault = 1f;
     public float timeToResetBool;
 
     // Start is called before the first frame update
@@ -30,7 +30,7 @@ public class CloseToWallScripts : MonoBehaviour
                 // Player is close to Right Wall.
                 playerStateManager.isCloseToWallRight = true;
             }
-            timeToResetBool = 2f;
+            timeToResetBool = timeToResetDefault;
         }
     }
 
@@ -38,22 +38,13 @@ public class CloseToWallScripts : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            if (timeToResetBool <= 0)
-            {
-                if (isWallLeft)
-                {
-                    // Player is Away from Wall Left.
-                    playerStateManager.isCloseToWallLeft = false;
-                }
-                else
-                {
-                    playerStateManager.isCloseToWallRight = false;
-                }
-            }
-            else
-            {
-                timeToResetBool -= Time.deltaTime;
-            }
+            Invoke("ResetCloseToWalls", 1f);
         }
+    }
+
+    public void ResetCloseToWalls()
+    {
+        playerStateManager.isCloseToWallLeft = false;
+        playerStateManager.isCloseToWallRight = false;
     }
 }
