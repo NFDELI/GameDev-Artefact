@@ -19,8 +19,7 @@ public class BossHitReactionState : BossBaseState
         boss.spriteRenderer.color = Color.red;
 
         // Boss can takeknockback when getting hit.
-        boss.rb.mass = 10f;
-        boss.rb.gravityScale = 2f;
+        //boss.rb.gravityScale = 2f;
 
         switch (boss.nextBossHitReaction)
         {
@@ -86,7 +85,7 @@ public class BossHitReactionState : BossBaseState
                 // Get Hit by Spinning Kick
                 //boss.rb.velocity = Vector2.zero;
                 boss.rb.totalForce = hitForce;
-                boss.SetIsLaunchedWithDelay(0.2f);
+                boss.SetIsLaunchedWithDelay(0.4f);
                 boss.animator.SetTrigger("triggerLaunched");
 
                 // Boss Gets hit by Tatsu, allow player to recover quickly.
@@ -96,7 +95,7 @@ public class BossHitReactionState : BossBaseState
                 // Boss Gets hit by Dragon Punch.
                 //boss.rb.velocity = Vector2.zero;
                 boss.rb.totalForce = hitForce;
-                boss.SetIsLaunchedWithDelay(0.2f);
+                boss.SetIsLaunchedWithDelay(0.4f);
                 boss.animator.SetTrigger("triggerLaunched");
                 break;
             default:
@@ -133,17 +132,21 @@ public class BossHitReactionState : BossBaseState
             }
         }
 
-        if(boss.isLaunched)
+        if (boss.isLaunched)
         {
             // The default boss's box collider is turned off so that the player's body does not push/collide with the airborne boss.
             boss.bossBoxCollider2D.enabled = false;
             boss.bossAirBoxCollider2D.enabled = true;
 
             // Boss's body has reached its peak.
-            if(boss.rb.velocity.y < 0)
+            if (boss.rb.velocity.y < 0)
             {
                 boss.animator.SetTrigger("triggerPeaked");
             }
+        }
+        else
+        {
+            boss.rb.gravityScale = 2f;
         }
 
     }
