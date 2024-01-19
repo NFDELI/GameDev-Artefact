@@ -125,10 +125,13 @@ public class PlayerStateManager : MonoBehaviour
         }
         if(collision.tag == "BossAntiAirCheck")
         {
-            // Do dragon Punch.
+            // Boss does Dragon Punch.
             bossStateManager.nextAttackPatternChoice = 7;
             bossStateManager.animator.SetBool("isWalkTowards", false);
             bossStateManager.animator.SetBool("isWalkBackwards", false);
+
+            // Prevent the player from constantly being comboed.
+            bossStateManager.bossAntiAirBoxCollider2D.enabled = false;
             bossStateManager.SwitchState(bossStateManager.RegularAttackState);
         }
     }

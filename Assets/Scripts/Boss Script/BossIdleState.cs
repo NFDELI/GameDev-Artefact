@@ -10,7 +10,10 @@ public class BossIdleState : BossBaseState
         boss.rb.velocity = new Vector2(0, 0);
         boss.attackCounter = 1;
         boss.bossBoxCollider2D.enabled = true;
+
+        // The boss is Idle, he is not in the air.
         boss.bossAirBoxCollider2D.enabled = false;
+
         boss.spriteRenderer.color = Color.white;
 
         // Reset decision making timer.

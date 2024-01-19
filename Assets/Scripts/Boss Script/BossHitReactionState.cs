@@ -20,9 +20,9 @@ public class BossHitReactionState : BossBaseState
         boss.spriteRenderer.color = Color.red;
 
         // Boss can takeknockback when getting hit.
-        //boss.rb.gravityScale = 2f;
         boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
+        boss.bossAntiAirBoxCollider2D.enabled = false;
 
         switch (boss.nextBossHitReaction)
         {

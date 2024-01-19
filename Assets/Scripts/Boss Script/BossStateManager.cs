@@ -380,11 +380,13 @@ public class BossStateManager : MonoBehaviour
     public void TurnOnIsLaunched()
     {
         isLaunched = true;
+        //bossAirBoxCollider2D.enabled = true;
     }
 
     public void CanGetUp()
     {
         canGetUp = true;
+        animator.SetTrigger("triggerGetUp");
     }
 
     public void GoIdleState()

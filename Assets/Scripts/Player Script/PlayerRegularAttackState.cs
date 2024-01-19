@@ -14,7 +14,7 @@ public class PlayerRegularAttackState : PlayerBaseState
                 player.animator.SetTrigger("triggerAttackCrouch");
                 player.attackCounter = 2;
                 player.rb.AddForce(new Vector2(0.5f * player.forceDirection, 0), ForceMode2D.Impulse);
-                player.AttackHitProperty(2, new Vector2(5f, 0), 0, 1f, 3);
+                player.AttackHitProperty(2, new Vector2(1f, 0), 0, 1f, 3);
                 player.audioScript.PlayLightAttackSound();
                 break;
             case 1:
