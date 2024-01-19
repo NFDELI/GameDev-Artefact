@@ -120,7 +120,7 @@ public class BossHitReactionState : BossBaseState
         {
             // To make the boss get up from falling.
             boss.canGetUp = false;
-            boss.AttackHitPropertySelf(0, new Vector2(0 ,0), 10, 0.1f, -1);
+            boss.AttackHitPropertySelf(0, new Vector2(0 ,0), 10, 999f, -1);
             boss.bossBoxCollider2D.enabled = true;
             boss.bossAirBoxCollider2D.enabled = false;
             boss.SwitchState(boss.HitReactionState);

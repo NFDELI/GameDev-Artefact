@@ -200,8 +200,20 @@ public class BossStateManager : MonoBehaviour
 
     public void FlagDragonPunchForce()
     {
-        // Used in the Animator, this function adds a force to push the player character upwards.
-        rb.AddForce(new Vector2(1 * forceDirection, 6), ForceMode2D.Impulse);
+        // Used in the Animator, this function adds a force to push the Boss character upwards.
+        rb.AddForce(new Vector2(15f * forceDirection, 60), ForceMode2D.Impulse);
+    }
+
+    public void TurnOnDragonPunchBoxOffset()
+    {
+        if(spriteFlip)
+        {
+            attackHighBoxCollider2D.offset = new Vector2(0.60f, 0.6f);
+        }
+        else
+        {
+            attackHighBoxCollider2D.offset = new Vector2(-0.34f, 0.6f);
+        }
     }
 
     public void FlagSpinningKickStart()
@@ -271,7 +283,8 @@ public class BossStateManager : MonoBehaviour
     public void AttackHitProperty(float damage, Vector2 force, int hitreactionId, float stunduration, int hitsoundId)
     {
         playerStateManager.nextPlayerDamageReceived = damage;
-        playerStateManager.nextPlayerForceReceived = force * forceDirection;
+        playerStateManager.nextPlayerForceReceived = force;
+        playerStateManager.nextPlayerForceReceived = new Vector2(playerStateManager.nextPlayerForceReceived.x * forceDirection, playerStateManager.nextPlayerForceReceived.y);
         playerStateManager.nextPlayerHitReaction = hitreactionId;
         playerStateManager.nextPlayerHitStunDuration = stunduration;
         playerStateManager.nextPlayerHitSoundIndex = hitsoundId;
@@ -373,4 +386,5 @@ public class BossStateManager : MonoBehaviour
     {
         SwitchState(IdleState);
     }
+
 }

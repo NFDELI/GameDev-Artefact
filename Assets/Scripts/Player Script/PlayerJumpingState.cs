@@ -61,6 +61,14 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision)
     {
+        if(collision.tag == "BossAttackHigh")
+        {
+            player.rb.totalForce = Vector2.zero;
+            player.rb.velocity = Vector2.zero;
 
+            // Player is already in the air, don't send him flying.
+            player.nextPlayerForceReceived = new Vector2(player.nextPlayerForceReceived.x, player.nextPlayerForceReceived.y / 2);
+            player.SwitchState(player.HitReactionState);
+        }
     }
 }

@@ -59,6 +59,5 @@ public class BossJumpingState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-
     }
 }

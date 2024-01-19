@@ -13,6 +13,7 @@ public class BossRegularAttackState : BossBaseState
     int[] attackPatternFour = { 4, 4, 0 };
     int[] attackPatternFive = { 2, 3, 5, 0 };
     int[] attackPatternSix = { 20, 0 };
+    int[] attackPatternSeven = { 21, 0 };
 
     public override void EnterState(BossStateManager boss)
     {
@@ -24,7 +25,7 @@ public class BossRegularAttackState : BossBaseState
         // Reset BlockUntilParry. (Give the player a chance to poke again.)
         boss.blocksUntilParry = boss.blocksUntilParryDefault;
 
-        attackPatternChoice = Random.Range(1, 6);
+        attackPatternChoice = 7;
         //Random.Range(1, 6);
 
         // Choose a Random Attack Pattern.
@@ -47,6 +48,9 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 6:
                 attackPatternChosen = attackPatternSix;
+                break;
+            case 7:
+                attackPatternChosen = attackPatternSeven;
                 break;
             default:
                 break;
@@ -126,7 +130,7 @@ public class BossRegularAttackState : BossBaseState
             case 4:
                 boss.animator.SetTrigger("triggerAttackFour");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 6);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 0.7f, 6);
                 boss.nextBossSwingSoundIndex = 2;
                 //boss.audioScript.PlayHeavyAttackSound();
                 break;
@@ -134,13 +138,18 @@ public class BossRegularAttackState : BossBaseState
                 // This attack is a low attack.
                 boss.animator.SetTrigger("triggerHeavyKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 2, 0.7f, 5);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 0.7f, 5);
                 boss.nextBossSwingSoundIndex = 2;
                 break;
             case 20:
                 // Boss performs a fireball Attack.
                 boss.animator.SetTrigger("triggerSpecialOne");
                 boss.audioScript.PlayBossFireballVoice();
+                break;
+            case 21:
+                // Boss Performs a Dragon Punch Attack.
+                boss.animator.SetTrigger("triggerSpecialThree");
+                boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
                 break;
             default:
                 break;

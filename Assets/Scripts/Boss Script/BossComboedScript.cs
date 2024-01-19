@@ -24,6 +24,7 @@ public class BossComboedScript : MonoBehaviour
                 boss.bossBoxCollider2D.enabled = false;
                 boss.bossAirBoxCollider2D.enabled = false;
                 boss.isLaunched = false;
+                boss.rb.gravityScale = 2f;
 
                 // Make sure to turn on Hitbox when the boss gets up.
             }

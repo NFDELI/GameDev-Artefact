@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerWalkingState : PlayerBaseState
 {
+    private float currentWalkingSpeed;
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Walking State");
@@ -26,13 +27,15 @@ public class PlayerWalkingState : PlayerBaseState
                 {
                     player.animator.SetBool("isWalkTowards", true);
                     player.animator.SetBool("isWalkBackwards", false);
+                    currentWalkingSpeed = 1f;
                 }
                 else
                 {
                     player.animator.SetBool("isWalkTowards", false);
                     player.animator.SetBool("isWalkBackwards", true);
+                    currentWalkingSpeed = 0.75f;
                 }
-                player.rb.MovePosition(player.rb.position + new Vector2(1, 0) * player.movementSpeed * Time.fixedDeltaTime);
+                player.rb.MovePosition(player.rb.position + new Vector2(1 * currentWalkingSpeed, 0) * player.movementSpeed * Time.fixedDeltaTime);
 
             }
             else if(player.movementInput.x < 0)
@@ -42,13 +45,15 @@ public class PlayerWalkingState : PlayerBaseState
                 {
                     player.animator.SetBool("isWalkBackwards", true);
                     player.animator.SetBool("isWalkTowards", false);
+                    currentWalkingSpeed = 0.75f;
                 }
                 else
                 {
                     player.animator.SetBool("isWalkBackwards", false);
                     player.animator.SetBool("isWalkTowards", true);
+                    currentWalkingSpeed = 1f;
                 }
-                player.rb.MovePosition(player.rb.position + new Vector2(-1, 0) * player.movementSpeed * Time.fixedDeltaTime);
+                player.rb.MovePosition(player.rb.position + new Vector2(-1 * currentWalkingSpeed, 0) * player.movementSpeed * Time.fixedDeltaTime);
             }
 
             if(player.movementInput.y > 0)
@@ -122,20 +127,6 @@ public class PlayerWalkingState : PlayerBaseState
             }
             player.SwitchState(player.HitReactionState);
         }
-    }
-
-    public void MoveRight(PlayerStateManager player)
-    {
-        player.animator.SetBool("isWalkTowards", false);
-        player.animator.SetBool("isWalkBackwards", true);
-        player.rb.MovePosition(player.rb.position + new Vector2(1, 0) * player.movementSpeed * Time.fixedDeltaTime);
-    }
-
-    public void MoveLeft(PlayerStateManager player) 
-    {
-        player.animator.SetBool("isWalkBackwards", false);
-        player.animator.SetBool("isWalkTowards", true);
-        player.rb.MovePosition(player.rb.position + new Vector2(-1, 0) * player.movementSpeed * Time.fixedDeltaTime);
     }
 
     private void StopMovingAnimation(PlayerStateManager player)

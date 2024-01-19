@@ -9,6 +9,9 @@ public class BossIdleState : BossBaseState
         boss.isLaunched = false;
         boss.rb.velocity = new Vector2(0, 0);
         boss.attackCounter = 1;
+        boss.bossBoxCollider2D.enabled = true;
+        boss.bossAirBoxCollider2D.enabled = false;
+        boss.spriteRenderer.color = Color.white;
 
         // Reset decision making timer.
         boss.animator.SetTrigger("triggerIdle");
@@ -20,9 +23,6 @@ public class BossIdleState : BossBaseState
         }
 
         boss.rangeCheckBox.enabled = false;
-
-        // The boss is unmovable when Idle.
-        boss.rb.mass = 10;
     }
 
     public override void UpdateState(BossStateManager boss)

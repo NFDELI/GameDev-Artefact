@@ -74,6 +74,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool jumpDirection = false;
     public bool isCloseToWallLeft = false;
     public bool isCloseToWallRight = false;
+    public bool isLaunched = false;
 
     private void Awake()
     {
@@ -356,5 +357,26 @@ public class PlayerStateManager : MonoBehaviour
         {
             attackBoxCollider.offset = new Vector2(0f, 0.6f);
         }
+    }
+
+    public void FallGravityOn()
+    {
+        //0.2f //1f
+        rb.gravityScale = 1.5f;
+    }
+
+    public void FallGravityOff()
+    {
+        rb.gravityScale = 2f;
+    }
+
+    public void SetIsLaunchedWithDelay(float delay)
+    {
+        Invoke("TurnOnIsLaunched", delay);
+    }
+
+    public void TurnOnIsLaunched()
+    {
+        isLaunched = true;
     }
 }

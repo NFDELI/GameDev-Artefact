@@ -44,9 +44,14 @@ public class PlayerHitReactionState : PlayerBaseState
                 timerStarted= true;
                 //player.spriteRenderer.color = Color.yellow;
 
+                if (hitStunTime == 999)
+                {
+                    hitStunTime = 0.75f;
+                }
+
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
-                hitForce = hitForce / 2;
+                hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
 
                 player.wasBlocking = true;
                 break;
@@ -58,7 +63,7 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
-                hitForce = hitForce / 2;
+                hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
                 break;
             case 6:
                 // High Parry.
@@ -108,6 +113,12 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
                 break;
+            case 14:
+                // Player gets hit by Dragon Punch.
+                player.rb.totalForce = Vector2.zero;
+                player.SetIsLaunchedWithDelay(0.4f);
+                player.animator.SetTrigger("triggerLaunched");
+                break;
             default:
                 break;
         }
@@ -126,11 +137,11 @@ public class PlayerHitReactionState : PlayerBaseState
         if(player.movementInput != Vector2.zero)
         {
             // Movement Input Detected.
-            if((hitReactionIndex == 2 && player.canGetUp) && !(player.health <= 0))
+            if(player.canGetUp && !(player.health <= 0))
             {
                 // To make the player get up from falling.
                 player.nextPlayerHitReaction = 10;
-                player.nextPlayerHitStunDuration = 1f;
+                player.nextPlayerHitStunDuration = 999f;
                 player.nextPlayerHitSoundIndex = -1;
                 player.nextPlayerDamageReceived = 0;
                 player.nextPlayerForceReceived = Vector2.zero;
@@ -145,6 +156,18 @@ public class PlayerHitReactionState : PlayerBaseState
             {
                 hitStunTime -= Time.deltaTime;
                 if (hitStunTime <= 0) { StunFinished(player); }
+            }
+        }
+
+        if(player.isLaunched)
+        {
+            player.playerBoxCollider2D.enabled = false;
+            player.playerAirCollider2D.enabled = true;
+
+            // Player's body has reached its peak.
+            if (player.rb.velocity.y < 0)
+            {
+                player.animator.SetTrigger("triggerPeaked");
             }
         }
 
