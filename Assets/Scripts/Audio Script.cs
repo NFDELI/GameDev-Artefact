@@ -38,6 +38,10 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip ArmourSound;
 
+    public AudioClip RyuFireballVoice;
+    public AudioClip RyuDragonPunchVoice;
+    public AudioClip EvilRyuDragonPunchVoice;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -184,5 +188,20 @@ public class AudioScript : MonoBehaviour
     public void PlayArmorSound()
     {
         source.PlayOneShot(ArmourSound);
+    }
+
+    public void PlayRyuFireballVoice()
+    {
+        source.PlayOneShot(RyuFireballVoice);
+    }
+
+    public void PlayRyuDragonPunchVoice()
+    {
+        source.PlayOneShot(RyuDragonPunchVoice);
+    }
+
+    public void PlayEvilRyuDragonPunchVoice()
+    {
+        source.PlayOneShot(EvilRyuDragonPunchVoice);
     }
 }

@@ -22,13 +22,19 @@ public class BossIdleState : BossBaseState
             boss.shouldResetAiTimer = true;
         }
 
+        // Boss is not attempting to attack.
         boss.rangeCheckBox.enabled = false;
+
+        // Boss is waiting for the player to Jump. (Anti-Air Check)
+        boss.bossAntiAirBoxCollider2D.enabled = true;
     }
 
     public override void UpdateState(BossStateManager boss)
     {
         if(boss.aiDecisionTimer <= 0)
         {
+            boss.bossAntiAirBoxCollider2D.enabled = false;
+
             // Choose which action to do.
         
             // Boss chooses to approach the player for close range attack.

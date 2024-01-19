@@ -26,7 +26,17 @@ public class BossRegularAttackState : BossBaseState
         boss.blocksUntilParry = boss.blocksUntilParryDefault;
 
         attackPatternChoice = 7;
-        //Random.Range(1, 6);
+
+        if (boss.nextAttackPatternChoice == -1)
+        {
+            // No attack pattern Forced.
+            attackPatternChoice = Random.Range(1, 6);
+        }
+        else
+        {
+            // An Attack pattern has already been chosen.
+            attackPatternChoice = boss.nextAttackPatternChoice;
+        }
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -64,6 +74,7 @@ public class BossRegularAttackState : BossBaseState
             if (attackPatternChosen[currentAttackPatternIndex] == 0)
             {
                 // End of Attack Pattern.
+                attackPatternChoice = -1;
                 boss.SwitchState(boss.IdleState);
             }
             else

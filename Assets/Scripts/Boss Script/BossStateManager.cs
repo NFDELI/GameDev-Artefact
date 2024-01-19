@@ -63,6 +63,7 @@ public class BossStateManager : MonoBehaviour
 
     public BoxCollider2D bossBoxCollider2D;
     public BoxCollider2D bossAirBoxCollider2D;
+    public BoxCollider2D bossAntiAirBoxCollider2D;
 
     public PlayerStateManager playerStateManager;
     public FireballScript playerFireballScript;
@@ -83,6 +84,8 @@ public class BossStateManager : MonoBehaviour
     public bool shouldResetAiTimer = true;
 
     public bool isLaunched = false;
+
+    public int nextAttackPatternChoice = -1; 
 
     // Start is called before the first frame update
     void Start()
@@ -144,12 +147,14 @@ public class BossStateManager : MonoBehaviour
         {
             forceDirection = -1;
             rangeCheckBox.offset = new Vector2(-0.3f, 0f);
+            bossAntiAirBoxCollider2D.offset = new Vector2(-0.25f, 1.15f);
             bossBoxCollider2D.offset = new Vector2(-0.05f, -0.78f);
         }
         else
         {
             forceDirection = 1;
             rangeCheckBox.offset = new Vector2(0.61f, 0f);
+            bossAntiAirBoxCollider2D.offset = new Vector2(0.55f, 1.15f);
             bossBoxCollider2D.offset = new Vector2(0.05f, -0.78f);
         }
 
@@ -385,6 +390,11 @@ public class BossStateManager : MonoBehaviour
     public void GoIdleState()
     {
         SwitchState(IdleState);
+    }
+
+    public void DragonPunchVoice()
+    {
+        audioScript.PlayEvilRyuDragonPunchVoice();
     }
 
 }

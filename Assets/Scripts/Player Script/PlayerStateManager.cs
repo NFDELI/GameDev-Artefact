@@ -123,6 +123,14 @@ public class PlayerStateManager : MonoBehaviour
             bossStateManager.animator.SetBool("isWalkBackwards", false);
             bossStateManager.SwitchState(bossStateManager.RegularAttackState);
         }
+        if(collision.tag == "BossAntiAirCheck")
+        {
+            // Do dragon Punch.
+            bossStateManager.nextAttackPatternChoice = 7;
+            bossStateManager.animator.SetBool("isWalkTowards", false);
+            bossStateManager.animator.SetBool("isWalkBackwards", false);
+            bossStateManager.SwitchState(bossStateManager.RegularAttackState);
+        }
     }
 
     // Update is called once per frame
@@ -378,5 +386,15 @@ public class PlayerStateManager : MonoBehaviour
     public void TurnOnIsLaunched()
     {
         isLaunched = true;
+    }
+
+    public void FireballVoice()
+    {
+        audioScript.PlayRyuFireballVoice();
+    }
+
+    public void DragonPunchVoice()
+    {
+        audioScript.PlayRyuDragonPunchVoice();
     }
 }
