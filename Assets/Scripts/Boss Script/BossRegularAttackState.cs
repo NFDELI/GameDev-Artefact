@@ -7,13 +7,13 @@ public class BossRegularAttackState : BossBaseState
     int attackPatternChoice;
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
-    int[] attackPatternOne = { 1, 2, 3, 4, 0 };   //2, 3, 4, 0
-    int[] attackPatternTwo = { 2, 3, 1, 4, 0 };   //3, 4, 1, 0
-    int[] attackPatternThree = { 2, 3, 4, 0 }; //2, 3, 4
-    int[] attackPatternFour = { 4, 4, 0 };
-    int[] attackPatternFive = { 2, 3, 5, 0 };
-    int[] attackPatternSix = { 20, 0 };
-    int[] attackPatternSeven = { 21, 0 };
+    int[] attackPatternOne = { 1, 2, 3, 4, 0 };  // The Player's Combo.
+    int[] attackPatternTwo = { 6, 7, 5, 0 };    // Low kicks attack Combo.   
+    int[] attackPatternThree = { 2, 3, 4, 0 }; // Mix-up ending High.
+    int[] attackPatternFour = { 2, 3, 5, 0};  // Mix-up ending Low.
+    int[] attackPatternFive = { 8, 0 }; // Unblockable-Delayed Punch.
+    int[] attackPatternSix = { 20, 0 }; // Fireball.
+    int[] attackPatternSeven = { 21, 0 }; // Tatsu.
 
     public override void EnterState(BossStateManager boss)
     {
@@ -25,18 +25,19 @@ public class BossRegularAttackState : BossBaseState
         // Reset BlockUntilParry. (Give the player a chance to poke again.)
         boss.blocksUntilParry = boss.blocksUntilParryDefault;
 
-        attackPatternChoice = 7;
-
         if (boss.nextAttackPatternChoice == -1)
         {
             // No attack pattern Forced.
-            attackPatternChoice = Random.Range(1, 6);
+            attackPatternChoice = Random.Range(1, 8);
         }
         else
         {
             // An Attack pattern has already been chosen.
             attackPatternChoice = boss.nextAttackPatternChoice;
         }
+
+        // Override Attack Pattern Choice for Debugging.
+        attackPatternChoice = 2;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -150,6 +151,27 @@ public class BossRegularAttackState : BossBaseState
                 boss.animator.SetTrigger("triggerHeavyKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 0.7f, 5);
+                boss.nextBossSwingSoundIndex = 2;
+                break;
+            case 6:
+                // Light Low Kick.
+                boss.animator.SetTrigger("triggerLightKickLow");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(5, new Vector2(0.5f, 0), 1, 0.25f, 3);
+                boss.nextBossSwingSoundIndex = 0;
+                break;
+            case 7:
+                // Medium Low Kick.
+                boss.animator.SetTrigger("triggerMediumKickLow");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(8, new Vector2(0.5f, 0), 1, 0.25f, 4);
+                boss.nextBossSwingSoundIndex = 1;
+                break;
+            case 8:
+                // Medium High Punch. (Unblockable)
+                boss.animator.SetTrigger("triggerMediumPunchUnblockable");
+                boss.rb.AddForce(new Vector2(4 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(15, new Vector2(1f, 0), 14, 0.5f, 6);
                 boss.nextBossSwingSoundIndex = 2;
                 break;
             case 20:

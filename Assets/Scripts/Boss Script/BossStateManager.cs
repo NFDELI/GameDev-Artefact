@@ -60,6 +60,7 @@ public class BossStateManager : MonoBehaviour
     // Attack Collision Boxes.
     public BoxCollider2D attackHighBoxCollider2D;
     public BoxCollider2D attackLowBoxCollider2D;
+    public BoxCollider2D attackUnblockableBoxCollider2D;
 
     public BoxCollider2D bossBoxCollider2D;
     public BoxCollider2D bossAirBoxCollider2D;
@@ -399,4 +400,13 @@ public class BossStateManager : MonoBehaviour
         audioScript.PlayEvilRyuDragonPunchVoice();
     }
 
+    public void TurnOnUnblockableBoxCollider()
+    {
+        attackUnblockableBoxCollider2D.enabled = true;
+    }
+
+    public void TurnOffUnblockableBoxCollider()
+    {
+        attackUnblockableBoxCollider2D.enabled = false;
+    }
 }

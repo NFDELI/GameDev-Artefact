@@ -15,6 +15,7 @@ TagManager:
   - BossFireball
   - PlayerJumpCollider
   - BossAntiAirCheck
+  - BossAttackUnblockable
   layers:
   - Default
   - TransparentFX
