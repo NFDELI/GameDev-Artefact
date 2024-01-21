@@ -46,7 +46,7 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 if (hitStunTime == 999)
                 {
-                    hitStunTime = 0.75f;
+                    hitStunTime = 0.9f;
                 }
 
                 // Ensure that the player takes less damage while blocking and take less knockback.
@@ -130,6 +130,8 @@ public class PlayerHitReactionState : PlayerBaseState
 
         // Turn off Boss's attack hitbox so that it can be re-registered for the next hit.
         player.bossStateManager.attackHighBoxCollider2D.enabled = false;
+        player.bossStateManager.attackLowBoxCollider2D.enabled = false;
+        player.bossStateManager.attackUnblockableBoxCollider2D.enabled = false;
     }
 
     public override void UpdateState(PlayerStateManager player)

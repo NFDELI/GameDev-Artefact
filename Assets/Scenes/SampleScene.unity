@@ -2387,7 +2387,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 999
+  health: 100
   postureDefault: 1
   postureCurrent: 1
   movementSpeed: 1.5
@@ -2402,7 +2402,7 @@ MonoBehaviour:
   fireballScript: {fileID: 772667959}
   attackHighBoxCollider2D: {fileID: 100525027}
   attackLowBoxCollider2D: {fileID: 1073022591}
-  attackUnblockableBoxCollider2D: {fileID: 0}
+  attackUnblockableBoxCollider2D: {fileID: 1431922510}
   bossBoxCollider2D: {fileID: 0}
   bossAirBoxCollider2D: {fileID: 1863999919}
   bossAntiAirBoxCollider2D: {fileID: 1043501490}
@@ -2595,11 +2595,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2068266563 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 27480854268411573, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-  m_PrefabInstance: {fileID: 3992531850973660254}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3992531850973660254
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2608,18 +2603,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 27480854268411573, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 27480854268411573, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3832756852309037201, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Layer
-      value: 8
-      objectReference: {fileID: 0}
     - target: {fileID: 4199369229679959602, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.872
@@ -2660,25 +2643,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4741459311391327263, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+    - target: {fileID: 4284673205679125804, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4741459311391327263, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Offset.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4741459311391327263, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5144675758682238566, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Layer
-      value: 11
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6046234461313306555, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7969259490672904366, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: m_TagString
+      value: PlayerJumpCollider
       objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: bossRb
@@ -2693,51 +2672,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1937929084}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: postureCurrent
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: postureDefault
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: bossStateManager
       value: 
       objectReference: {fileID: 2007554650}
-    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: spinningKickSpeed
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: playerAirCollider2D
-      value: 
-      objectReference: {fileID: 2068266563}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3832756852309037201, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3992531850973660256}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
---- !u!1 &3992531850973660255 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3832756852309037201, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-  m_PrefabInstance: {fileID: 3992531850973660254}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3992531850973660256
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3992531850973660255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7796fe496c31b804396efa50af9269ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 3992531850973660271}
 --- !u!212 &3992531850973660267 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4064798682324001724, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}

@@ -150,7 +150,7 @@ public class BossRegularAttackState : BossBaseState
                 // This attack is a low attack.
                 boss.animator.SetTrigger("triggerHeavyKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 0.7f, 5);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 999f, 5);
                 boss.nextBossSwingSoundIndex = 2;
                 break;
             case 6:

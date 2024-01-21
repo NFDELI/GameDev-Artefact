@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7696669122106611568}
   - component: {fileID: 27480854268411573}
-  m_Layer: 0
+  - component: {fileID: 2868673134501642984}
+  m_Layer: 8
   m_Name: JumpingBoxCollider
   m_TagString: PlayerJumpCollider
   m_Icon: {fileID: 0}
@@ -39,7 +40,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3832756852309037201}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -77,6 +78,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.46868134, y: 1.0504777}
   m_EdgeRadius: 0
+--- !u!114 &2868673134501642984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3832756852309037201}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7796fe496c31b804396efa50af9269ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8180965022550339384}
 --- !u!1 &5144675758682238566
 GameObject:
   m_ObjectHideFlags: 0
@@ -90,7 +104,7 @@ GameObject:
   - component: {fileID: 4623753165768107147}
   - component: {fileID: 7817772391949347164}
   - component: {fileID: 1805139726362585481}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Land-Collision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -380,7 +394,7 @@ MonoBehaviour:
   attackBoxCollider: {fileID: 4741459311391327263}
   playerBoxCollider2D: {fileID: 6756385862724519218}
   playerLandCollider2D: {fileID: 4623753165768107147}
-  playerAirCollider2D: {fileID: 0}
+  playerAirCollider2D: {fileID: 27480854268411573}
   animator: {fileID: 0}
   spriteRenderer: {fileID: 0}
   isLanded: 1
@@ -391,9 +405,9 @@ MonoBehaviour:
   canGetUp: 0
   isInvincible: 0
   wasBlocking: 0
-  health: 999
-  postureDefault: 0
-  postureCurrent: 0
+  health: 100
+  postureDefault: 3
+  postureCurrent: 3
   movementSpeed: 1.5
   jumpForce: 8
   diagonalJumpForce: 2
@@ -409,6 +423,7 @@ MonoBehaviour:
   jumpDirection: 0
   isCloseToWallLeft: 0
   isCloseToWallRight: 0
+  isLaunched: 0
 --- !u!50 &7012970640715307062
 Rigidbody2D:
   serializedVersion: 4
@@ -659,7 +674,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -714,7 +729,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7969259490672904366}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
