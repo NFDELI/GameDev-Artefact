@@ -42,6 +42,9 @@ public class AudioScript : MonoBehaviour
     public AudioClip RyuDragonPunchVoice;
     public AudioClip EvilRyuDragonPunchVoice;
 
+    public AudioClip EvilRyuTeleportVoice;
+    public AudioClip EvilRyuTeleportSound;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -203,5 +206,15 @@ public class AudioScript : MonoBehaviour
     public void PlayEvilRyuDragonPunchVoice()
     {
         source.PlayOneShot(EvilRyuDragonPunchVoice);
+    }
+
+    public void PlayerEvilRyuTeleportSound()
+    {
+        source.PlayOneShot(EvilRyuTeleportSound);
+    }
+
+    public void PlayerEvilRyuTeleportVoice()
+    {
+        source.PlayOneShot(EvilRyuTeleportVoice);
     }
 }

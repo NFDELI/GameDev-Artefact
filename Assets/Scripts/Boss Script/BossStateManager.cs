@@ -52,6 +52,7 @@ public class BossStateManager : MonoBehaviour
 
     // Boss Attack Variables.
     public bool isSpinnigKickForce = false;
+    public bool isTeleporting;
     public float spinningKickSpeed = 1f;
 
     // Reference to Boss's fireball.
@@ -416,5 +417,38 @@ public class BossStateManager : MonoBehaviour
     public void TurnOffUnblockableBoxCollider()
     {
         attackUnblockableBoxCollider2D.enabled = false;
+    }
+
+    public void TeleportStart()
+    {
+        isTeleporting = true;
+        animator.SetTrigger("triggerTeleportGoing");
+    }
+
+    public void TeleportVoice()
+    {
+        audioScript.PlayerEvilRyuTeleportVoice();
+    }
+
+    public void TeleportSound()
+    {
+        audioScript.PlayerEvilRyuTeleportSound();
+    }
+
+    public void ReTrackPlayer()
+    {
+        // Some of the boss's attack patterns can retrack the player. (Used in Teleporting for example.)
+        if (rb.position.x > playerRb.position.x)
+        {
+            // Boss is on the right of player.
+            spriteRenderer.flipX = false;
+            forceDirection = -1;
+        }
+        else
+        {
+            // Boss is on the left of the player.
+            spriteRenderer.flipX = true;
+            forceDirection = 1;
+        }
     }
 }

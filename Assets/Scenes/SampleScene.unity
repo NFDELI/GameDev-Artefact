@@ -441,6 +441,8 @@ MonoBehaviour:
   RyuFireballVoice: {fileID: 8300000, guid: e8ffd861059e671429edb0fd3bd4a60a, type: 3}
   RyuDragonPunchVoice: {fileID: 8300000, guid: 0d3ac5acf2b8b0b4daee2da79ba292c3, type: 3}
   EvilRyuDragonPunchVoice: {fileID: 8300000, guid: f31475e710c7ed94b8135b04e09c7175, type: 3}
+  EvilRyuTeleportVoice: {fileID: 8300000, guid: 0c5945d9a261fc743aaf65c71197d763, type: 3}
+  EvilRyuTeleportSound: {fileID: 8300000, guid: 69b0f1ba2a4c1374b9bf39b03d87db1f, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
@@ -2398,6 +2400,7 @@ MonoBehaviour:
   nextBossDamageReceived: 0
   nextBossForceReceived: {x: 0, y: 0}
   isSpinnigKickForce: 0
+  isTeleporting: 0
   spinningKickSpeed: 1
   fireballScript: {fileID: 772667959}
   attackHighBoxCollider2D: {fileID: 100525027}
@@ -2605,7 +2608,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4199369229679959602, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.872
+      value: 2.458
       objectReference: {fileID: 0}
     - target: {fileID: 4199369229679959602, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_LocalPosition.y

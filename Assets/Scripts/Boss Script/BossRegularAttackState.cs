@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BossRegularAttackState : BossBaseState
 {
+    int teleportDirection = 1;
+    float teleportDuration;
     int attackPatternChoice;
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
@@ -14,6 +16,7 @@ public class BossRegularAttackState : BossBaseState
     int[] attackPatternFive = { 8, 0 }; // Unblockable-Delayed Punch.
     int[] attackPatternSix = { 20, 0 }; // Fireball.
     int[] attackPatternSeven = { 21, 0 }; // Tatsu.
+    int[] attackPatternEight = { 1, 2, 22, 1, 2, 3, 4, 0}; // Teleport Test.
 
     public override void EnterState(BossStateManager boss)
     {
@@ -37,7 +40,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 5;
+        attackPatternChoice = 8;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -63,6 +66,9 @@ public class BossRegularAttackState : BossBaseState
             case 7:
                 attackPatternChosen = attackPatternSeven;
                 break;
+            case 8:
+                attackPatternChosen = attackPatternEight;
+                break;
             default:
                 break;
         }
@@ -76,6 +82,7 @@ public class BossRegularAttackState : BossBaseState
             {
                 // End of Attack Pattern.
                 attackPatternChoice = -1;
+                boss.shouldResetAiTimer = true;
                 boss.SwitchState(boss.IdleState);
             }
             else
@@ -83,6 +90,28 @@ public class BossRegularAttackState : BossBaseState
                 PerformAttack(boss, attackPatternChosen[currentAttackPatternIndex]);
                 currentAttackPatternIndex++;
                 boss.canAttackChain = false;
+            }
+        }
+
+        if(boss.isTeleporting)
+        {
+            if(teleportDuration > 0)
+            {
+                // Boss is Teleporting.
+                boss.rb.MovePosition(boss.rb.position + new Vector2(5 * teleportDirection, 0) * boss.movementSpeed * Time.fixedDeltaTime);
+                // Boss still has time to move teleporting.
+                teleportDuration -= Time.deltaTime;
+            }
+            else
+            {
+                // Stop Teleporting.
+                boss.isTeleporting = false;
+                boss.spriteRenderer.color = Color.white;
+                boss.bossBoxCollider2D.enabled = true;
+                //boss.SwitchState(boss.IdleState);
+                boss.shouldResetAiTimer = false;
+                boss.canAttackChain = true;
+                boss.ReTrackPlayer();
             }
         }
     }
@@ -193,8 +222,42 @@ public class BossRegularAttackState : BossBaseState
                 boss.animator.SetTrigger("triggerSpecialThree");
                 boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
                 break;
+            case 22:
+                // Teleport Behind player Close.
+                // Decide which direction to teleport.
+                if (boss.spriteFlip)
+                {
+                    // Go Right.
+                    teleportDirection = 1;
+                }
+                else
+                {
+                    // Go Left.
+                    teleportDirection = -1;
+                }
+
+                // Teleport behind the player. 
+                boss.animator.SetTrigger("triggerTeleportReady");
+                teleportDuration = 0.25f;
+
+                // Make Boss Transparent.
+                boss.spriteRenderer.color = new Color(1, 1, 1, 0.90f);
+
+                // Turn off all collisions.
+                boss.bossBoxCollider2D.enabled = false;
+                TurnOffAllAttackBoxColliders(boss);
+
+                break;
             default:
                 break;
         }
     }
+
+    private void TurnOffAllAttackBoxColliders(BossStateManager boss)
+    {
+        boss.attackHighBoxCollider2D.enabled = false;
+        boss.attackLowBoxCollider2D.enabled = false;
+        boss.attackUnblockableBoxCollider2D.enabled = false;
+    }
+
 }
