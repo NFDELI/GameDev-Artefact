@@ -66,5 +66,11 @@ public class PlayerParryAttemptState : PlayerBaseState
             }
             player.SwitchState(player.HitReactionState);
         }
+
+        // Unblockable attacks cannot be blocked or parried.
+        if (collision.tag == "BossAttackUnblockable")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
     }
 }

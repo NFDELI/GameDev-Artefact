@@ -17,6 +17,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
                     player.AttackHitProperty(3, new Vector2(20f, 85f), 13, 999, 5);
+                    player.isUnblockableCounter = true;
                 }
                 else
                 {
@@ -43,6 +44,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
                     player.AttackHitProperty(3, new Vector2(20f, 85f), 13, 999, 5);
+                    player.isUnblockableCounter = true;
                 }
             }
         }
@@ -97,6 +99,12 @@ public class PlayerSpecialAttackState : PlayerBaseState
         if (collision.tag == "BossFireball")
         {
             player.nextPlayerHitReaction = 11;
+            player.SwitchState(player.HitReactionState);
+            player.attackBoxCollider.enabled = false;
+            player.PlayerLandingTrue();
+        }
+        if (collision.tag == "BossAttackUnblockable")
+        {
             player.SwitchState(player.HitReactionState);
             player.attackBoxCollider.enabled = false;
             player.PlayerLandingTrue();

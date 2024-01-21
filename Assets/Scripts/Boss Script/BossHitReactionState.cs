@@ -17,7 +17,7 @@ public class BossHitReactionState : BossBaseState
         hitStunTime = boss.nextBossHitStunDuration;
         hitForce = boss.nextBossForceReceived;
         hitDamage = boss.nextBossDamageReceived;
-        boss.spriteRenderer.color = Color.red;
+        boss.spriteRenderer.color = Color.white;
 
         // Boss can takeknockback when getting hit.
         boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
@@ -112,6 +112,11 @@ public class BossHitReactionState : BossBaseState
 
         // Turn off Player's attack hitbox so that it can be re-registered for the next hit.
         boss.playerStateManager.attackBoxCollider.enabled = false;
+
+        // Turn off the Boss's attack hitbox so that the player can properly punish the boss.
+        boss.attackHighBoxCollider2D.enabled = false;
+        boss.attackLowBoxCollider2D.enabled = false;
+        boss.attackUnblockableBoxCollider2D.enabled = false;
     }
 
     public override void UpdateState(BossStateManager boss)

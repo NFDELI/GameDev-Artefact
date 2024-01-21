@@ -402,6 +402,14 @@ public class BossStateManager : MonoBehaviour
 
     public void TurnOnUnblockableBoxCollider()
     {
+        if (spriteFlip)
+        {
+            attackUnblockableBoxCollider2D.offset = new Vector2(0.66f, 0);
+        }
+        else
+        {
+            attackUnblockableBoxCollider2D.offset = new Vector2(-0.34f, 0);
+        }
         attackUnblockableBoxCollider2D.enabled = true;
     }
 

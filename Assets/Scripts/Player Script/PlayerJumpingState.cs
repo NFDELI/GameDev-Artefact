@@ -70,5 +70,24 @@ public class PlayerJumpingState : PlayerBaseState
             player.nextPlayerForceReceived = new Vector2(player.nextPlayerForceReceived.x, player.nextPlayerForceReceived.y / 2);
             player.SwitchState(player.HitReactionState);
         }
+        if (collision.tag == "BossAttackLow")
+        {
+            player.rb.totalForce = Vector2.zero;
+            player.rb.velocity = Vector2.zero;
+            player.SwitchState(player.HitReactionState);
+        }
+        if (collision.tag == "BossFireball")
+        {
+            player.rb.totalForce = Vector2.zero;
+            player.rb.velocity = Vector2.zero;
+            player.nextPlayerHitReaction = 11;
+            player.SwitchState(player.HitReactionState);
+        }
+        if (collision.tag == "BossAttackUnblockable")
+        {
+            player.rb.totalForce = Vector2.zero;
+            player.rb.velocity = Vector2.zero;
+            player.SwitchState(player.HitReactionState);
+        }
     }
 }

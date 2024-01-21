@@ -37,7 +37,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 2;
+        attackPatternChoice = 5;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -96,15 +96,23 @@ public class BossRegularAttackState : BossBaseState
     {
         if (collision.tag == "PlayerAttackHigh" || collision.tag == "Fireball")
         {
-            // Make sure boss has armor.
-            boss.audioScript.PlayArmorSound();
-            boss.FlashBlue();
+            if (boss.playerStateManager.isUnblockableCounter)
+            {
+                // This attack can be countered by Player Dragon Punch.
+                boss.SwitchState(boss.HitReactionState);
+            }
+            else
+            {
+                // Make sure boss has armor.
+                boss.audioScript.PlayArmorSound();
+                boss.FlashBlue();
 
-            boss.health -= boss.nextBossDamageReceived * 0.25f;
+                boss.health -= boss.nextBossDamageReceived * 0.25f;
 
-            // Boss cannot be launched while he is attacking.
-            boss.nextBossForceReceived = new Vector2(boss.nextBossForceReceived.x, 0f);
-            boss.rb.AddForce(boss.nextBossForceReceived * 0.5f, ForceMode2D.Impulse);
+                // Boss cannot be launched while he is attacking.
+                boss.nextBossForceReceived = new Vector2(boss.nextBossForceReceived.x, 0f);
+                boss.rb.AddForce(boss.nextBossForceReceived * 0.5f, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -170,9 +178,10 @@ public class BossRegularAttackState : BossBaseState
             case 8:
                 // Medium High Punch. (Unblockable)
                 boss.animator.SetTrigger("triggerMediumPunchUnblockable");
-                boss.rb.AddForce(new Vector2(4 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(3 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(15, new Vector2(1f, 0), 14, 0.5f, 6);
                 boss.nextBossSwingSoundIndex = 2;
+                boss.spriteRenderer.color = Color.red;
                 break;
             case 20:
                 // Boss performs a fireball Attack.

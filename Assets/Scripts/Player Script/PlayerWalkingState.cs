@@ -127,6 +127,12 @@ public class PlayerWalkingState : PlayerBaseState
             }
             player.SwitchState(player.HitReactionState);
         }
+
+        // Unblockable attacks cannot be blocked.
+        if (collision.tag == "BossAttackUnblockable")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
     }
 
     private void StopMovingAnimation(PlayerStateManager player)

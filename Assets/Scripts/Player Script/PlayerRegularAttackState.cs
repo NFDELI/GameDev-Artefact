@@ -94,6 +94,10 @@ public class PlayerRegularAttackState : PlayerBaseState
             player.nextPlayerHitReaction = 11;
             player.SwitchState(player.HitReactionState);
         }
+        if (collision.tag == "BossAttackUnblockable")
+        {
+            player.SwitchState(player.HitReactionState);
+        }
 
         player.attackBoxCollider.enabled = false;
     }

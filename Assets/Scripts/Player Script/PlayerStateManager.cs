@@ -42,6 +42,7 @@ public class PlayerStateManager : MonoBehaviour
     public bool canGetUp = false;
     public bool isInvincible = false;
     public bool wasBlocking = false;
+    public bool isUnblockableCounter = false;
 
     // Player Attributes
     public float health = 100.0f;
@@ -208,6 +209,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         // Used in the Animator, this function adds a force to push the player character upwards.
         rb.AddForce(new Vector2(2f * forceDirection, 6), ForceMode2D.Impulse);
+        isUnblockableCounter = true;
     }
 
     public void FlagSpinningKickStart()
@@ -251,6 +253,7 @@ public class PlayerStateManager : MonoBehaviour
         // Teleport the Collision box to another place.
         attackBoxCollider.offset = new Vector2(999f, 999f);
         attackBoxCollider.enabled = false;
+        isUnblockableCounter = false;
     }
 
     public void TurnOninvincibility()
