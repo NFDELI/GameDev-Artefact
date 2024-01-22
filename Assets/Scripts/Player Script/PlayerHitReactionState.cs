@@ -152,7 +152,7 @@ public class PlayerHitReactionState : PlayerBaseState
             }
         }
 
-        if(hitReactionIndex != 2)
+        if(hitReactionIndex != 14)
         {
             if (timerStarted)
             {

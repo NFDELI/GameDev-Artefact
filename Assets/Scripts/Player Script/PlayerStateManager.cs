@@ -118,11 +118,14 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnTriggerEnter2D(this, collision);
         if(collision.tag == "BossRangeCheck")
         {
-            // The player is in range of boss's attack.
-            bossStateManager.hasReachedPlayer = true;
-            bossStateManager.animator.SetBool("isWalkTowards", false);
-            bossStateManager.animator.SetBool("isWalkBackwards", false);
-            bossStateManager.SwitchState(bossStateManager.RegularAttackState);
+            if(!isInvincible)
+            {
+                // The player is in range of boss's attack.
+                bossStateManager.hasReachedPlayer = true;
+                bossStateManager.animator.SetBool("isWalkTowards", false);
+                bossStateManager.animator.SetBool("isWalkBackwards", false);
+                bossStateManager.SwitchState(bossStateManager.RegularAttackState);
+            }
         }
         if(collision.tag == "BossAntiAirCheck")
         {
@@ -402,5 +405,11 @@ public class PlayerStateManager : MonoBehaviour
     public void DragonPunchVoice()
     {
         audioScript.PlayRyuDragonPunchVoice();
+    }
+
+    public void TurnOffPlayerCollisionBoxes()
+    {
+        // This function is used when the player falls down.
+        playerBoxCollider2D.enabled = false;
     }
 }

@@ -40,8 +40,12 @@ public class BossIdleState : BossBaseState
 
             // Choose which action to do.
         
-            // Boss chooses to approach the player for close range attack.
-            boss.SwitchState(boss.WalkingState);
+            // Do not engage if player is lying down on the floor.
+            if(!boss.playerStateManager.isInvincible)
+            {
+                // Boss chooses to approach the player for close range attack.
+                boss.SwitchState(boss.WalkingState);
+            }
         
             // Boss chooses to do long range attack.
             //boss.SwitchState(boss.RegularAttackState);

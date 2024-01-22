@@ -40,7 +40,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 8;
+        attackPatternChoice = 3;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
