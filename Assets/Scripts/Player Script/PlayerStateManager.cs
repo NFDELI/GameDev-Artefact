@@ -130,7 +130,7 @@ public class PlayerStateManager : MonoBehaviour
         if(collision.tag == "BossAntiAirCheck")
         {
             // Boss does Dragon Punch.
-            bossStateManager.nextAttackPatternChoice = 7;
+            bossStateManager.nextAttackPatternChoice = 120;
             bossStateManager.animator.SetBool("isWalkTowards", false);
             bossStateManager.animator.SetBool("isWalkBackwards", false);
 

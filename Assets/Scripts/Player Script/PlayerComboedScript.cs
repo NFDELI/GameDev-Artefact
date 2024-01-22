@@ -30,4 +30,23 @@ public class PlayerComboedScript : MonoBehaviour
             }
         }
     }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Floor")
+        {
+            if (player.isLaunched)
+            {
+                // Boss falls down then hitbox is disabled so that player cannot constantly combo.
+                player.animator.SetTrigger("triggerLaunchedLanded");
+                // Make Normal collider true!!
+                player.playerBoxCollider2D.enabled = false;
+                player.playerAirCollider2D.enabled = false;
+                player.isLaunched = false;
+                player.rb.gravityScale = 2f;
+
+                // Make sure to turn on Hitbox when the player gets up.
+            }
+        }
+    }
 }

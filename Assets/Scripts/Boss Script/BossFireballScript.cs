@@ -71,6 +71,7 @@ public class BossFireballScript : MonoBehaviour
 
     public void FireballHit()
     {
+        //playerStateManager.AttackHitProperty(10f, );
         animator.SetBool("FireballTravel", false);
         animator.SetTrigger("FireballHit");
         boxCollider.enabled = false;

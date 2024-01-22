@@ -80,7 +80,9 @@ public class BossStateManager : MonoBehaviour
 
     // Regular Attack State Variables.
     public bool hasReachedPlayer = false;
+    public bool isNearPlayer = false;
     public BoxCollider2D rangeCheckBox;
+    public BoxCollider2D longRangeBox;
 
     public bool isVulnerable = true;
     public bool shouldResetAiTimer = true;
@@ -116,6 +118,18 @@ public class BossStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnTriggerEnter2D(this, collision);
+        if(collision.tag == "Player")
+        {
+            isNearPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            isNearPlayer = false;
+        }
     }
 
     // Update is called once per frame
@@ -149,6 +163,7 @@ public class BossStateManager : MonoBehaviour
         {
             forceDirection = -1;
             rangeCheckBox.offset = new Vector2(-0.3f, 0f);
+            longRangeBox.offset = new Vector2(-0.3f, 0f);
             bossAntiAirBoxCollider2D.offset = new Vector2(-0.25f, 1.15f);
             bossBoxCollider2D.offset = new Vector2(-0.05f, -0.78f);
         }
@@ -156,6 +171,7 @@ public class BossStateManager : MonoBehaviour
         {
             forceDirection = 1;
             rangeCheckBox.offset = new Vector2(0.61f, 0f);
+            longRangeBox.offset = new Vector2(0.61f, 0f);
             bossAntiAirBoxCollider2D.offset = new Vector2(0.55f, 1.15f);
             bossBoxCollider2D.offset = new Vector2(0.05f, -0.78f);
         }

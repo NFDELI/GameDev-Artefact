@@ -22,42 +22,42 @@ AnimationClip:
     curve:
     - time: 0
       value: {fileID: 21300000, guid: 6c346b5ecbf388a4bb6bd69efdf625a2, type: 3}
-    - time: 0.06666667
+    - time: 0.055555556
       value: {fileID: 21300000, guid: 8d255e918e85bd249aa174d99262a06e, type: 3}
-    - time: 0.13333334
+    - time: 0.11111111
       value: {fileID: 21300000, guid: 7be8809b48f47724ab8417893b9cfed6, type: 3}
-    - time: 0.2
+    - time: 0.16666667
       value: {fileID: 21300000, guid: fed988eed1cd80c4eb772a1383955de1, type: 3}
-    - time: 0.26666668
+    - time: 0.22222222
       value: {fileID: 21300000, guid: cda8fa120cc4b064b88d43d475d5c486, type: 3}
-    - time: 0.33333334
+    - time: 0.2777778
       value: {fileID: 21300000, guid: 5c084325b45bd4f489d41db0541c70a3, type: 3}
-    - time: 0.4
+    - time: 0.33333334
       value: {fileID: 21300000, guid: aea68fa257ce56f45ad8e4da71bbe921, type: 3}
-    - time: 0.46666667
+    - time: 0.3888889
       value: {fileID: 21300000, guid: 7baf39ef66af91b48b2dc8fb9a52855f, type: 3}
-    - time: 0.53333336
+    - time: 0.44444445
       value: {fileID: 21300000, guid: a41158e7a3675de4dae4d041193f5782, type: 3}
-    - time: 0.6
+    - time: 0.5
       value: {fileID: 21300000, guid: 0ea13756eb6691e46a79067165fe41b1, type: 3}
-    - time: 0.6666667
+    - time: 0.5555556
       value: {fileID: 21300000, guid: fe7439ca2f84cc548b75809ba9b2a41b, type: 3}
-    - time: 0.73333335
+    - time: 0.6111111
       value: {fileID: 21300000, guid: 391e46c27e3e91b4f86eec0693632e96, type: 3}
-    - time: 0.8
+    - time: 0.6666667
       value: {fileID: 21300000, guid: 9b96057fd58b8804dbca8c90572cc268, type: 3}
-    - time: 0.8666667
+    - time: 0.7222222
       value: {fileID: 21300000, guid: 7d369ed6a55b23a4ca339ccee01a2787, type: 3}
-    - time: 0.93333334
+    - time: 0.7777778
       value: {fileID: 21300000, guid: 2b89a0fa4b6f9a04e9e8ce1ac8909b49, type: 3}
-    - time: 1
+    - time: 0.8333333
       value: {fileID: 21300000, guid: 47d6c2127bd60d0409f5e06bc88d1a07, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
     flags: 2
-  m_SampleRate: 15
+  m_SampleRate: 18
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -95,7 +95,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0666667
+    m_StopTime: 0.8888889
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -115,7 +115,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1
+  - time: 0.8333333
     functionName: FireballReset
     data: 
     objectReferenceParameter: {fileID: 0}

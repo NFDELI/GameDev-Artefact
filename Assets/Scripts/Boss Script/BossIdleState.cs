@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class BossIdleState : BossBaseState
 {
+    int attackDistanceChoice = -1;
+    bool isAttackDistanceChosenClose = false;
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Idle State");
@@ -30,6 +32,21 @@ public class BossIdleState : BossBaseState
 
         // Boss is waiting for the player to Jump. (Anti-Air Check)
         boss.bossAntiAirBoxCollider2D.enabled = true;
+
+        // Close Range -> 1, 2, 3, 4, 5, 6, 7, 8.
+        // Far Range -> 9, 10;
+        attackDistanceChoice = Random.Range(1, 11);
+        //attackDistanceChoice = 9;
+        if (attackDistanceChoice < 9)
+        {
+            // Close Range Chosen.
+            isAttackDistanceChosenClose = true;
+        }
+        else
+        {
+            // Far Range Chosen.
+            isAttackDistanceChosenClose = false;
+        }
     }
 
     public override void UpdateState(BossStateManager boss)
@@ -43,8 +60,17 @@ public class BossIdleState : BossBaseState
             // Do not engage if player is lying down on the floor.
             if(!boss.playerStateManager.isInvincible)
             {
-                // Boss chooses to approach the player for close range attack.
-                boss.SwitchState(boss.WalkingState);
+                if(isAttackDistanceChosenClose)
+                {
+                    // Boss chooses to approach the player for close range attack.
+                    boss.SwitchState(boss.WalkingState);
+                }
+                else
+                {
+                    // Boss chooses to attack the player from far range.
+                    boss.nextAttackPatternChoice = 100;
+                    boss.SwitchState(boss.RegularAttackState);
+                }
             }
         
             // Boss chooses to do long range attack.

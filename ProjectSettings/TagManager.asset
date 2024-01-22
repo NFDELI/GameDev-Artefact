@@ -16,6 +16,7 @@ TagManager:
   - PlayerJumpCollider
   - BossAntiAirCheck
   - BossAttackUnblockable
+  - BossLongRangeCheck
   layers:
   - Default
   - TransparentFX

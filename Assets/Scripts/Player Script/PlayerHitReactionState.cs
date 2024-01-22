@@ -99,6 +99,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.nextPlayerHitSoundIndex = 12;
                 hitForce = player.bossStateManager.fireballScript.knockbackForce;
                 hitDamage = player.bossStateManager.fireballScript.damage;
+                hitStunTime = player.bossStateManager.fireballScript.stunDuration;
                 break;
             case 12:
                 // Blocks Fireball Attack.

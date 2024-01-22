@@ -9,14 +9,25 @@ public class BossRegularAttackState : BossBaseState
     int attackPatternChoice;
     int currentAttackPatternIndex;
     int[] attackPatternChosen;
+
+
     int[] attackPatternOne = { 1, 2, 3, 4, 0 };  // The Player's Combo.
     int[] attackPatternTwo = { 6, 7, 5, 0 };    // Low kicks attack Combo.   
     int[] attackPatternThree = { 2, 3, 4, 0 }; // Mix-up ending High.
     int[] attackPatternFour = { 2, 3, 5, 0};  // Mix-up ending Low.
     int[] attackPatternFive = { 8, 0 }; // Unblockable-Delayed Punch.
+
+
     int[] attackPatternSix = { 20, 0 }; // Fireball.
-    int[] attackPatternSeven = { 21, 0 }; // Tatsu.
-    int[] attackPatternEight = { 1, 2, 22, 1, 2, 3, 4, 0}; // Teleport Test.
+    int[] attackPatternSeven = { 21, 0 }; // Dragon-Punch.
+    int[] attackPatternEight = { 1, 2, 22, 1, 2, 3, 4, 0}; // Teleport Combo.
+
+
+    int[] attackPatternNine = { 23, 20, 0 }; // Teleport Away from the player, then fireball. 
+    int[] attackPatternTen = { 9, 0 }; // Long-Distance Unblockable.
+    int[] attackPatternEleven = { 23, 9, 0 }; // Teleport away, then Long-Range Unblockable.
+
+    int[] relaxAttackPattern = { 0 }; // Do nothing, allow the player to poke.
 
     public override void EnterState(BossStateManager boss)
     {
@@ -31,7 +42,7 @@ public class BossRegularAttackState : BossBaseState
         if (boss.nextAttackPatternChoice == -1)
         {
             // No attack pattern Forced.
-            attackPatternChoice = Random.Range(1, 8);
+            attackPatternChoice = Random.Range(1, 9);
         }
         else
         {
@@ -40,7 +51,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 3;
+        //attackPatternChoice = 100;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -61,13 +72,61 @@ public class BossRegularAttackState : BossBaseState
                 attackPatternChosen = attackPatternFive;
                 break;
             case 6:
-                attackPatternChosen = attackPatternSix;
+                // Never do Fireball on its own.
+                //attackPatternChosen = attackPatternSix;
+                attackPatternChosen = relaxAttackPattern;
                 break;
             case 7:
-                attackPatternChosen = attackPatternSeven;
+                // Never do Dragon Punch on its own.
+                //attackPatternChosen = attackPatternSeven;
+                attackPatternChosen = relaxAttackPattern;
                 break;
             case 8:
                 attackPatternChosen = attackPatternEight;
+                break;
+            case 9:
+                attackPatternChosen = attackPatternNine;
+                break;
+            case 10:
+                attackPatternChosen = attackPatternTen;
+                break;
+            case 100:
+                // Long Range Mixup here!
+                int chance = Random.Range(1, 3);
+                if(chance == 1)
+                {
+                    if(boss.isNearPlayer)
+                    {
+                        // Teleport Back, then Fireball.
+                        attackPatternChosen = attackPatternNine;
+                    }
+                    else
+                    {
+                        // Immediately do Fireball.
+                        attackPatternChosen = attackPatternSix;
+                    }
+                }
+                else
+                {
+                    if (boss.isNearPlayer)
+                    {
+                        // Teleport Back, then Unblockable Punch.
+                        attackPatternChosen = attackPatternEleven;
+                    }
+                    else
+                    {
+                        // Immediately Unblockable Punch.
+                        attackPatternChosen = attackPatternTen;
+                    }
+
+                    // Long-Range Unblockable.
+                    attackPatternChosen = attackPatternTen;
+                }
+                boss.nextAttackPatternChoice = -1;
+                break;
+            case 120:
+                // Perform anti-Air.
+                attackPatternChosen = attackPatternSeven;
                 break;
             default:
                 break;
@@ -187,7 +246,7 @@ public class BossRegularAttackState : BossBaseState
                 // This attack is a low attack.
                 boss.animator.SetTrigger("triggerHeavyKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 999f, 5);
+                boss.AttackHitProperty(10, new Vector2(0.5f, 0), 14, 0.7f, 5);
                 boss.nextBossSwingSoundIndex = 2;
                 break;
             case 6:
@@ -209,6 +268,14 @@ public class BossRegularAttackState : BossBaseState
                 boss.animator.SetTrigger("triggerMediumPunchUnblockable");
                 boss.rb.AddForce(new Vector2(3 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(15, new Vector2(1f, 0), 14, 0.5f, 6);
+                boss.nextBossSwingSoundIndex = 2;
+                boss.spriteRenderer.color = Color.red;
+                break;
+            case 9:
+                // Heavy High Punch. (Unblockable)
+                boss.animator.SetTrigger("triggerHeavyPunchUnblockable");
+                boss.rb.AddForce(new Vector2(6 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(15, new Vector2(3f, 0), 14, 0.5f, 6);
                 boss.nextBossSwingSoundIndex = 2;
                 boss.spriteRenderer.color = Color.red;
                 break;
@@ -235,18 +302,21 @@ public class BossRegularAttackState : BossBaseState
                     // Go Left.
                     teleportDirection = -1;
                 }
-
-                // Teleport behind the player. 
-                boss.animator.SetTrigger("triggerTeleportReady");
-                teleportDuration = 0.25f;
-
-                // Make Boss Transparent.
-                boss.spriteRenderer.color = new Color(1, 1, 1, 0.90f);
-
-                // Turn off all collisions.
-                boss.bossBoxCollider2D.enabled = false;
-                TurnOffAllAttackBoxColliders(boss);
-
+                CallTeleport(boss, 0.25f);
+                break;
+            case 23:
+                // Teleport Away from the Player.
+                if (boss.spriteFlip)
+                {
+                    // Go Left.
+                    teleportDirection = -1;
+                }
+                else
+                {
+                    // Go Right.
+                    teleportDirection = 1;
+                }
+                CallTeleport(boss, 0.5f);
                 break;
             default:
                 break;
@@ -258,6 +328,20 @@ public class BossRegularAttackState : BossBaseState
         boss.attackHighBoxCollider2D.enabled = false;
         boss.attackLowBoxCollider2D.enabled = false;
         boss.attackUnblockableBoxCollider2D.enabled = false;
+    }
+
+    private void CallTeleport(BossStateManager boss, float newTeleportDuration)
+    {
+        // Teleport behind the player. 
+        boss.animator.SetTrigger("triggerTeleportReady");
+        teleportDuration = newTeleportDuration;
+
+        // Make Boss Transparent.
+        boss.spriteRenderer.color = new Color(1, 1, 1, 0.90f);
+
+        // Turn off all collisions.
+        boss.bossBoxCollider2D.enabled = false;
+        TurnOffAllAttackBoxColliders(boss);
     }
 
 }
