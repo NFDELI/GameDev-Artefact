@@ -52,6 +52,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
                 hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
+                player.postureCurrent -= 0.5f;
 
                 player.wasBlocking = true;
                 break;
@@ -64,24 +65,31 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
                 hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
+                player.postureCurrent -= 0.5f;
+
                 break;
             case 6:
                 // High Parry.
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
+                player.postureCurrent++;
                 break;
             case 7:
                 // Low Parry.
                 player.animator.SetTrigger("triggerParryLow");
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
+                player.postureCurrent++;
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
                 player.animator.SetTrigger("triggerPostureBreak");
                 timerStarted = true;
                 player.audioScript.PlayPlayerPostureBreakVoice();
+                player.nextPlayerForceReceived = Vector2.zero;
+                hitForce = Vector2.zero;
+                player.bossStateManager.shouldResetAiTimer = false;
                 break;
             case 9:
                 // Dazed/Stunned.
@@ -90,6 +98,7 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 // Boss should immediately punish the player.
                 player.bossStateManager.aiDecisionTimer = 0f;
+                player.nextPlayerHitSoundIndex = -1;
                 break;
             case 10:
                 // Get Up Animation.
@@ -116,6 +125,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Parry a Fireball. (Does not do posture damage to the boss)
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
+                player.postureCurrent++;
                 break;
             case 14:
                 // Player gets hit by Dragon Punch.

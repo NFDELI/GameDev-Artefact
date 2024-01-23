@@ -128,9 +128,13 @@ public class PlayerWalkingState : PlayerBaseState
             player.SwitchState(player.HitReactionState);
         }
 
-        // Unblockable attacks cannot be blocked.
+        // Unblockable attacks cannot be blocked. (Posture Break the Player.)
         if (collision.tag == "BossAttackUnblockable")
         {
+            // Player sacrificed Posture, so no damage is taken.
+            player.postureCurrent = 0;
+            player.nextPlayerDamageReceived = 0;
+            player.nextPlayerHitReaction = 8;
             player.SwitchState(player.HitReactionState);
         }
     }
