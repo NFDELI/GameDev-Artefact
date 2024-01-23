@@ -135,7 +135,7 @@ public class PlayerStateManager : MonoBehaviour
             bossStateManager.animator.SetBool("isWalkBackwards", false);
 
             // Prevent the player from constantly being comboed.
-            bossStateManager.bossAntiAirBoxCollider2D.enabled = false;
+            //bossStateManager.bossAntiAirBoxCollider2D.enabled = false;
             bossStateManager.SwitchState(bossStateManager.RegularAttackState);
         }
     }

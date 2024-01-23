@@ -27,6 +27,8 @@ public class BossRegularAttackState : BossBaseState
     int[] attackPatternTen = { 9, 0 }; // Long-Distance Unblockable.
     int[] attackPatternEleven = { 23, 9, 0 }; // Teleport away, then Long-Range Unblockable.
 
+    int[] attackPatternTwelve = { 24, 0 }; // Anti Air - A faster Dragon Punch.
+
     int[] relaxAttackPattern = { 0 }; // Do nothing, allow the player to poke.
 
     public override void EnterState(BossStateManager boss)
@@ -126,7 +128,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 120:
                 // Perform anti-Air.
-                attackPatternChosen = attackPatternSeven;
+                attackPatternChosen = attackPatternTwelve;
                 break;
             default:
                 break;
@@ -317,6 +319,11 @@ public class BossRegularAttackState : BossBaseState
                     teleportDirection = 1;
                 }
                 CallTeleport(boss, 0.5f);
+                break;
+            case 24:
+                // Boss Performs a Dragon Punch Attack. (Anti-Air Version)
+                boss.animator.SetTrigger("triggerAntiAir");
+                boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
                 break;
             default:
                 break;
