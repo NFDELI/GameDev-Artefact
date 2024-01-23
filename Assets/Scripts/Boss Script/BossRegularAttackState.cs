@@ -37,9 +37,12 @@ public class BossRegularAttackState : BossBaseState
         boss.canAttackChain = true;
         currentAttackPatternIndex = 0;
         boss.rangeCheckBox.enabled = false;
+        boss.bossAntiAirBoxCollider2D.enabled = false;
 
         // Reset BlockUntilParry. (Give the player a chance to poke again.)
         boss.blocksUntilParry = boss.blocksUntilParryDefault;
+
+        boss.ResetBlockUntilParry(2, 4);
 
         if (boss.nextAttackPatternChoice == -1)
         {
@@ -324,6 +327,7 @@ public class BossRegularAttackState : BossBaseState
                 // Boss Performs a Dragon Punch Attack. (Anti-Air Version)
                 boss.animator.SetTrigger("triggerAntiAir");
                 boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
+                boss.nextAttackPatternChoice = -1;
                 break;
             default:
                 break;

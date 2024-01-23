@@ -87,6 +87,9 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Dazed/Stunned.
                 player.animator.SetTrigger("triggerStunned");
                 timerStarted = true;
+
+                // Boss should immediately punish the player.
+                player.bossStateManager.aiDecisionTimer = 0f;
                 break;
             case 10:
                 // Get Up Animation.
@@ -149,6 +152,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.nextPlayerDamageReceived = 0;
                 player.nextPlayerForceReceived = Vector2.zero;
                 player.canGetUp = false;
+                player.bossStateManager.canAntiAirAgain = true;
                 player.SwitchState(player.HitReactionState);
             }
         }

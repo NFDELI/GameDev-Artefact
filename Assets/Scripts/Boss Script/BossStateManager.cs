@@ -89,7 +89,9 @@ public class BossStateManager : MonoBehaviour
 
     public bool isLaunched = false;
 
-    public int nextAttackPatternChoice = -1; 
+    public int nextAttackPatternChoice = -1;
+
+    public bool canAntiAirAgain;
 
     // Start is called before the first frame update
     void Start()
@@ -466,5 +468,10 @@ public class BossStateManager : MonoBehaviour
             spriteRenderer.flipX = true;
             forceDirection = 1;
         }
+    }
+
+    public void ResetBlockUntilParry(int minRange, int maxRange)
+    {
+        blocksUntilParry = UnityEngine.Random.Range(minRange, maxRange);
     }
 }

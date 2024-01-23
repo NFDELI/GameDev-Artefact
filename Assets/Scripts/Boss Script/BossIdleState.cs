@@ -30,9 +30,6 @@ public class BossIdleState : BossBaseState
         // Boss is not attempting to attack.
         boss.rangeCheckBox.enabled = false;
 
-        // Boss is waiting for the player to Jump. (Anti-Air Check)
-        boss.bossAntiAirBoxCollider2D.enabled = true;
-
         // Close Range -> 1, 2, 3, 4, 5, 6, 7, 8.
         // Far Range -> 9, 10;
         attackDistanceChoice = Random.Range(1, 11);
@@ -104,6 +101,12 @@ public class BossIdleState : BossBaseState
             boss.spriteRenderer.flipX = false;
             boss.attackHighBoxCollider2D.offset = new Vector2(-0.2685299f, 0);
         }
+
+        // Boss is waiting for the player to Jump. (Anti-Air Check)
+        if (boss.canAntiAirAgain)
+        {
+            boss.bossAntiAirBoxCollider2D.enabled = true;
+        }
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision collision)
@@ -113,8 +116,8 @@ public class BossIdleState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-        //BossIdleDefense(boss, collision);
-        BossIdleOpen(boss, collision);
+        BossIdleDefense(boss, collision);
+        //BossIdleOpen(boss, collision);
     }
 
     private void BossIdleDefense(BossStateManager boss, Collider2D collision)
@@ -140,12 +143,12 @@ public class BossIdleState : BossBaseState
             // React to the player's Fireball attack.
             if (boss.blocksUntilParry <= 0)
             {
-                // Boss parries the incoming attack.
+                // Boss parries the fireball attack.
                 boss.AttackHitPropertySelf(0, Vector2.zero, 11, 0, 8);
             }
             else
             {
-                // Boss blocks the incoming attack.
+                // Boss blocks the fireball attack.
                 boss.AttackHitPropertySelf(boss.playerFireballScript.damage * 0.25f, Vector2.zero, 4, boss.playerFireballScript.stunDuration, 11);
             }
             boss.SwitchState(boss.HitReactionState);
