@@ -188,6 +188,12 @@ public class PlayerHitReactionState : PlayerBaseState
             }
         }
 
+        if(player.health <= 0)
+        {
+            // Player is Dead
+            player.SwitchState(player.IntroductionState);
+        }
+
         if(Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log(hitStunTime);

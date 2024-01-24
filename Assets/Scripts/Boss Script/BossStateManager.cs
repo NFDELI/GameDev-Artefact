@@ -72,6 +72,7 @@ public class BossStateManager : MonoBehaviour
     public FireballScript playerFireballScript;
 
     // Boss AI Variables.
+    public bool isAiEnabled = true;
     public float aiDecisionTimer = 2f;
     public float defaultAiDecisionTimer = 2f;
 
@@ -486,5 +487,10 @@ public class BossStateManager : MonoBehaviour
     public void EvilRyuIntroductionVoice()
     {
         audioScript.PlayEvilRyuIntroductionVoice();
+    }
+
+    public void EvilRyuWinVoice()
+    {
+       audioScript.PlayEvilRyuWinVoice();
     }
 }

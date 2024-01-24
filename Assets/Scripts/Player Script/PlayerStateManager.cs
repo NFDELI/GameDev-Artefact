@@ -426,6 +426,11 @@ public class PlayerStateManager : MonoBehaviour
         audioScript.PlayRyuIntroductionVoice();
     }
 
+    public void RyuLoseVoice()
+    {
+        audioScript.PlayRyuLoseVoice();
+    }
+
     public void GoIdleWithDelay(float delay)
     {
         animator.SetTrigger("triggerIdle");
@@ -436,5 +441,15 @@ public class PlayerStateManager : MonoBehaviour
     {
         SwitchState(IdleState);
         canvasReference.SetActive(true);
+    }
+
+    public void PlayBossWinAnimationWithDelay(float delay)
+    {
+        Invoke("PlayBossWinAnimation", delay);
+    }
+
+    private void PlayBossWinAnimation()
+    {
+        bossStateManager.animator.SetTrigger("triggerWin");
     }
 }

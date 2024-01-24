@@ -877,6 +877,9 @@ MonoBehaviour:
   RyuIntroductionVoice2: {fileID: 8300000, guid: d82824337730746459d35361b9996b4a, type: 3}
   EvilRyuIntroductionVoice: {fileID: 8300000, guid: c6dcf5dec7554b84aaeeb78432e25262, type: 3}
   EvilRyuTransitionVoice: {fileID: 8300000, guid: b43fc04be47fc204ea696bc704d87533, type: 3}
+  RyuLoseVoice: {fileID: 8300000, guid: c3ca37a3b3960a648a1156c2c1cdac2f, type: 3}
+  EvilRyuLoseVoice: {fileID: 0}
+  EvilRyuWinVoice: {fileID: 8300000, guid: f859991dd8ef33c41a7c175f06587145, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4339,6 +4342,7 @@ MonoBehaviour:
   bossAntiAirBoxCollider2D: {fileID: 1043501490}
   playerStateManager: {fileID: 3992531850973660271}
   playerFireballScript: {fileID: 1937929084}
+  isAiEnabled: 1
   aiDecisionTimer: 1.7
   defaultAiDecisionTimer: 1.7
   blocksUntilParry: 3
@@ -4668,6 +4672,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6756385862724519218, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7969259490672904366, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_TagString
       value: Untagged
@@ -4676,6 +4684,10 @@ PrefabInstance:
       propertyPath: bossRb
       value: 
       objectReference: {fileID: 2007554647}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: health
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: audioScript
       value: 

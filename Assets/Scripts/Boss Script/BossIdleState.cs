@@ -76,7 +76,10 @@ public class BossIdleState : BossBaseState
         else
         {
             // Wait, decrease timer.
-            boss.aiDecisionTimer -= Time.deltaTime;
+            if(boss.isAiEnabled)
+            {
+                boss.aiDecisionTimer -= Time.deltaTime;
+            }
         }
         
         // Check for Attack Input.

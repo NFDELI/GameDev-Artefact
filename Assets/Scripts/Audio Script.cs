@@ -52,6 +52,11 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip EvilRyuTransitionVoice;
 
+    public AudioClip RyuLoseVoice;
+    public AudioClip EvilRyuLoseVoice;
+
+    public AudioClip EvilRyuWinVoice;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -246,5 +251,20 @@ public class AudioScript : MonoBehaviour
     public void PlayEvilRyuTransitionVoice()
     {
         source.PlayOneShot(EvilRyuTransitionVoice);
+    }
+
+    public void PlayRyuLoseVoice()
+    {
+        source.PlayOneShot(RyuLoseVoice);
+    }
+
+    public void PlayEvilRyuLoseVoice()
+    {
+        source.PlayOneShot(EvilRyuLoseVoice);
+    }
+
+    public void PlayEvilRyuWinVoice()
+    {
+        source.PlayOneShot(EvilRyuWinVoice);
     }
 }
