@@ -17,6 +17,7 @@ public class BossStateManager : MonoBehaviour
     public BossRegularAttackState RegularAttackState = new BossRegularAttackState();
     public BossSpecialAttackState BossSpecialAttackState = new BossSpecialAttackState();
     public BossHitReactionState HitReactionState = new BossHitReactionState();
+    public BossIntroductionState IntroductionState = new BossIntroductionState();
 
     // Audio Script
     public AudioScript audioScript;
@@ -103,8 +104,9 @@ public class BossStateManager : MonoBehaviour
 
         postureCurrent = postureDefault;
 
-        currentState = IdleState;
+        currentState = IntroductionState;
 
+        //currentState = IdleState;
         //nextBossHitStunDuration = 9;
         //nextBossHitReaction = 9;
         //currentState = HitReactionState;
@@ -409,6 +411,12 @@ public class BossStateManager : MonoBehaviour
         animator.SetTrigger("triggerGetUp");
     }
 
+    public void GoIdleWithDelay(float delay)
+    {
+        animator.SetTrigger("triggerIdle");
+        Invoke("GoIdleState", delay);
+    }
+
     public void GoIdleState()
     {
         SwitchState(IdleState);
@@ -473,5 +481,10 @@ public class BossStateManager : MonoBehaviour
     public void ResetBlockUntilParry(int minRange, int maxRange)
     {
         blocksUntilParry = UnityEngine.Random.Range(minRange, maxRange);
+    }
+
+    public void EvilRyuIntroductionVoice()
+    {
+        audioScript.PlayEvilRyuIntroductionVoice();
     }
 }

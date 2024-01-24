@@ -45,6 +45,13 @@ public class AudioScript : MonoBehaviour
     public AudioClip EvilRyuTeleportVoice;
     public AudioClip EvilRyuTeleportSound;
 
+    // Intro/Transition Voices.
+    public AudioClip RyuIntroductionVoice1;
+    public AudioClip RyuIntroductionVoice2;
+    public AudioClip EvilRyuIntroductionVoice;
+
+    public AudioClip EvilRyuTransitionVoice;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -216,5 +223,28 @@ public class AudioScript : MonoBehaviour
     public void PlayerEvilRyuTeleportVoice()
     {
         source.PlayOneShot(EvilRyuTeleportVoice);
+    }
+
+    public void PlayRyuIntroductionVoice()
+    {
+        int choice = Random.Range(0, 2);
+        if(choice == 0)
+        {
+            source.PlayOneShot(RyuIntroductionVoice1);
+        }
+        else if (choice == 1) 
+        {
+            source.PlayOneShot(RyuIntroductionVoice2);
+        }
+    }
+
+    public void PlayEvilRyuIntroductionVoice()
+    {
+        source.PlayOneShot(EvilRyuIntroductionVoice);
+    }
+
+    public void PlayEvilRyuTransitionVoice()
+    {
+        source.PlayOneShot(EvilRyuTransitionVoice);
     }
 }

@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerSpecialAttackState SpecialAttackState = new PlayerSpecialAttackState();
     public PlayerHitReactionState HitReactionState = new PlayerHitReactionState();
     public PlayerParryAttemptState ParryAttemptState = new PlayerParryAttemptState();
+    public PlayerIntroductionState IntroductionState = new PlayerIntroductionState();
 
     // Audio Script
     public AudioScript audioScript;
@@ -77,6 +78,8 @@ public class PlayerStateManager : MonoBehaviour
     public bool isCloseToWallRight = false;
     public bool isLaunched = false;
 
+    public GameObject canvasReference; 
+
     private void Awake()
     {
         input = new PlayerInputActions();
@@ -101,7 +104,8 @@ public class PlayerStateManager : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        currentState = IdleState;
+        // currentState = IdleState;
+        currentState = IntroductionState;
 
         postureCurrent = postureDefault;
 
@@ -414,5 +418,23 @@ public class PlayerStateManager : MonoBehaviour
     {
         // This function is used when the player falls down.
         playerBoxCollider2D.enabled = false;
+    }
+
+    public void RyuIntroVoice()
+    {
+        // Randomize between 2 Voice Lines.
+        audioScript.PlayRyuIntroductionVoice();
+    }
+
+    public void GoIdleWithDelay(float delay)
+    {
+        animator.SetTrigger("triggerIdle");
+        Invoke("GoIdle", delay);
+    }
+
+    public void GoIdle()
+    {
+        SwitchState(IdleState);
+        canvasReference.SetActive(true);
     }
 }
