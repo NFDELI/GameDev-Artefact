@@ -15,6 +15,10 @@ public class PlayerIntroductionState : PlayerBaseState
             player.bossStateManager.isAiEnabled = false;
             player.PlayBossWinAnimationWithDelay(2f);
         }
+        else if (player.bossStateManager.health <= 0)
+        {
+            //player.animator.SetTrigger("triggerIntroduction");
+        }
         else
         {
             player.animator.SetTrigger("triggerIntroduction");

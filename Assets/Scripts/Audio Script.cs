@@ -53,7 +53,8 @@ public class AudioScript : MonoBehaviour
     public AudioClip EvilRyuTransitionVoice;
 
     public AudioClip RyuLoseVoice;
-    public AudioClip EvilRyuLoseVoice;
+    public AudioClip EvilRyuLoseVoice1;
+    public AudioClip EvilRyuLoseVoice2;
 
     public AudioClip EvilRyuWinVoice;
 
@@ -260,7 +261,12 @@ public class AudioScript : MonoBehaviour
 
     public void PlayEvilRyuLoseVoice()
     {
-        source.PlayOneShot(EvilRyuLoseVoice);
+        source.PlayOneShot(EvilRyuLoseVoice1);
+    }
+
+    public void PlayEvilRyuLoseVoice2()
+    {
+        source.PlayOneShot(EvilRyuLoseVoice2);
     }
 
     public void PlayEvilRyuWinVoice()

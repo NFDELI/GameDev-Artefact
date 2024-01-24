@@ -493,4 +493,20 @@ public class BossStateManager : MonoBehaviour
     {
        audioScript.PlayEvilRyuWinVoice();
     }
+
+    public void EvilRyuLoseVoice()
+    {
+        audioScript.PlayEvilRyuLoseVoice();
+    }
+
+    public void PlayPlayerWinAnimationWithDelay(float delay)
+    {
+        Invoke("PlayPlayerWinAnimation", delay);
+        playerStateManager.SwitchState(playerStateManager.IntroductionState);
+    }
+
+    private void PlayPlayerWinAnimation()
+    {
+        playerStateManager.animator.SetTrigger("triggerWin");
+    }
 }

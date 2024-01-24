@@ -157,6 +157,12 @@ public class BossHitReactionState : BossBaseState
             boss.rb.gravityScale = 2f;
         }
 
+        if(boss.health <= 0)
+        {
+            // Boss Dies.
+            boss.SwitchState(boss.IntroductionState);
+        }
+
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision collision)

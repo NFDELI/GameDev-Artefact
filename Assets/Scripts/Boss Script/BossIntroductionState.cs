@@ -5,7 +5,25 @@ public class BossIntroductionState : BossBaseState
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Introduction State");
-        boss.animator.SetTrigger("triggerIntroduction");
+        if(boss.health <= 0)
+        {
+            // Boss Loses
+            boss.rb.velocity = Vector2.zero;
+            boss.animator.SetTrigger("triggerLose");
+            boss.attackHighBoxCollider2D.enabled = false;
+            boss.attackLowBoxCollider2D.enabled = false;
+            boss.attackUnblockableBoxCollider2D.enabled = false;
+            boss.bossAntiAirBoxCollider2D.enabled = false;
+            boss.rangeCheckBox.enabled = false;
+
+            boss.isAiEnabled = false;
+
+            boss.PlayPlayerWinAnimationWithDelay(2f);
+        }
+        else
+        {
+            boss.animator.SetTrigger("triggerIntroduction");
+        }
     }
 
     public override void UpdateState(BossStateManager boss)

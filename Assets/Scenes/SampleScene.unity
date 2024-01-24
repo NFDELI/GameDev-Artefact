@@ -878,7 +878,8 @@ MonoBehaviour:
   EvilRyuIntroductionVoice: {fileID: 8300000, guid: c6dcf5dec7554b84aaeeb78432e25262, type: 3}
   EvilRyuTransitionVoice: {fileID: 8300000, guid: b43fc04be47fc204ea696bc704d87533, type: 3}
   RyuLoseVoice: {fileID: 8300000, guid: c3ca37a3b3960a648a1156c2c1cdac2f, type: 3}
-  EvilRyuLoseVoice: {fileID: 0}
+  EvilRyuLoseVoice1: {fileID: 8300000, guid: 17d4cd2835bcbeb4397af5e569b850d8, type: 3}
+  EvilRyuLoseVoice2: {fileID: 8300000, guid: 99d68bb76ece3fa4ab488d625e1c70ec, type: 3}
   EvilRyuWinVoice: {fileID: 8300000, guid: f859991dd8ef33c41a7c175f06587145, type: 3}
 --- !u!1 &648321739
 GameObject:
@@ -4320,7 +4321,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 100
+  health: 1
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -4616,10 +4617,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4064798682324001724, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_FlipX
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4199369229679959602, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.518
@@ -4660,25 +4657,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4284673205679125804, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5144675758682238566, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_TagString
-      value: EditorOnly
-      objectReference: {fileID: 0}
     - target: {fileID: 6046234461313306555, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6756385862724519218, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7969259490672904366, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: bossRb
@@ -4686,7 +4667,7 @@ PrefabInstance:
       objectReference: {fileID: 2007554647}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: health
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: audioScript
@@ -4704,10 +4685,6 @@ PrefabInstance:
       propertyPath: bossStateManager
       value: 
       objectReference: {fileID: 2007554650}
-    - target: {fileID: 8622644590958482894, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -71,6 +71,11 @@ public class PlayerIdleState : PlayerBaseState
             player.spriteRenderer.flipX = false;
             player.attackBoxCollider.offset = new Vector2(0, 0);
         }
+
+        if(player.bossStateManager.health <= 0)
+        {
+            player.SwitchState(player.IntroductionState);
+        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
