@@ -8,6 +8,8 @@ public class PlayerParryAttemptState : PlayerBaseState
     {
         Debug.Log("Entered Parry State");
 
+        player.StopMovingAnimation();
+
         if (player.animator.GetBool("isCrouch"))
         {
             isLowParryAttempt = true;

@@ -881,6 +881,7 @@ MonoBehaviour:
   EvilRyuLoseVoice1: {fileID: 8300000, guid: 17d4cd2835bcbeb4397af5e569b850d8, type: 3}
   EvilRyuLoseVoice2: {fileID: 8300000, guid: 99d68bb76ece3fa4ab488d625e1c70ec, type: 3}
   EvilRyuWinVoice: {fileID: 8300000, guid: f859991dd8ef33c41a7c175f06587145, type: 3}
+  UnblockableWarningSound: {fileID: 8300000, guid: 907d872658bd3cd46b705fe4c6665c8c, type: 3}
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0

@@ -519,4 +519,9 @@ public class BossStateManager : MonoBehaviour
             postureCurrent = postureDefault;
         }
     }
+
+    public void PlayUnblockableWarningSound()
+    {
+        audioScript.PlayUnblockableWarningSound();
+    }
 }

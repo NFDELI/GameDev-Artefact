@@ -58,6 +58,8 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip EvilRyuWinVoice;
 
+    public AudioClip UnblockableWarningSound;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -272,5 +274,10 @@ public class AudioScript : MonoBehaviour
     public void PlayEvilRyuWinVoice()
     {
         source.PlayOneShot(EvilRyuWinVoice);
+    }
+
+    public void PlayUnblockableWarningSound()
+    {
+        source.PlayOneShot(UnblockableWarningSound);
     }
 }

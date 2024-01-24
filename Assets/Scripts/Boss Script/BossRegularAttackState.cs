@@ -270,6 +270,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 8:
                 // Medium High Punch. (Unblockable)
+                boss.PlayUnblockableWarningSound();
                 boss.animator.SetTrigger("triggerMediumPunchUnblockable");
                 boss.rb.AddForce(new Vector2(3 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(15, new Vector2(1f, 0), 14, 0.5f, 6);
@@ -278,6 +279,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 9:
                 // Heavy High Punch. (Unblockable)
+                boss.PlayUnblockableWarningSound();
                 boss.animator.SetTrigger("triggerHeavyPunchUnblockable");
                 boss.rb.AddForce(new Vector2(6 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(15, new Vector2(3f, 0), 14, 0.5f, 6);
