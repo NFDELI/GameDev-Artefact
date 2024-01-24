@@ -9,6 +9,7 @@ public class BossIntroductionState : BossBaseState
         {
             // Boss Loses
             boss.rb.velocity = Vector2.zero;
+            boss.isLaunched = false;
             boss.animator.SetTrigger("triggerLose");
             boss.attackHighBoxCollider2D.enabled = false;
             boss.attackLowBoxCollider2D.enabled = false;

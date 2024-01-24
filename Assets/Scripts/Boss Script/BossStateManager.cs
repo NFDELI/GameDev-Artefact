@@ -154,14 +154,14 @@ public class BossStateManager : MonoBehaviour
         }
 
         // Need to Move this Health check during damage check.
-        if(health <= 0 && currentState != DeathState)
-        {
-            // Boss loses all HP and Dies.
-            currentState = DeathState;
-            currentState.EnterState(this);
-
-            // Boss wins one round.
-        }
+        //if(health <= 0 && currentState != DeathState)
+        //{
+        //    // Boss loses all HP and Dies.
+        //    currentState = DeathState;
+        //    currentState.EnterState(this);
+        //
+        //    // Boss wins one round.
+        //}
 
         // Ensures that the attack force is applied in the correct Direction.
         if (!spriteRenderer.flipX)

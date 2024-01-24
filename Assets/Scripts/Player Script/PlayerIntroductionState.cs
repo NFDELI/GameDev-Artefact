@@ -7,6 +7,8 @@ public class PlayerIntroductionState : PlayerBaseState
         Debug.Log("Player Introduction State");
         if (player.health <= 0)
         {
+            player.rb.velocity = Vector2.zero;
+            player.isLaunched = false;
             player.animator.SetTrigger("triggerLose");
             player.TurnOffPlayerCollisionBoxes();
             player.attackBoxCollider.enabled = false;
