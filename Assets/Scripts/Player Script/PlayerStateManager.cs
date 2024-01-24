@@ -345,6 +345,7 @@ public class PlayerStateManager : MonoBehaviour
 
         if (postureCurrent <= 0)
         {
+            postureCurrent = 0;
             nextPlayerHitStunDuration = 4;
             nextPlayerHitReaction = 8;
             nextPlayerDamageReceived = 0;
@@ -451,5 +452,15 @@ public class PlayerStateManager : MonoBehaviour
     private void PlayBossWinAnimation()
     {
         bossStateManager.animator.SetTrigger("triggerWin");
+    }
+
+    public void GainPosture()
+    {
+        postureCurrent++;
+        if(postureCurrent > postureDefault)
+        {
+            // Prevent Overflow of Posture.
+            postureCurrent = postureDefault;
+        }
     }
 }

@@ -48,17 +48,25 @@ public class BossHitReactionState : BossBaseState
                 boss.animator.SetTrigger("triggerBlockHigh");
                 timerStarted= true;
                 boss.blocksUntilParry--;
+
+                // Posture chip-damage.
+                boss.TakePostureDamage(0.25f);
                 break;
             case 5:
                 // Low Block.
                 boss.animator.SetTrigger("triggerBlockLow");
                 timerStarted = true;
+                boss.blocksUntilParry--;
+
+                // Posture chip-damage.
+                boss.TakePostureDamage(0.25f);
                 break;
             case 6:
                 // High Parry.
                 boss.animator.SetTrigger("triggerParryHigh");
                 boss.playerStateManager.TakePostureDamage(1f);
                 boss.audioScript.PlayParryAttackSound();
+                boss.GainPosture(0.5f);
                 break;
             case 7:
                 // Low Parry.

@@ -73,14 +73,14 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
-                player.postureCurrent++;
+                player.GainPosture();
                 break;
             case 7:
                 // Low Parry.
                 player.animator.SetTrigger("triggerParryLow");
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
-                player.postureCurrent++;
+                player.GainPosture();
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
@@ -118,6 +118,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerBlockHigh");
                 timerStarted = true;
                 player.nextPlayerHitSoundIndex = 11;
+                hitStunTime = 0.25f;
                 hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
                 hitDamage = player.bossStateManager.fireballScript.damage / 4;
                 break;
@@ -125,7 +126,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Parry a Fireball. (Does not do posture damage to the boss)
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
-                player.postureCurrent++;
+                player.GainPosture();
                 break;
             case 14:
                 // Player gets hit by Dragon Punch.
@@ -242,7 +243,18 @@ public class PlayerHitReactionState : PlayerBaseState
 
     private void StunFinished(PlayerStateManager player)
     {
-        player.animator.SetTrigger("triggerIdle");
-        player.SwitchState(player.IdleState);
+        if (player.movementInput != Vector2.zero)
+        {
+            if(player.movementInput.y == 0)
+            {
+                // Change State to walking. (Gives access to block) 
+                player.SwitchState(player.WalkingState);
+            }
+        }
+        else
+        {
+            player.animator.SetTrigger("triggerIdle");
+            player.SwitchState(player.IdleState);
+        }
     }
 }

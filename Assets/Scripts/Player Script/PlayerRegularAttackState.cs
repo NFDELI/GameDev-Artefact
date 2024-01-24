@@ -14,14 +14,14 @@ public class PlayerRegularAttackState : PlayerBaseState
                 player.animator.SetTrigger("triggerAttackCrouch");
                 player.attackCounter = 2;
                 player.rb.AddForce(new Vector2(0.5f * player.forceDirection, 0), ForceMode2D.Impulse);
-                player.AttackHitProperty(2, new Vector2(1f, 0), 0, 1f, 3);
+                player.AttackHitProperty(2, new Vector2(10f, 0), 0, 0.5f, 3);
                 player.audioScript.PlayLightAttackSound();
                 break;
             case 1:
                 player.animator.SetTrigger("triggerAttackOne");
                 player.attackCounter++;
                 player.rb.AddForce(new Vector2(2 * player.forceDirection, 0), ForceMode2D.Impulse);
-                player.AttackHitProperty(2, new Vector2(15f, 0), 0, 1f, 3);
+                player.AttackHitProperty(2, new Vector2(15f, 0), 0, 0.5f, 3);
                 player.audioScript.PlayLightAttackSound();
                 break;
             case 2:
@@ -29,14 +29,14 @@ public class PlayerRegularAttackState : PlayerBaseState
                 player.animator.SetTrigger("triggerAttackTwo");
                 player.attackCounter++;
                 player.rb.AddForce(new Vector2(2 * player.forceDirection, 0), ForceMode2D.Impulse);
-                player.AttackHitProperty(2, new Vector2(15f, 0), 0, 1f, 4);
+                player.AttackHitProperty(2, new Vector2(15f, 0), 0, 0.5f, 4);
                 player.audioScript.PlayMediumAttackSound();
                 break;
             case 3:
                 player.animator.SetTrigger("triggerAttackThree");
                 player.attackCounter++;
                 player.rb.AddForce(new Vector2(1.5f * player.forceDirection, 0), ForceMode2D.Impulse);
-                player.AttackHitProperty(2, new Vector2(10f, 0), 0, 1, 4);
+                player.AttackHitProperty(2, new Vector2(10f, 0), 0, 0.5f, 4);
                 player.audioScript.PlayMediumAttackSound();
                 break;
             case 4:

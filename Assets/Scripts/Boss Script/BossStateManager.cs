@@ -509,4 +509,14 @@ public class BossStateManager : MonoBehaviour
     {
         playerStateManager.animator.SetTrigger("triggerWin");
     }
+
+    public void GainPosture(float postureAmount)
+    {
+        postureCurrent += postureAmount;
+        if (postureCurrent > postureDefault)
+        {
+            // Prevent Overflow of Posture.
+            postureCurrent = postureDefault;
+        }
+    }
 }
