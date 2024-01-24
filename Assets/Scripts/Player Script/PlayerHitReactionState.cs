@@ -13,13 +13,15 @@ public class PlayerHitReactionState : PlayerBaseState
     {
         Debug.Log("Entered Hit Reaction State");
 
+        player.StopMovingAnimation();
+
         hitReactionIndex = player.nextPlayerHitReaction;
         hitStunTime = player.nextPlayerHitStunDuration;
         hitForce = player.nextPlayerForceReceived;
         hitDamage = player.nextPlayerDamageReceived;
         //player.spriteRenderer.color = Color.red;
 
-        switch (player.nextPlayerHitReaction)
+        switch (hitReactionIndex)
         {
             case 0:
                 // Get Hit High.
@@ -97,7 +99,8 @@ public class PlayerHitReactionState : PlayerBaseState
                 timerStarted = true;
 
                 // Boss should immediately punish the player.
-                player.bossStateManager.aiDecisionTimer = 0f;
+                player.bossStateManager.shouldResetAiTimer = false;
+                player.bossStateManager.aiDecisionTimer = -2f;
                 player.nextPlayerHitSoundIndex = -1;
                 break;
             case 10:
@@ -195,7 +198,7 @@ public class PlayerHitReactionState : PlayerBaseState
             player.SwitchState(player.IntroductionState);
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Debug.Log(hitStunTime);
         }
@@ -245,7 +248,7 @@ public class PlayerHitReactionState : PlayerBaseState
     {
         if (player.movementInput != Vector2.zero)
         {
-            if(player.movementInput.y == 0)
+            if(player.movementInput.y == 0 && hitReactionIndex != 8)
             {
                 // Change State to walking. (Gives access to block) 
                 player.SwitchState(player.WalkingState);
@@ -256,5 +259,7 @@ public class PlayerHitReactionState : PlayerBaseState
             player.animator.SetTrigger("triggerIdle");
             player.SwitchState(player.IdleState);
         }
+
+        //player.SwitchState(player.IdleState);
     }
 }

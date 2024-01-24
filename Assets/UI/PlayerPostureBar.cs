@@ -16,7 +16,8 @@ public class PlayerPostureBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        postureSlider.maxValue = player.postureDefault;
+        easePostureSlider.maxValue = player.postureDefault;
     }
 
     // Update is called once per frame

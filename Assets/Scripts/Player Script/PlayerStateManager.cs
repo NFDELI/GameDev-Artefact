@@ -463,4 +463,10 @@ public class PlayerStateManager : MonoBehaviour
             postureCurrent = postureDefault;
         }
     }
+
+    public void StopMovingAnimation()
+    {
+        animator.SetBool("isWalkTowards", false);
+        animator.SetBool("isWalkBackwards", false);
+    }
 }

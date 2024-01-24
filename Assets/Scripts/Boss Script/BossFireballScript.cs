@@ -10,7 +10,7 @@ public class BossFireballScript : MonoBehaviour
     public float speed = 1;
     public float defaultSpeed;
     [SerializeField]
-    public float damage = 1;
+    public float damage = 10f;
     [SerializeField]
     public int hitCount = 1;
     private int forceDirection = -1;

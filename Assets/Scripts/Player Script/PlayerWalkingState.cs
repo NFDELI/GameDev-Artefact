@@ -7,6 +7,7 @@ public class PlayerWalkingState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Walking State");
+        StopMovingAnimation(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -103,6 +104,12 @@ public class PlayerWalkingState : PlayerBaseState
             {
                 // Ensures that the player goes into blocking state.
                 player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
+
+                // Player's posture is broken by posture-chip damage.
+                if (player.postureCurrent <= 0)
+                {
+                    player.nextPlayerHitReaction = 8;
+                }
             }
 
             player.SwitchState(player.HitReactionState);
@@ -119,7 +126,14 @@ public class PlayerWalkingState : PlayerBaseState
             // Fireball have special states/attributes.
             if (player.animator.GetBool("isWalkBackwards"))
             {
-                player.nextPlayerHitReaction = 12;
+                if (player.postureCurrent <= 0)
+                {
+                    player.nextPlayerHitReaction = 8;
+                }
+                else
+                {
+                    player.nextPlayerHitReaction = 12;
+                }
             }
             else
             {
