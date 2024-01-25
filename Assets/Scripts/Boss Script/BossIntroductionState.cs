@@ -10,6 +10,7 @@ public class BossIntroductionState : BossBaseState
             // Boss Loses
             boss.rb.velocity = Vector2.zero;
             boss.isLaunched = false;
+            boss.isPhaseTwo = false;
             boss.animator.SetTrigger("triggerLose");
             boss.attackHighBoxCollider2D.enabled = false;
             boss.attackLowBoxCollider2D.enabled = false;
@@ -20,6 +21,16 @@ public class BossIntroductionState : BossBaseState
             boss.isAiEnabled = false;
 
             boss.PlayPlayerWinAnimationWithDelay(2f);
+        }
+        else if(boss.isPhaseTwo)
+        {
+            // Play fall down animation, then get back up.
+            boss.rb.velocity = Vector2.zero;
+            boss.isLaunched = false;
+            boss.animator.SetTrigger("triggerPhaseTwo");
+
+            // Player Responded.
+            boss.playerStateManager.SwitchState(boss.playerStateManager.IntroductionState);
         }
         else
         {

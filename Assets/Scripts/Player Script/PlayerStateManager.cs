@@ -432,6 +432,11 @@ public class PlayerStateManager : MonoBehaviour
         audioScript.PlayRyuLoseVoice();
     }
 
+    public void RyuTransitionVoice()
+    {
+        audioScript.PlayRyuTransitionVoice();
+    }
+
     public void GoIdleWithDelay(float delay)
     {
         animator.SetTrigger("triggerIdle");
@@ -468,5 +473,15 @@ public class PlayerStateManager : MonoBehaviour
     {
         animator.SetBool("isWalkTowards", false);
         animator.SetBool("isWalkBackwards", false);
+    }
+
+    public void StartPlayerPhaseTwoAnimationWithDelay(float delay)
+    {
+        Invoke("StartPlayerPhaseTwoAnimation", delay);
+    }
+
+    private void StartPlayerPhaseTwoAnimation()
+    {
+        animator.SetTrigger("triggerPhaseTwo");
     }
 }

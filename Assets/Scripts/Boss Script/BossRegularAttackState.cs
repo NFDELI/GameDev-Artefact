@@ -1,5 +1,4 @@
-using System.Collections;
-using Unity.VisualScripting;
+using System;
 using UnityEngine;
 
 public class BossRegularAttackState : BossBaseState
@@ -29,6 +28,12 @@ public class BossRegularAttackState : BossBaseState
 
     int[] attackPatternTwelve = { 24, 0 }; // Anti Air - A faster Dragon Punch.
 
+    int[] attackPatternFourteen = { 3, 10, 8, 0};
+
+    // Phase-2 Attack Strings.
+    int[] attackPatternThirteen = { 3, 10, 22, 6, 11, 5, 0 };
+
+
     int[] relaxAttackPattern = { 0 }; // Do nothing, allow the player to poke.
 
     public override void EnterState(BossStateManager boss)
@@ -47,7 +52,7 @@ public class BossRegularAttackState : BossBaseState
         if (boss.nextAttackPatternChoice == -1)
         {
             // No attack pattern Forced.
-            attackPatternChoice = Random.Range(1, 9);
+            attackPatternChoice = UnityEngine.Random.Range(1, 9);
         }
         else
         {
@@ -56,7 +61,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        //attackPatternChoice = 100;
+        attackPatternChoice = 6;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -79,7 +84,16 @@ public class BossRegularAttackState : BossBaseState
             case 6:
                 // Never do Fireball on its own.
                 //attackPatternChosen = attackPatternSix;
-                attackPatternChosen = relaxAttackPattern;
+
+                if(boss.isPhaseTwo)
+                {
+                    attackPatternChosen = attackPatternThirteen;
+                }
+                else
+                {
+                    attackPatternChosen = attackPatternFourteen;
+                }
+
                 break;
             case 7:
                 // Never do Dragon Punch on its own.
@@ -97,7 +111,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 100:
                 // Long Range Mixup here!
-                int chance = Random.Range(1, 3);
+                int chance = UnityEngine.Random.Range(1, 3);
                 if(chance == 1)
                 {
                     if(boss.isNearPlayer)
@@ -219,8 +233,9 @@ public class BossRegularAttackState : BossBaseState
                 boss.rb.AddForce(new Vector2(0.2f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 break;
             case 1:
+                boss.ReTrackPlayer();
                 boss.animator.SetTrigger("triggerAttackOne");
-                boss.rb.AddForce(new Vector2(2f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(3f * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(10, new Vector2(0.75f, 0), 0, 0.5f, 3);
                 boss.nextBossSwingSoundIndex = 0;
                 //boss.audioScript.PlayLightAttackSound();
@@ -256,8 +271,9 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 6:
                 // Light Low Kick.
+                boss.ReTrackPlayer();
                 boss.animator.SetTrigger("triggerLightKickLow");
-                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.rb.AddForce(new Vector2(3 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
                 boss.AttackHitProperty(5, new Vector2(0.5f, 0), 1, 0.25f, 3);
                 boss.nextBossSwingSoundIndex = 0;
                 break;
@@ -265,7 +281,7 @@ public class BossRegularAttackState : BossBaseState
                 // Medium Low Kick.
                 boss.animator.SetTrigger("triggerMediumKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(8, new Vector2(0.5f, 0), 1, 0.25f, 4);
+                boss.AttackHitProperty(8, new Vector2(0.5f, 0), 1, 0.20f, 4);
                 boss.nextBossSwingSoundIndex = 1;
                 break;
             case 8:
@@ -286,6 +302,20 @@ public class BossRegularAttackState : BossBaseState
                 boss.nextBossSwingSoundIndex = 2;
                 boss.spriteRenderer.color = Color.red;
                 break;
+            case 10:
+                // Heavy Kick High. (Player Style)
+                boss.animator.SetTrigger("triggerHeavyKickHigh");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(2, new Vector2(3f, 2f), 14, 0.7f, 5);
+                boss.nextBossSwingSoundIndex = 2;
+                break;
+            case 11:
+                // Knee Kick Delayed.
+                boss.animator.SetTrigger("triggerKneeDelayed");
+                boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
+                boss.AttackHitProperty(2, new Vector2(3f, 2f), 14, 0.7f, 5);
+                boss.nextBossSwingSoundIndex = 2;
+                break;
             case 20:
                 // Boss performs a fireball Attack.
                 boss.animator.SetTrigger("triggerSpecialOne");
@@ -294,7 +324,8 @@ public class BossRegularAttackState : BossBaseState
             case 21:
                 // Boss Performs a Dragon Punch Attack.
                 boss.animator.SetTrigger("triggerSpecialThree");
-                boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
+                boss.AttackHitProperty(10, new Vector2(0.25f, 0), 0, 0.25f, 4);
+                boss.nextBossSwingSoundIndex = 2;
                 break;
             case 22:
                 // Teleport Behind player Close.

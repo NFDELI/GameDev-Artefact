@@ -17,6 +17,8 @@ public class BossHealthBar : MonoBehaviour
     void Start()
     {
         //currentHealth = boss.health;
+        healthSlider.maxValue = boss.health;
+        easeHealthSlider.maxValue = boss.health;
     }
 
     // Update is called once per frame

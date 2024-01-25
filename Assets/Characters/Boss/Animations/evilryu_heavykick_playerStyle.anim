@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: evilryu_heavykick_high
+  m_Name: evilryu_heavykick_playerStyle
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,23 +21,27 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 96864d1306dcd64409f4384dda49269c, type: 3}
+      value: {fileID: 21300000, guid: cb0c7a831dcb892469e4cf9d4687434c, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 045a8848749f394479c554593c3cfe49, type: 3}
+      value: {fileID: 21300000, guid: 32dd596e77a9a064e8cb0ecde310bfd4, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: 96812c72dbe8c6f49b842cdd45913215, type: 3}
+      value: {fileID: 21300000, guid: 9ca861eede433c848ad6491af36baecf, type: 3}
     - time: 0.25
-      value: {fileID: 21300000, guid: 0053728dd1d7ed344a2c123db6ca168b, type: 3}
+      value: {fileID: 21300000, guid: 70804a61ef9e9bb4ea3a51e0ee40f767, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 6e237b64af2706849992ff0da70b4970, type: 3}
+      value: {fileID: 21300000, guid: 24cc18b130611c34f8b4e89f5133ee57, type: 3}
     - time: 0.41666666
-      value: {fileID: 21300000, guid: 35cf443971a3e3646952b093cfef2829, type: 3}
+      value: {fileID: 21300000, guid: 6ea87a13da533db48ba338fea24d4cca, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 932d3f1a05fe22244ad2d2128731d402, type: 3}
+      value: {fileID: 21300000, guid: fc74def11a668944cad41fa5464f371c, type: 3}
     - time: 0.5833333
-      value: {fileID: 21300000, guid: 1e96b06222a6c77498d673e2c5768b1d, type: 3}
+      value: {fileID: 21300000, guid: 63b0778c7252f0141822e5a041db2003, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: ee1abff6057077947817ec1fabe5967c, type: 3}
+      value: {fileID: 21300000, guid: c769a1c3f31ff554a895d9b9e11aca12, type: 3}
+    - time: 0.75
+      value: {fileID: 21300000, guid: d037b8e5a4f0a0142bcf523b76e68e32, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: cc061deac9b3fbc4291e5e3b5df7ac78, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -60,26 +64,28 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 96864d1306dcd64409f4384dda49269c, type: 3}
-    - {fileID: 21300000, guid: 045a8848749f394479c554593c3cfe49, type: 3}
-    - {fileID: 21300000, guid: 96812c72dbe8c6f49b842cdd45913215, type: 3}
-    - {fileID: 21300000, guid: 0053728dd1d7ed344a2c123db6ca168b, type: 3}
-    - {fileID: 21300000, guid: 6e237b64af2706849992ff0da70b4970, type: 3}
-    - {fileID: 21300000, guid: 35cf443971a3e3646952b093cfef2829, type: 3}
-    - {fileID: 21300000, guid: 932d3f1a05fe22244ad2d2128731d402, type: 3}
-    - {fileID: 21300000, guid: 1e96b06222a6c77498d673e2c5768b1d, type: 3}
-    - {fileID: 21300000, guid: ee1abff6057077947817ec1fabe5967c, type: 3}
+    - {fileID: 21300000, guid: cb0c7a831dcb892469e4cf9d4687434c, type: 3}
+    - {fileID: 21300000, guid: 32dd596e77a9a064e8cb0ecde310bfd4, type: 3}
+    - {fileID: 21300000, guid: 9ca861eede433c848ad6491af36baecf, type: 3}
+    - {fileID: 21300000, guid: 70804a61ef9e9bb4ea3a51e0ee40f767, type: 3}
+    - {fileID: 21300000, guid: 24cc18b130611c34f8b4e89f5133ee57, type: 3}
+    - {fileID: 21300000, guid: 6ea87a13da533db48ba338fea24d4cca, type: 3}
+    - {fileID: 21300000, guid: fc74def11a668944cad41fa5464f371c, type: 3}
+    - {fileID: 21300000, guid: 63b0778c7252f0141822e5a041db2003, type: 3}
+    - {fileID: 21300000, guid: c769a1c3f31ff554a895d9b9e11aca12, type: 3}
+    - {fileID: 21300000, guid: d037b8e5a4f0a0142bcf523b76e68e32, type: 3}
+    - {fileID: 21300000, guid: cc061deac9b3fbc4291e5e3b5df7ac78, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.75
+    m_StopTime: 0.9166666
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 0
+    m_LoopTime: 1
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
@@ -94,13 +100,6 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: TurnOffAttackBoxCollider
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 0.25
     functionName: PlayAttackSwingSound
     data: 
@@ -122,7 +121,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6666667
+  - time: 0.8333333
     functionName: FlagAttackAnimationChain
     data: 
     objectReferenceParameter: {fileID: 0}

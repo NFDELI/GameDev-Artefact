@@ -23,6 +23,10 @@ public class BossIdleState : BossBaseState
 
         if(boss.shouldResetAiTimer)
         {
+            if(boss.isPhaseTwo)
+            {
+                boss.defaultAiDecisionTimer = 0.8f;
+            }
             boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
             boss.shouldResetAiTimer = true;
         }
@@ -81,17 +85,6 @@ public class BossIdleState : BossBaseState
                 boss.aiDecisionTimer -= Time.deltaTime;
             }
         }
-        
-        // Check for Attack Input.
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            boss.SwitchState(boss.RegularAttackState);
-        }
-        
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            boss.SwitchState(boss.BossSpecialAttackState);
-        }
 
         // Sprite-Flip Check.
         if(boss.spriteFlip)
@@ -109,6 +102,17 @@ public class BossIdleState : BossBaseState
         if (boss.canAntiAirAgain)
         {
             boss.bossAntiAirBoxCollider2D.enabled = true;
+        }
+
+        if (boss.health <= boss.phaseTwoHealthThreshold)
+        {
+            boss.initiatePhaseTwo = true;
+        }
+
+        if (boss.initiatePhaseTwo && !boss.isPhaseTwo)
+        {
+            boss.isPhaseTwo = true;
+            boss.SwitchState(boss.IntroductionState);
         }
     }
 

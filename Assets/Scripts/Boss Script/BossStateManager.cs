@@ -38,7 +38,7 @@ public class BossStateManager : MonoBehaviour
     public bool canGetUp = false;
 
     // Boss Attributes
-    public float health = 100.0f;
+    public float health;
     public float postureDefault;
     public float postureCurrent = 3.0f;
     public float movementSpeed = 1.0f;
@@ -94,6 +94,9 @@ public class BossStateManager : MonoBehaviour
     public int nextAttackPatternChoice = -1;
 
     public bool canAntiAirAgain;
+    public bool isPhaseTwo = false;
+    public bool initiatePhaseTwo = false;
+    public float phaseTwoHealthThreshold;
 
     // Start is called before the first frame update
     void Start()
@@ -103,14 +106,11 @@ public class BossStateManager : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         bossBoxCollider2D = GetComponent<BoxCollider2D>();
 
+        phaseTwoHealthThreshold = health / 2;
+
         postureCurrent = postureDefault;
 
         currentState = IntroductionState;
-
-        //currentState = IdleState;
-        //nextBossHitStunDuration = 9;
-        //nextBossHitReaction = 9;
-        //currentState = HitReactionState;
 
         currentState.EnterState(this);
     }
@@ -523,5 +523,28 @@ public class BossStateManager : MonoBehaviour
     public void PlayUnblockableWarningSound()
     {
         audioScript.PlayUnblockableWarningSound();
+    }
+
+    public void PlayPostureBreakVoice()
+    {
+        audioScript.PlayBossPostureBreakVoice();
+    }
+
+    public void PlayTransitionVoice()
+    {
+        audioScript.PlayEvilRyuTransitionVoice();
+    }
+
+    public void ToggleOnAI()
+    {
+        // Used in Boss's Phase Two Animation.
+        isAiEnabled = true;
+        SwitchState(IdleState);
+    }
+
+    public void MakePlayerGoIdleState()
+    {
+        // This function is used at boss's Phase Two Animation.
+        playerStateManager.GoIdle();
     }
 }

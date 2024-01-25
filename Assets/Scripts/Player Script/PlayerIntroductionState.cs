@@ -5,6 +5,9 @@ public class PlayerIntroductionState : PlayerBaseState
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Player Introduction State");
+
+        player.StopMovingAnimation();
+
         if (player.health <= 0)
         {
             player.rb.velocity = Vector2.zero;
@@ -17,11 +20,11 @@ public class PlayerIntroductionState : PlayerBaseState
             player.bossStateManager.isAiEnabled = false;
             player.PlayBossWinAnimationWithDelay(2f);
         }
-        else if (player.bossStateManager.health <= 0)
+        else if(player.bossStateManager.isPhaseTwo && player.bossStateManager.health > 0)
         {
-            //player.animator.SetTrigger("triggerIntroduction");
+            player.StartPlayerPhaseTwoAnimationWithDelay(1f);
         }
-        else
+        else if(!player.bossStateManager.initiatePhaseTwo && !player.bossStateManager.isPhaseTwo)
         {
             player.animator.SetTrigger("triggerIntroduction");
         }

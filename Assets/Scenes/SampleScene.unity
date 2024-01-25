@@ -877,6 +877,7 @@ MonoBehaviour:
   RyuIntroductionVoice2: {fileID: 8300000, guid: d82824337730746459d35361b9996b4a, type: 3}
   EvilRyuIntroductionVoice: {fileID: 8300000, guid: c6dcf5dec7554b84aaeeb78432e25262, type: 3}
   EvilRyuTransitionVoice: {fileID: 8300000, guid: b43fc04be47fc204ea696bc704d87533, type: 3}
+  RyuTransitionVoice: {fileID: 8300000, guid: df04fc46d997392418560696ca86b2da, type: 3}
   RyuLoseVoice: {fileID: 8300000, guid: c3ca37a3b3960a648a1156c2c1cdac2f, type: 3}
   EvilRyuLoseVoice1: {fileID: 8300000, guid: 17d4cd2835bcbeb4397af5e569b850d8, type: 3}
   EvilRyuLoseVoice2: {fileID: 8300000, guid: 99d68bb76ece3fa4ab488d625e1c70ec, type: 3}
@@ -1297,7 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.7
   defaultSpeed: 1.7
-  damage: 1
+  damage: 10
   hitCount: 1
   stunDuration: 0.4
   knockbackForce: {x: 0, y: 0}
@@ -4188,7 +4189,7 @@ Transform:
   m_GameObject: {fileID: 2007554644}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.455, y: 0, z: 0}
+  m_LocalPosition: {x: 1.455, y: -0.005, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4322,7 +4323,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 100
+  health: 30
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -4358,6 +4359,9 @@ MonoBehaviour:
   isLaunched: 0
   nextAttackPatternChoice: -1
   canAntiAirAgain: 0
+  isPhaseTwo: 0
+  initiatePhaseTwo: 0
+  phaseTwoHealthThreshold: 0
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0

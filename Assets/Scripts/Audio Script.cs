@@ -51,6 +51,7 @@ public class AudioScript : MonoBehaviour
     public AudioClip EvilRyuIntroductionVoice;
 
     public AudioClip EvilRyuTransitionVoice;
+    public AudioClip RyuTransitionVoice;
 
     public AudioClip RyuLoseVoice;
     public AudioClip EvilRyuLoseVoice1;
@@ -279,5 +280,10 @@ public class AudioScript : MonoBehaviour
     public void PlayUnblockableWarningSound()
     {
         source.PlayOneShot(UnblockableWarningSound);
+    }
+
+    public void PlayRyuTransitionVoice()
+    {
+        source.PlayOneShot(RyuTransitionVoice);
     }
 }
