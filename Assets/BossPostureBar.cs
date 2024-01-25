@@ -22,6 +22,9 @@ public class BossPostureBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        postureSlider.maxValue = boss.postureDefault;
+        easePostureSlider.maxValue = boss.postureDefault;
+
         if (postureSlider.value != boss.postureCurrent)
         {
             postureSlider.value = boss.postureCurrent;

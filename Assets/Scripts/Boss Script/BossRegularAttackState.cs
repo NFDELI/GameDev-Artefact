@@ -28,10 +28,11 @@ public class BossRegularAttackState : BossBaseState
 
     int[] attackPatternTwelve = { 24, 0 }; // Anti Air - A faster Dragon Punch.
 
-    int[] attackPatternFourteen = { 3, 10, 8, 0};
+    int[] attackPatternSixFourteen = { 3, 10, 8, 0};
 
     // Phase-2 Attack Strings.
-    int[] attackPatternThirteen = { 3, 10, 22, 6, 11, 5, 0 };
+    int[] attackPatternSixThirteen = { 11, 10, 22, 6, 3, 5, 0 };
+    int[] attackPatternSevenFifteen = { 11, 4, 23, 20, 0 };
 
 
     int[] relaxAttackPattern = { 0 }; // Do nothing, allow the player to poke.
@@ -61,7 +62,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 6;
+        //attackPatternChoice = 7;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -87,18 +88,26 @@ public class BossRegularAttackState : BossBaseState
 
                 if(boss.isPhaseTwo)
                 {
-                    attackPatternChosen = attackPatternThirteen;
+                    attackPatternChosen = attackPatternSixThirteen;
                 }
                 else
                 {
-                    attackPatternChosen = attackPatternFourteen;
+                    attackPatternChosen = attackPatternSixFourteen;
                 }
 
                 break;
             case 7:
                 // Never do Dragon Punch on its own.
                 //attackPatternChosen = attackPatternSeven;
-                attackPatternChosen = relaxAttackPattern;
+
+                if(boss.isPhaseTwo)
+                {
+                    attackPatternChosen = attackPatternSevenFifteen;
+                }
+                else
+                {
+                    attackPatternChosen = relaxAttackPattern;
+                }
                 break;
             case 8:
                 attackPatternChosen = attackPatternEight;
@@ -111,6 +120,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 100:
                 // Long Range Mixup here!
+                currentAttackPatternIndex = 0;
                 int chance = UnityEngine.Random.Range(1, 3);
                 if(chance == 1)
                 {
@@ -137,9 +147,6 @@ public class BossRegularAttackState : BossBaseState
                         // Immediately Unblockable Punch.
                         attackPatternChosen = attackPatternTen;
                     }
-
-                    // Long-Range Unblockable.
-                    attackPatternChosen = attackPatternTen;
                 }
                 boss.nextAttackPatternChoice = -1;
                 break;

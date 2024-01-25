@@ -643,7 +643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   postureSlider: {fileID: 1309101253}
   easePostureSlider: {fileID: 1850790412}
-  maxPosture: 6
+  maxPosture: -1
   currentPosture: 0
   boss: {fileID: 2007554650}
 --- !u!1 &515208556
@@ -4323,7 +4323,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 30
+  health: 50
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -4351,7 +4351,7 @@ MonoBehaviour:
   blocksUntilParry: 3
   blocksUntilParryDefault: 3
   hasReachedPlayer: 0
-  isNearPlayer: 0
+  isNearPlayer: 1
   rangeCheckBox: {fileID: 755074770}
   longRangeBox: {fileID: 1154588120}
   isVulnerable: 1

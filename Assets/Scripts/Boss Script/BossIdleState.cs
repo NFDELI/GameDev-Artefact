@@ -34,10 +34,13 @@ public class BossIdleState : BossBaseState
         // Boss is not attempting to attack.
         boss.rangeCheckBox.enabled = false;
 
-        // Close Range -> 1, 2, 3, 4, 5, 6, 7, 8.
-        // Far Range -> 9, 10;
+        // Close Range Attacks -> 1, 2, 3, 4, 5, 6, 7, 8.
+        // Far Range Attacks -> 9, 10;
         attackDistanceChoice = Random.Range(1, 11);
-        //attackDistanceChoice = 9;
+
+        // Debugging Distance Choice.
+        // attackDistanceChoice = 8;
+
         if (attackDistanceChoice < 9)
         {
             // Close Range Chosen.

@@ -28,6 +28,7 @@ public class BossIntroductionState : BossBaseState
             boss.rb.velocity = Vector2.zero;
             boss.isLaunched = false;
             boss.animator.SetTrigger("triggerPhaseTwo");
+            boss.postureDefault = 8;
 
             // Player Responded.
             boss.playerStateManager.SwitchState(boss.playerStateManager.IntroductionState);
