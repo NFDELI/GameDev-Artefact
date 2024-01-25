@@ -809,7 +809,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1.3}
+  m_LocalPosition: {x: 0, y: 0, z: -1.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2618,11 +2618,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: ab4957a6402ab94409197d4d0e87f610, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -4807,6 +4807,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 519420034}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: playerInput
+      value: 
+      objectReference: {fileID: 3992531850973660276}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: fireballScript
       value: 
       objectReference: {fileID: 1937929084}
@@ -4857,6 +4861,17 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 1763481131821655318, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
   m_PrefabInstance: {fileID: 3992531850973660254}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3992531850973660276 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8622644590958482894, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+  m_PrefabInstance: {fileID: 3992531850973660254}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

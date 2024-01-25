@@ -19,6 +19,7 @@ public class PlayerIdleState : PlayerBaseState
         player.wasBlocking = false;
 
         player.playerBoxCollider2D.enabled = true;
+        player.playerInput.enabled = true;
     }
 
     public override void UpdateState(PlayerStateManager player)

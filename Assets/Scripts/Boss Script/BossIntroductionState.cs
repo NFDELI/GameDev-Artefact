@@ -27,6 +27,7 @@ public class BossIntroductionState : BossBaseState
             // Play fall down animation, then get back up.
             boss.rb.velocity = Vector2.zero;
             boss.isLaunched = false;
+            boss.isAiEnabled = false;
             boss.animator.SetTrigger("triggerPhaseTwo");
             boss.postureDefault = 8;
 

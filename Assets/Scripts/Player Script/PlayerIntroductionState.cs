@@ -7,6 +7,7 @@ public class PlayerIntroductionState : PlayerBaseState
         Debug.Log("Player Introduction State");
 
         player.StopMovingAnimation();
+        player.playerInput.enabled = false;
 
         if (player.health <= 0)
         {

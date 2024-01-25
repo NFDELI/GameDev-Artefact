@@ -70,7 +70,7 @@ public class PlayerStateManager : MonoBehaviour
     public BossStateManager bossStateManager;
 
     // New Input System Varaibles.
-    private PlayerInputActions input = null;
+    public PlayerInputActions input = null;
 
     public bool isLanding = false;
     public bool jumpDirection = false;
@@ -78,7 +78,8 @@ public class PlayerStateManager : MonoBehaviour
     public bool isCloseToWallRight = false;
     public bool isLaunched = false;
 
-    public GameObject canvasReference; 
+    public GameObject canvasReference;
+    public PlayerInput playerInput;
 
     private void Awake()
     {
