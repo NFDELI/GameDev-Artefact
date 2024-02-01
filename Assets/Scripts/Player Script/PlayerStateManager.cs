@@ -493,7 +493,7 @@ public class PlayerStateManager : MonoBehaviour
     public void ApplyHitPropertyShin1()
     {
         audioScript.PlaySuperAttackSound();
-        AttackHitProperty(3, new Vector2(0, 0), 14, 100f, 13);
+        AttackHitProperty(3, new Vector2(0, 0), 14, 999f, 13);
     }
 
     public void ApplyHitPropertyShinFinal()
@@ -504,16 +504,28 @@ public class PlayerStateManager : MonoBehaviour
 
     public void SuperTimeStart()
     {
-        DarkenEffect.SetActive(true);
-        bossStateManager.animator.speed = 0f;
-        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //DarkenEffect.SetActive(true);
+        bossStateManager.isAiEnabled = false;
+        //bossStateManager.animator.speed = 0f;
+        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezePosition;
     }
 
     public void SuperTimeStop()
     {
-        DarkenEffect.SetActive(false);
-        bossStateManager.animator.speed = 1;
-        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //DarkenEffect.SetActive(false);
+        bossStateManager.isAiEnabled = true;
+        //bossStateManager.animator.speed = 1f;
         bossStateManager.rb.constraints = RigidbodyConstraints2D.None;
+        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+    }
+
+    public void TurnOnDarkenEffect()
+    {
+        DarkenEffect.SetActive(true);
+    }
+
+    public void TurnOffDarkenEffect()
+    {
+        DarkenEffect.SetActive(false);
     }
 }

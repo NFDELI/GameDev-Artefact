@@ -14,6 +14,8 @@ public class PlayerHitReactionState : PlayerBaseState
         Debug.Log("Entered Hit Reaction State");
 
         player.StopMovingAnimation();
+        player.TurnOffDarkenEffect();
+        player.SuperTimeStop();
 
         hitReactionIndex = player.nextPlayerHitReaction;
         hitStunTime = player.nextPlayerHitStunDuration;

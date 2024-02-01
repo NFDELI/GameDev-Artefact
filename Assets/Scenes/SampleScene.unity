@@ -4575,7 +4575,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 1
+  health: 65
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -4616,6 +4616,7 @@ MonoBehaviour:
   initiatePhaseTwo: 0
   phaseTwoHealthThreshold: 0
   cameraShakeScript: {fileID: 519420036}
+  isBossConfirmedDead: 0
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0

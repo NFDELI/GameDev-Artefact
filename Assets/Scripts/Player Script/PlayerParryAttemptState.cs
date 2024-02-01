@@ -10,7 +10,7 @@ public class PlayerParryAttemptState : PlayerBaseState
 
         player.StopMovingAnimation();
 
-        if (player.animator.GetBool("isCrouch"))
+        if (player.movementInput.y < 0)
         {
             isLowParryAttempt = true;
             isHighParryAttempt = false;

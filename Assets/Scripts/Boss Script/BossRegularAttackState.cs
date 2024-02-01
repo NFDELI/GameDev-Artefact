@@ -62,7 +62,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging.
-        //attackPatternChoice = 7;
+        attackPatternChoice = 2;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -288,7 +288,7 @@ public class BossRegularAttackState : BossBaseState
                 // Medium Low Kick.
                 boss.animator.SetTrigger("triggerMediumKickLow");
                 boss.rb.AddForce(new Vector2(2 * boss.forceDirection * boss.rb.mass, 0), ForceMode2D.Impulse);
-                boss.AttackHitProperty(8, new Vector2(0.5f, 0), 1, 0.20f, 4);
+                boss.AttackHitProperty(8, new Vector2(0.5f, 0), 1, 0.15f, 4);
                 boss.nextBossSwingSoundIndex = 1;
                 break;
             case 8:

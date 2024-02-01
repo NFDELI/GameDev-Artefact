@@ -135,6 +135,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
     {
         if(player.movementInput.y < 0 && !player.bossStateManager.nextHitReceiveSuper)
         {
+            //player.PlayerLandingFalse();
             player.FlagSpinningKickEnd();
             player.rb.totalForce = Vector2.zero;
             player.SwitchState(player.SpecialAttackState);

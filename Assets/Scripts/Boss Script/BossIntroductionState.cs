@@ -4,17 +4,15 @@ public class BossIntroductionState : BossBaseState
 {
     public override void EnterState(BossStateManager boss)
     {
-        Debug.Log("Boss Introduction State");
+        Debug.LogError("Boss Introduction State");
         if(boss.health <= 0)
         {
             // Boss Loses
-            boss.animator.speed = 0.5f;
-            boss.rb.constraints = RigidbodyConstraints2D.None;
-            boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            boss.animator.SetTrigger("triggerLose");
+            boss.CallDeathAnimationWithDelay(2f);
             boss.rb.velocity = Vector2.zero;
             boss.isLaunched = false;
             boss.isPhaseTwo = false;
-            boss.animator.SetTrigger("triggerLose");
             boss.attackHighBoxCollider2D.enabled = false;
             boss.attackLowBoxCollider2D.enabled = false;
             boss.attackUnblockableBoxCollider2D.enabled = false;

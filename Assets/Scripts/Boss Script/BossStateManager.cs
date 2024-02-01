@@ -101,6 +101,8 @@ public class BossStateManager : MonoBehaviour
 
     public CameraShakeScript cameraShakeScript;
 
+    public bool isBossConfirmedDead; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -549,5 +551,24 @@ public class BossStateManager : MonoBehaviour
     {
         // This function is used at boss's Phase Two Animation.
         playerStateManager.GoIdle();
+    }
+
+    public void ConfirmBossDeath()
+    {
+        isBossConfirmedDead = true;
+    }
+
+    public void CallDeathAnimationWithDelay(float delay)
+    {
+        Invoke("CallDeathAnimation", delay);
+    }
+
+    private void CallDeathAnimation()
+    {
+        if(!isBossConfirmedDead)
+        {
+            animator.SetTrigger("triggerLose");
+            isBossConfirmedDead = true;
+        }
     }
 }

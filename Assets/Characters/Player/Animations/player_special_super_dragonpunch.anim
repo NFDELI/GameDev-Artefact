@@ -158,6 +158,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: TurnOnDarkenEffect
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: TurnOffAttackBoxCollider
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 0.13333334
     functionName: ApplyHitPropertyShin1
     data: 
@@ -265,6 +279,13 @@ AnimationClip:
     messageOptions: 0
   - time: 1.4666667
     functionName: PlayerLandingTrue
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.5333333
+    functionName: TurnOffDarkenEffect
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

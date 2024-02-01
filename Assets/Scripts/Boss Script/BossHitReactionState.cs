@@ -121,7 +121,6 @@ public class BossHitReactionState : BossBaseState
                 // Boss is Stunned by Super Dragon Punch.
                 boss.rb.totalForce = hitForce;
                 boss.rb.constraints = RigidbodyConstraints2D.FreezePosition;
-                //boss.transform.position = boss.playerStateManager.attackBoxCollider.transform.localPosition + new Vector2(boss.playerStateManager.attackBoxCollider.offset.x, boss.playerStateManager.attackBoxCollider.offset.y);
                 boss.animator.SetTrigger("triggerSuperPunched");
                 break;
             default:
