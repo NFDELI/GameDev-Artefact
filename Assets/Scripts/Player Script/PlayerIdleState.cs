@@ -17,6 +17,7 @@ public class PlayerIdleState : PlayerBaseState
         player.rb.velocity = new Vector2(0, 0);
         player.attackCounter = 1;
         player.wasBlocking = false;
+        player.bossStateManager.nextHitReceiveSuper = false;
 
         player.playerBoxCollider2D.enabled = true;
         player.playerInput.enabled = true;

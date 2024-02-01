@@ -251,6 +251,90 @@ MonoBehaviour:
   maxPosture: 6
   currentPosture: 0
   player: {fileID: 3992531850973660271}
+--- !u!1 &255949367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 255949369}
+  - component: {fileID: 255949368}
+  m_Layer: 0
+  m_Name: Darken Effect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!212 &255949368
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255949367}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.65882355}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &255949369
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255949367}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.16232, y: 0.056624, z: 0}
+  m_LocalScale: {x: 6.539, y: 6.539, z: 6.539}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &278456166
 GameObject:
   m_ObjectHideFlags: 0
@@ -734,6 +818,8 @@ GameObject:
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
   - component: {fileID: 519420034}
+  - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -853,11 +939,14 @@ MonoBehaviour:
   MediumAttackSound: {fileID: 8300000, guid: 7fbb9034d46f0e944884782b7488545e, type: 3}
   HeavyAttackSound: {fileID: 8300000, guid: 8f17a86b0dc2dfd43922bbee4fe01400, type: 3}
   FireballShotSound: {fileID: 8300000, guid: 2c51ec52e82b5104c9d618351d014d5d, type: 3}
+  SuperAttackSound: {fileID: 8300000, guid: 2f3348179058c6046b935236548a0abc, type: 3}
   LightHitSound: {fileID: 8300000, guid: 2a8b484955440214f978ff04cdbd3d4f, type: 3}
   MediumHitSound: {fileID: 8300000, guid: 8394485c74171f34981d6e87b61823b0, type: 3}
   HeavyHitSound: {fileID: 8300000, guid: 0398dbf0bc9fe064cb98371d21c10d71, type: 3}
   HeavySecondHitSound: {fileID: 8300000, guid: 99f38d4bb108676439b6ab8cdeafdc49, type: 3}
   FireballHitSound: {fileID: 8300000, guid: 8153a11ea3e81434fa826ab4067662bf, type: 3}
+  SuperHitSound: {fileID: 8300000, guid: 75d51e098d8af74488259a023bb0450f, type: 3}
+  SuperHitSoundEnding: {fileID: 8300000, guid: 3b3bb7fd7830b244fbd4a3abb15cce27, type: 3}
   BlockAttackSound: {fileID: 8300000, guid: a993aff5f3f9ea04387942ccb9a9c406, type: 3}
   ParryAttackSound: {fileID: 8300000, guid: ea4fe1ef8f501c64daaee3ea63d2d642, type: 3}
   ParryRyuVoiceSound: {fileID: 8300000, guid: f8fc5df1e686e784d80fee9de5a2dd1a, type: 3}
@@ -871,6 +960,8 @@ MonoBehaviour:
   RyuFireballVoice: {fileID: 8300000, guid: e8ffd861059e671429edb0fd3bd4a60a, type: 3}
   RyuDragonPunchVoice: {fileID: 8300000, guid: 0d3ac5acf2b8b0b4daee2da79ba292c3, type: 3}
   EvilRyuDragonPunchVoice: {fileID: 8300000, guid: f31475e710c7ed94b8135b04e09c7175, type: 3}
+  RyuShinVoice: {fileID: 8300000, guid: d02c32914aa907f4cbd3cfa8a1b89d67, type: 3}
+  RyuSuperShoryuken: {fileID: 8300000, guid: a4f3e9601364f8e48afdfd5296c3a471, type: 3}
   EvilRyuTeleportVoice: {fileID: 8300000, guid: 0c5945d9a261fc743aaf65c71197d763, type: 3}
   EvilRyuTeleportSound: {fileID: 8300000, guid: 69b0f1ba2a4c1374b9bf39b03d87db1f, type: 3}
   RyuIntroductionVoice1: {fileID: 8300000, guid: 416578e4287715b49bd5ee4140467635, type: 3}
@@ -883,6 +974,39 @@ MonoBehaviour:
   EvilRyuLoseVoice2: {fileID: 8300000, guid: 99d68bb76ece3fa4ab488d625e1c70ec, type: 3}
   EvilRyuWinVoice: {fileID: 8300000, guid: f859991dd8ef33c41a7c175f06587145, type: 3}
   UnblockableWarningSound: {fileID: 8300000, guid: 907d872658bd3cd46b705fe4c6665c8c, type: 3}
+--- !u!95 &519420035
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5ca15a0397e814b4b9ef76d61841bc47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &519420036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b083bb17955460048832e4844265d310, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648321739
 GameObject:
   m_ObjectHideFlags: 0
@@ -4451,7 +4575,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 50
+  health: 1
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -4461,6 +4585,7 @@ MonoBehaviour:
   nextBossHitStunDuration: 0.5
   nextBossDamageReceived: 0
   nextBossForceReceived: {x: 0, y: 0}
+  nextHitReceiveSuper: 0
   isSpinnigKickForce: 0
   isTeleporting: 0
   spinningKickSpeed: 1
@@ -4490,6 +4615,7 @@ MonoBehaviour:
   isPhaseTwo: 0
   initiatePhaseTwo: 0
   phaseTwoHealthThreshold: 0
+  cameraShakeScript: {fileID: 519420036}
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4811,6 +4937,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3992531850973660276}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: DarkenEffect
+      value: 
+      objectReference: {fileID: 255949367}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: fireballScript
       value: 
       objectReference: {fileID: 1937929084}
@@ -4890,3 +5020,4 @@ SceneRoots:
   - {fileID: 371674124}
   - {fileID: 897492249}
   - {fileID: 1439397168}
+  - {fileID: 255949369}

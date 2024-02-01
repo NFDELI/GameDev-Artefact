@@ -8,6 +8,9 @@ public class BossIntroductionState : BossBaseState
         if(boss.health <= 0)
         {
             // Boss Loses
+            boss.animator.speed = 0.5f;
+            boss.rb.constraints = RigidbodyConstraints2D.None;
+            boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             boss.rb.velocity = Vector2.zero;
             boss.isLaunched = false;
             boss.isPhaseTwo = false;

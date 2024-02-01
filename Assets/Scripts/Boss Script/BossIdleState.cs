@@ -55,7 +55,19 @@ public class BossIdleState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.aiDecisionTimer <= 0)
+        if (boss.health <= boss.phaseTwoHealthThreshold)
+        { 
+            boss.initiatePhaseTwo = true;
+        }
+
+        if (boss.initiatePhaseTwo && !boss.isPhaseTwo)
+        {
+            boss.isPhaseTwo = true;
+            boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
+            boss.SwitchState(boss.IntroductionState);
+        }
+
+        if (boss.aiDecisionTimer <= 0)
         {
             boss.bossAntiAirBoxCollider2D.enabled = false;
 
@@ -105,17 +117,6 @@ public class BossIdleState : BossBaseState
         if (boss.canAntiAirAgain)
         {
             boss.bossAntiAirBoxCollider2D.enabled = true;
-        }
-
-        if (boss.health <= boss.phaseTwoHealthThreshold)
-        {
-            boss.initiatePhaseTwo = true;
-        }
-
-        if (boss.initiatePhaseTwo && !boss.isPhaseTwo)
-        {
-            boss.isPhaseTwo = true;
-            boss.SwitchState(boss.IntroductionState);
         }
     }
 

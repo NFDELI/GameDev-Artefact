@@ -50,6 +50,7 @@ public class BossStateManager : MonoBehaviour
     public float nextBossHitStunDuration = 1.0f;
     public float nextBossDamageReceived = 0f;
     public Vector2 nextBossForceReceived = new Vector2(0, 0);
+    public bool nextHitReceiveSuper = false;
 
     // Boss Attack Variables.
     public bool isSpinnigKickForce = false;
@@ -97,6 +98,8 @@ public class BossStateManager : MonoBehaviour
     public bool isPhaseTwo = false;
     public bool initiatePhaseTwo = false;
     public float phaseTwoHealthThreshold;
+
+    public CameraShakeScript cameraShakeScript;
 
     // Start is called before the first frame update
     void Start()

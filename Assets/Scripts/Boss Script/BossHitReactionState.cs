@@ -19,7 +19,13 @@ public class BossHitReactionState : BossBaseState
         hitDamage = boss.nextBossDamageReceived;
         boss.spriteRenderer.color = Color.white;
 
-        // Boss can takeknockback when getting hit.
+        if(boss.nextHitReceiveSuper)
+        {
+            // Call Camera Shake and Darken Camera.
+            boss.cameraShakeScript.CameraShake();
+        }
+
+        // Boss can take knockback when getting hit.
         boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         boss.bossAntiAirBoxCollider2D.enabled = false;
@@ -106,8 +112,17 @@ public class BossHitReactionState : BossBaseState
                 // Boss Gets hit by Dragon Punch.
                 //boss.rb.velocity = Vector2.zero;
                 boss.rb.totalForce = hitForce;
+                boss.rb.constraints = RigidbodyConstraints2D.None;
+                boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 boss.SetIsLaunchedWithDelay(0.4f);
                 boss.animator.SetTrigger("triggerLaunched");
+                break;
+            case 14:
+                // Boss is Stunned by Super Dragon Punch.
+                boss.rb.totalForce = hitForce;
+                boss.rb.constraints = RigidbodyConstraints2D.FreezePosition;
+                //boss.transform.position = boss.playerStateManager.attackBoxCollider.transform.localPosition + new Vector2(boss.playerStateManager.attackBoxCollider.offset.x, boss.playerStateManager.attackBoxCollider.offset.y);
+                boss.animator.SetTrigger("triggerSuperPunched");
                 break;
             default:
                 break;
@@ -168,6 +183,8 @@ public class BossHitReactionState : BossBaseState
         if(boss.health <= 0)
         {
             // Boss Dies.
+            Debug.LogWarning("BOSS DIEEEDD");
+            boss.bossBoxCollider2D.enabled = false;
             boss.SwitchState(boss.IntroductionState);
         }
 

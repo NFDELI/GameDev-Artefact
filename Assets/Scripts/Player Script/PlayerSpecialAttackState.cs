@@ -1,3 +1,4 @@
+using UnityEditor.Build;
 using UnityEngine;
 
 public class PlayerSpecialAttackState : PlayerBaseState
@@ -48,6 +49,14 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     player.isUnblockableCounter = true;
                     player.rb.velocity = Vector2.zero;
                 }
+            }
+            if(player.movementInput.y < 0)
+            {
+                // Super Dragon Punch. (Hit Properties overriden in Animator)
+                player.bossStateManager.nextHitReceiveSuper = true;
+                player.animator.SetTrigger("triggerSuperSpecialOne");
+                player.isUnblockableCounter = true;
+                player.rb.velocity = Vector2.zero;
             }
         }
         else
@@ -121,5 +130,14 @@ public class PlayerSpecialAttackState : PlayerBaseState
     private void SpinningKickForce(PlayerStateManager player)
     {
         player.rb.AddForce(new Vector2(1.5f * player.forceDirection, 0), ForceMode2D.Impulse);
+    }
+    public override void OnSpecialAttackPerformed(PlayerStateManager player)
+    {
+        if(player.movementInput.y < 0 && !player.bossStateManager.nextHitReceiveSuper)
+        {
+            player.FlagSpinningKickEnd();
+            player.rb.totalForce = Vector2.zero;
+            player.SwitchState(player.SpecialAttackState);
+        }
     }
 }

@@ -81,6 +81,8 @@ public class PlayerStateManager : MonoBehaviour
     public GameObject canvasReference;
     public PlayerInput playerInput;
 
+    public GameObject DarkenEffect;
+
     private void Awake()
     {
         input = new PlayerInputActions();
@@ -179,19 +181,6 @@ public class PlayerStateManager : MonoBehaviour
             forceDirection = 1;
             playerBoxCollider2D.offset = new Vector2(0.053f, -0.78f);
         }
-
-        // Debugging
-        //if (Input.GetKeyDown(KeyCode.Keypad0))
-        //{
-        //    health = 0;
-        //}
-        //
-        //if(Input.GetKeyDown(KeyCode.R))
-        //{
-        //    currentState = HitReactionState;
-        //    nextPlayerHitReaction = 0;
-        //    currentState.EnterState(this);
-        //}
     }
 
     public void SwitchState(PlayerBaseState state)
@@ -489,5 +478,42 @@ public class PlayerStateManager : MonoBehaviour
     private void StartPlayerPhaseTwoAnimation()
     {
         animator.SetTrigger("triggerPhaseTwo");
+    }
+
+    public void RyuShinVoice()
+    {
+        audioScript.PlayRyuShinVoice();
+    }
+
+    public void RyuSuperShoryukenVoice()
+    {
+        audioScript.PlayRyuSuperShoryukenVoice();
+    }
+
+    public void ApplyHitPropertyShin1()
+    {
+        audioScript.PlaySuperAttackSound();
+        AttackHitProperty(3, new Vector2(0, 0), 14, 100f, 13);
+    }
+
+    public void ApplyHitPropertyShinFinal()
+    {
+        audioScript.PlaySuperAttackSound();
+        AttackHitProperty(5, new Vector2(20, 90), 13, 999f, 14);
+    }
+
+    public void SuperTimeStart()
+    {
+        DarkenEffect.SetActive(true);
+        bossStateManager.animator.speed = 0f;
+        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+    }
+
+    public void SuperTimeStop()
+    {
+        DarkenEffect.SetActive(false);
+        bossStateManager.animator.speed = 1;
+        bossStateManager.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        bossStateManager.rb.constraints = RigidbodyConstraints2D.None;
     }
 }

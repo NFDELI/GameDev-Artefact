@@ -14,6 +14,8 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip FireballShotSound;
 
+    public AudioClip SuperAttackSound;
+
     // Attack Hit Sounds.
     public AudioClip LightHitSound;
     public AudioClip MediumHitSound;
@@ -21,6 +23,9 @@ public class AudioScript : MonoBehaviour
     public AudioClip HeavySecondHitSound;
 
     public AudioClip FireballHitSound;
+
+    public AudioClip SuperHitSound;
+    public AudioClip SuperHitSoundEnding;
 
     // Attack Block Sounds.
     public AudioClip BlockAttackSound;
@@ -41,6 +46,9 @@ public class AudioScript : MonoBehaviour
     public AudioClip RyuFireballVoice;
     public AudioClip RyuDragonPunchVoice;
     public AudioClip EvilRyuDragonPunchVoice;
+
+    public AudioClip RyuShinVoice;
+    public AudioClip RyuSuperShoryuken;
 
     public AudioClip EvilRyuTeleportVoice;
     public AudioClip EvilRyuTeleportSound;
@@ -108,6 +116,12 @@ public class AudioScript : MonoBehaviour
                 break;
             case 12:
                 PlayFireballHitSound();
+                break;
+            case 13:
+                PlaySuperHitSound();
+                break;
+            case 14:
+                PlaySuperHitSoundEnding();
                 break;
             default:
                 break;
@@ -286,4 +300,30 @@ public class AudioScript : MonoBehaviour
     {
         source.PlayOneShot(RyuTransitionVoice);
     }
+
+    public void PlayRyuShinVoice()
+    {
+        source.PlayOneShot(RyuShinVoice);
+    }
+
+    public void PlayRyuSuperShoryukenVoice()
+    {
+        source.PlayOneShot(RyuSuperShoryuken);
+    }
+
+    public void PlaySuperHitSound()
+    {
+        source.PlayOneShot(SuperHitSound);
+    }
+
+    public void PlaySuperHitSoundEnding()
+    {
+        source.PlayOneShot(SuperHitSoundEnding);
+    }
+
+    public void PlaySuperAttackSound()
+    {
+        source.PlayOneShot(SuperAttackSound);
+    }
+
 }

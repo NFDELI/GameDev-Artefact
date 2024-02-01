@@ -71,5 +71,10 @@ public class PlayerCrouchState : PlayerBaseState
         player.animator.SetBool("isCrouch", false);
         player.SwitchState(player.RegularAttackState);
     }
+    public override void OnSpecialAttackPerformed(PlayerStateManager player)
+    {
+        player.animator.SetBool("isCrouch", false);
+        player.SwitchState(player.SpecialAttackState);
+    }
 
 }
