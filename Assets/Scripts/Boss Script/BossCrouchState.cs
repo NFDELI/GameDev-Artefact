@@ -11,18 +11,7 @@ public class BossCrouchState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.movementInput.y >= 0)
-        {
-            boss.animator.SetBool("isCrouch", false);
-            boss.SwitchState(boss.IdleState);
-        }
 
-        // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            boss.SwitchState(boss.RegularAttackState);
-            //boss.animator.SetBool("isCrouch", false);
-        }
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision collision)

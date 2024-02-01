@@ -53,22 +53,10 @@ public class PlayerRegularAttackState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U) && player.canAttackChain)
-        {
-            player.SwitchState(player.RegularAttackState);
-        }
-
         // Check for Special Attack Input.
         if (Input.GetKeyDown(KeyCode.I) && player.canAttackChain)
         {
             player.SwitchState(player.SpecialAttackState);
-        }
-
-        // Check for Parry Input.
-        if (Input.GetKeyDown(KeyCode.Space) && player.canAttackChain)
-        {
-            player.SwitchState(player.ParryAttemptState);
         }
     }
 
@@ -100,5 +88,20 @@ public class PlayerRegularAttackState : PlayerBaseState
         }
 
         player.attackBoxCollider.enabled = false;
+    }
+
+    public override void OnRegularAttackPerformed(PlayerStateManager player)
+    {
+        if(player.canAttackChain)
+        {
+            player.SwitchState(player.RegularAttackState);
+        }
+    }
+    public override void OnParryPerformed(PlayerStateManager player)
+    {
+        if(player.canAttackChain)
+        {
+            player.SwitchState(player.ParryAttemptState);
+        }
     }
 }

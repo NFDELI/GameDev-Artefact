@@ -44,17 +44,6 @@ public class PlayerIdleState : PlayerBaseState
             }
         }
 
-        // Check for Attack Input.
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            player.SwitchState(player.RegularAttackState);
-        }
-
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            player.SwitchState(player.SpecialAttackState);
-        }
-
         // Sprite-Flip Check.
         if(player.spriteFlip)
         {
@@ -101,5 +90,15 @@ public class PlayerIdleState : PlayerBaseState
     public override void OnParryPerformed(PlayerStateManager player)
     {
         player.SwitchState(player.ParryAttemptState);
+    }
+
+    public override void OnRegularAttackPerformed(PlayerStateManager player)
+    {
+        player.SwitchState(player.RegularAttackState);
+    }
+
+    public override void OnSpecialAttackPerformed(PlayerStateManager player)
+    {
+        player.SwitchState(player.SpecialAttackState);
     }
 }

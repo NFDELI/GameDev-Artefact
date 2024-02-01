@@ -90,12 +90,16 @@ public class PlayerStateManager : MonoBehaviour
     {
         input.Enable();
         input.Player.Parry.performed += OnParryPerformed;
+        input.Player.NormalAttack.performed += OnRegularAttackPerformed;
+        input.Player.SpecialAttack.performed += OnSpecialAttackPerformed;
     }
 
     private void OnDisable()
     {
         input.Disable();
         input.Player.Parry.performed -= OnParryPerformed;
+        input.Player.NormalAttack.performed -= OnRegularAttackPerformed;
+        input.Player.SpecialAttack.performed -= OnSpecialAttackPerformed;
     }
 
     // Start is called before the first frame update
@@ -306,17 +310,18 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnParryPerformed(this);
     }
 
+    private void OnRegularAttackPerformed(InputAction.CallbackContext value)
+    {
+        currentState.OnRegularAttackPerformed(this);
+    }
+    
+    private void OnSpecialAttackPerformed(InputAction.CallbackContext value)
+    {
+        currentState.OnSpecialAttackPerformed(this);
+    }
+
     public void PlayerLandingTrue()
     {
-        //if(spriteFlip)
-        //{
-        //    jumpDirection = true;
-        //}
-        //else
-        //{
-        //    jumpDirection = false;
-        //}
-
         isLanding = true;
         playerLandCollider2D.enabled = true;
         playerBoxCollider2D.enabled = true;

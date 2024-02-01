@@ -18,13 +18,6 @@ public class PlayerCrouchState : PlayerBaseState
             player.animator.SetBool("isCrouch", false);
             player.SwitchState(player.IdleState);
         }
-
-        // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            player.SwitchState(player.RegularAttackState);
-            //player.animator.SetBool("isCrouch", false);
-        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
@@ -70,7 +63,13 @@ public class PlayerCrouchState : PlayerBaseState
 
     public override void OnParryPerformed(PlayerStateManager player)
     {
+        player.animator.SetBool("isCrouch", false);
         player.SwitchState(player.ParryAttemptState);
+    }
+    public override void OnRegularAttackPerformed(PlayerStateManager player)
+    {
+        player.animator.SetBool("isCrouch", false);
+        player.SwitchState(player.RegularAttackState);
     }
 
 }

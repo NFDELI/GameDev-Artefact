@@ -65,19 +65,6 @@ public class BossWalkingState : BossBaseState
                 boss.SwitchState(boss.CrouchState);
             }
         }
-
-        // Check for Attack Input.
-        //if (Input.GetKeyDown(KeyCode.U))
-        //{
-        //    StopMovingAnimation(boss);
-        //    boss.SwitchState(boss.RegularAttackState);
-        //}
-        //
-        //if (Input.GetKeyDown(KeyCode.I))
-        //{
-        //    StopMovingAnimation(boss);
-        //    boss.SwitchState(boss.BossSpecialAttackState);
-        //}
     }
 
     public override void OnCollisionEnter(BossStateManager boss, Collision collision)

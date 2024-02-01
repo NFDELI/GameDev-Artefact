@@ -9,4 +9,6 @@ public abstract class PlayerBaseState
     public abstract void OnCollisionEnter(PlayerStateManager player, Collision collision);
     public abstract void OnTriggerEnter2D(PlayerStateManager player, Collider2D collision);
     public virtual void OnParryPerformed(PlayerStateManager player) { }
+    public virtual void OnRegularAttackPerformed(PlayerStateManager player) { }
+    public virtual void OnSpecialAttackPerformed(PlayerStateManager player) { }
 }

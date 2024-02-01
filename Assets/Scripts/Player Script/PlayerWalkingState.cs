@@ -70,25 +70,6 @@ public class PlayerWalkingState : PlayerBaseState
                 player.SwitchState(player.CrouchState);
             }
         }
-
-        // Check for Attack Input.
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            StopMovingAnimation(player);
-            player.SwitchState(player.RegularAttackState);
-        }
-
-        if (Input.GetKeyDown(KeyCode.I))
-        {
-            StopMovingAnimation(player);
-            player.SwitchState(player.SpecialAttackState);
-        }
-
-        // Check for Parry Input.
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            player.SwitchState(player.ParryAttemptState);
-        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
@@ -157,5 +138,23 @@ public class PlayerWalkingState : PlayerBaseState
     {
         player.animator.SetBool("isWalkTowards", false);
         player.animator.SetBool("isWalkBackwards", false);
+    }
+
+    public override void OnParryPerformed(PlayerStateManager player)
+    {
+        StopMovingAnimation(player);
+        player.SwitchState(player.ParryAttemptState);
+    }
+
+    public override void OnRegularAttackPerformed(PlayerStateManager player)
+    {
+        StopMovingAnimation(player);
+        player.SwitchState(player.RegularAttackState);
+    }
+
+    public override void OnSpecialAttackPerformed(PlayerStateManager player)
+    {
+        StopMovingAnimation(player);
+        player.SwitchState(player.SpecialAttackState);
     }
 }
