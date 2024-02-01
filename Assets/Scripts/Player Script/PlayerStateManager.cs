@@ -49,6 +49,8 @@ public class PlayerStateManager : MonoBehaviour
     public float health = 100.0f;
     public float postureDefault;
     public float postureCurrent;
+    public float superCurrent;
+    public float superMax;
     public float movementSpeed = 1.0f;
     public float jumpForce = 2.0f;
     public float diagonalJumpForce = 2.0f;
@@ -527,5 +529,22 @@ public class PlayerStateManager : MonoBehaviour
     public void TurnOffDarkenEffect()
     {
         DarkenEffect.SetActive(false);
+    }
+
+    public void ChangeSuperAmount(float amount)
+    {
+        superCurrent += amount;
+
+        if(superCurrent > superMax)
+        {
+            // Prevent Super amount from overflowing.
+            superCurrent = superMax;
+        }
+
+        if(superCurrent < 0)
+        {
+            // Prevent Super amount from underflowing.
+            superCurrent = 0;
+        }
     }
 }

@@ -10,6 +10,9 @@ public class BossHitReactionState : BossBaseState
     private float hitDamage;
     private Vector2 hitForce;
     private bool timerStarted = false;
+
+    private float playerSuperGainOnBlock = 0.5f;
+    private float playerSuperGainOnHit = 1f;
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Hit Reaction State");
@@ -36,11 +39,15 @@ public class BossHitReactionState : BossBaseState
                 // Get Hit High.
                 boss.animator.SetTrigger("triggerHitReactionHigh");
                 timerStarted = true;
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnHit);
                 break;
             case 1:
                 // Get Hit Low.
                 boss.animator.SetTrigger("triggerHitReactionLow");
                 timerStarted = true;
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnHit);
                 break;
             case 2:
                 // Get Hit then Fall.
@@ -57,6 +64,8 @@ public class BossHitReactionState : BossBaseState
 
                 // Posture chip-damage.
                 boss.TakePostureDamage(0.25f);
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnBlock);
                 break;
             case 5:
                 // Low Block.
@@ -66,6 +75,8 @@ public class BossHitReactionState : BossBaseState
 
                 // Posture chip-damage.
                 boss.TakePostureDamage(0.25f);
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnBlock);
                 break;
             case 6:
                 // High Parry.
@@ -73,6 +84,7 @@ public class BossHitReactionState : BossBaseState
                 boss.playerStateManager.TakePostureDamage(1f);
                 boss.audioScript.PlayParryAttackSound();
                 boss.GainPosture(0.5f);
+
                 break;
             case 7:
                 // Low Parry.
@@ -84,6 +96,8 @@ public class BossHitReactionState : BossBaseState
                 boss.audioScript.PlayBossPostureBreakVoice();
                 boss.nextBossHitSoundIndex = -1;
                 timerStarted = true;
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnHit);
                 break;
             case 9:
                 // Dazed/Stunned.
@@ -107,6 +121,8 @@ public class BossHitReactionState : BossBaseState
 
                 // Boss Gets hit by Tatsu, allow player to recover quickly.
                 boss.playerStateManager.animator.SetTrigger("triggerTatsuRecovery");
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnHit);
                 break;
             case 13:
                 // Boss Gets hit by Dragon Punch.
@@ -116,6 +132,8 @@ public class BossHitReactionState : BossBaseState
                 boss.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
                 boss.SetIsLaunchedWithDelay(0.4f);
                 boss.animator.SetTrigger("triggerLaunched");
+
+                boss.playerStateManager.ChangeSuperAmount(playerSuperGainOnBlock);
                 break;
             case 14:
                 // Boss is Stunned by Super Dragon Punch.

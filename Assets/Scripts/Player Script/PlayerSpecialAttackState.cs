@@ -52,11 +52,15 @@ public class PlayerSpecialAttackState : PlayerBaseState
             }
             if(player.movementInput.y < 0)
             {
-                // Super Dragon Punch. (Hit Properties overriden in Animator)
-                player.bossStateManager.nextHitReceiveSuper = true;
-                player.animator.SetTrigger("triggerSuperSpecialOne");
-                player.isUnblockableCounter = true;
-                player.rb.velocity = Vector2.zero;
+                if(player.superCurrent >= player.superMax)
+                {
+                    // Super Dragon Punch. (Hit Properties overriden in Animator)
+                    player.bossStateManager.nextHitReceiveSuper = true;
+                    player.animator.SetTrigger("triggerSuperSpecialOne");
+                    player.isUnblockableCounter = true;
+                    player.rb.velocity = Vector2.zero;
+                    player.superCurrent = 0;
+                }
             }
         }
         else
@@ -133,12 +137,17 @@ public class PlayerSpecialAttackState : PlayerBaseState
     }
     public override void OnSpecialAttackPerformed(PlayerStateManager player)
     {
-        if(player.movementInput.y < 0 && !player.bossStateManager.nextHitReceiveSuper)
+        // Check if player can do a supermove cancel.
+        if (player.movementInput.y < 0 && !player.bossStateManager.nextHitReceiveSuper)
         {
-            //player.PlayerLandingFalse();
-            player.FlagSpinningKickEnd();
-            player.rb.totalForce = Vector2.zero;
-            player.SwitchState(player.SpecialAttackState);
+            // Check if player has enough super metre to do the Super Move.
+            if(player.superCurrent >= player.superMax)
+            {
+                player.FlagSpinningKickEnd();
+                player.rb.totalForce = Vector2.zero;
+                player.SwitchState(player.SpecialAttackState);
+                player.superCurrent = 0;
+            }
         }
     }
 }

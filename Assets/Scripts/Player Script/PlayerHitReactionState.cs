@@ -7,6 +7,9 @@ public class PlayerHitReactionState : PlayerBaseState
     private int hitReactionIndex;
     private float hitStunTime;
     private float hitDamage;
+    private float blockSuperGain = 0.25f;
+    private float gettingHitSuperGain = 0.5f;
+    private float parryingSuperGain = 0.25f;
     private Vector2 hitForce;
     private bool timerStarted = false;
     public override void EnterState(PlayerStateManager player)
@@ -29,11 +32,13 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Get Hit High.
                 player.animator.SetTrigger("triggerHitReactionHigh");
                 timerStarted = true;
+                player.ChangeSuperAmount(gettingHitSuperGain);
                 break;
             case 1:
                 // Get Hit Low.
                 player.animator.SetTrigger("triggerHitReactionLow");
                 timerStarted = true;
+                player.ChangeSuperAmount(gettingHitSuperGain);
                 break;
             case 2:
                 // Get Hit then Fall.
@@ -59,6 +64,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.postureCurrent -= 0.5f;
 
                 player.wasBlocking = true;
+                player.ChangeSuperAmount(blockSuperGain);
                 break;
             case 5:
                 // Low Block.
@@ -70,7 +76,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 hitDamage = hitDamage / 4;
                 hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
                 player.postureCurrent -= 0.5f;
-
+                player.ChangeSuperAmount(blockSuperGain);
                 break;
             case 6:
                 // High Parry.
@@ -78,6 +84,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
                 player.GainPosture();
+                player.ChangeSuperAmount(parryingSuperGain);
                 break;
             case 7:
                 // Low Parry.
@@ -85,6 +92,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.spriteRenderer.color = Color.blue;
                 player.bossStateManager.TakePostureDamage(1f);
                 player.GainPosture();
+                player.ChangeSuperAmount(parryingSuperGain);
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
@@ -117,6 +125,8 @@ public class PlayerHitReactionState : PlayerBaseState
                 hitForce = player.bossStateManager.fireballScript.knockbackForce;
                 hitDamage = player.bossStateManager.fireballScript.damage;
                 hitStunTime = player.bossStateManager.fireballScript.stunDuration;
+
+                player.ChangeSuperAmount(gettingHitSuperGain);
                 break;
             case 12:
                 // Blocks Fireball Attack.
@@ -126,18 +136,24 @@ public class PlayerHitReactionState : PlayerBaseState
                 hitStunTime = 0.25f;
                 hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
                 hitDamage = player.bossStateManager.fireballScript.damage / 4;
+
+                player.ChangeSuperAmount(blockSuperGain);
                 break;
             case 13:
                 // Parry a Fireball. (Does not do posture damage to the boss)
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
                 player.GainPosture();
+
+                player.ChangeSuperAmount(parryingSuperGain);
                 break;
             case 14:
                 // Player gets hit by Dragon Punch.
                 player.rb.totalForce = Vector2.zero;
                 player.SetIsLaunchedWithDelay(0.4f);
                 player.animator.SetTrigger("triggerLaunched");
+
+                player.ChangeSuperAmount(gettingHitSuperGain);
                 break;
             default:
                 break;
