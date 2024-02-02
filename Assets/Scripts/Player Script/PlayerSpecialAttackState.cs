@@ -25,13 +25,14 @@ public class PlayerSpecialAttackState : PlayerBaseState
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
+                    player.isUnblockableCounter = false;
 
                     // The Y-Axis Velocity is Negative due to a bug. -Jan 17 2024.
                     player.AttackHitProperty(3, new Vector2(15f, 70f), 12, 999, 5);
                     SpinningKickForce(player);
                 }
             }
-            else
+            else if (player.movementInput.y >= 0)
             {
                 // Left Special.
                 if (player.spriteFlip)

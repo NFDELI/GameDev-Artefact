@@ -11,8 +11,8 @@ public class BossHitReactionState : BossBaseState
     private Vector2 hitForce;
     private bool timerStarted = false;
 
-    private float playerSuperGainOnBlock = 0.5f;
-    private float playerSuperGainOnHit = 1f;
+    private float playerSuperGainOnBlock = 0.25f;
+    private float playerSuperGainOnHit = 0.75f;
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Hit Reaction State");
