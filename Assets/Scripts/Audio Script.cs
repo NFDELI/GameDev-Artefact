@@ -68,6 +68,8 @@ public class AudioScript : MonoBehaviour
     public AudioClip EvilRyuWinVoice;
 
     public AudioClip UnblockableWarningSound;
+    public AudioClip SuperBarReadySound;
+    public AudioClip SuperBarNotReadySound;
 
     public void PlayJumpSound()
     {
@@ -324,6 +326,16 @@ public class AudioScript : MonoBehaviour
     public void PlaySuperAttackSound()
     {
         source.PlayOneShot(SuperAttackSound);
+    }
+
+    public void PlaySuperBarReadySound()
+    {
+        source.PlayOneShot(SuperBarReadySound);
+    }
+
+    public void PlaySuperBarNotReadySound()
+    {
+        source.PlayOneShot(SuperBarNotReadySound);
     }
 
 }

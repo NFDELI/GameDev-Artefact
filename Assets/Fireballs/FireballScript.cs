@@ -9,7 +9,7 @@ public class FireballScript : MonoBehaviour
     public float speed = 1;
     public float defaultSpeed;
     [SerializeField]
-    public float damage = 1;
+    public float damage = 0.5f;
     [SerializeField]
     public int hitCount = 1;
     private int forceDirection = -1;
@@ -21,7 +21,7 @@ public class FireballScript : MonoBehaviour
     public Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
-    private BoxCollider2D boxCollider;
+    public BoxCollider2D boxCollider;
 
     [SerializeField]
     private SpriteRenderer ownerSprite;
@@ -51,6 +51,7 @@ public class FireballScript : MonoBehaviour
     {
         isSpawned = true;
         spriteRenderer.flipX = ownerSprite.flipX;
+        boxCollider.enabled = true;
         if (spriteRenderer.flipX)
         {
             forceDirection = 1;

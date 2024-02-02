@@ -52,14 +52,22 @@ public class PlayerSpecialAttackState : PlayerBaseState
             }
             if(player.movementInput.y < 0)
             {
-                if(player.superCurrent >= player.superMax)
+                // Attempt to use Super Dragon Punch.
+                if((player.superCurrent >= player.superMax) && !player.isUnblockableCounter)
                 {
                     // Super Dragon Punch. (Hit Properties overriden in Animator)
+                    player.audioScript.PlayUnblockableWarningSound();
                     player.bossStateManager.nextHitReceiveSuper = true;
                     player.animator.SetTrigger("triggerSuperSpecialOne");
                     player.isUnblockableCounter = true;
                     player.rb.velocity = Vector2.zero;
                     player.superCurrent = 0;
+                }
+                else
+                {
+                    // Super Bar not Ready.
+                    player.audioScript.PlaySuperBarNotReadySound();
+                    player.SwitchState(player.IdleState);
                 }
             }
         }
@@ -141,12 +149,16 @@ public class PlayerSpecialAttackState : PlayerBaseState
         if (player.movementInput.y < 0 && !player.bossStateManager.nextHitReceiveSuper)
         {
             // Check if player has enough super metre to do the Super Move.
-            if(player.superCurrent >= player.superMax)
+            if((player.superCurrent >= player.superMax) && !player.isUnblockableCounter)
             {
                 player.FlagSpinningKickEnd();
                 player.rb.totalForce = Vector2.zero;
                 player.SwitchState(player.SpecialAttackState);
                 player.superCurrent = 0;
+            }
+            else
+            {
+                player.audioScript.PlaySuperBarNotReadySound();
             }
         }
     }

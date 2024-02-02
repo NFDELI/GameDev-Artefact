@@ -1137,6 +1137,8 @@ MonoBehaviour:
   EvilRyuLoseVoice2: {fileID: 8300000, guid: 99d68bb76ece3fa4ab488d625e1c70ec, type: 3}
   EvilRyuWinVoice: {fileID: 8300000, guid: f859991dd8ef33c41a7c175f06587145, type: 3}
   UnblockableWarningSound: {fileID: 8300000, guid: 907d872658bd3cd46b705fe4c6665c8c, type: 3}
+  SuperBarReadySound: {fileID: 8300000, guid: a1da0f2cee7261d47b3e1e83248eca76, type: 3}
+  SuperBarNotReadySound: {fileID: 8300000, guid: 37c63db48417271489d8db65e875941b, type: 3}
 --- !u!95 &519420035
 Animator:
   serializedVersion: 5
@@ -3781,6 +3783,7 @@ MonoBehaviour:
   superSlider: {fileID: 127055047}
   easeSuperSlider: {fileID: 2044172534}
   fillColor: {fileID: 1606761732}
+  defaultFillColor: {r: 0, g: 0, b: 0, a: 0}
   maxSuper: 12
   currentSuper: 0
   player: {fileID: 3992531850973660271}
@@ -4305,7 +4308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: damage
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: ownerSprite

@@ -218,6 +218,13 @@ public class BossHitReactionState : BossBaseState
         {
             boss.SwitchState(boss.HitReactionState);
         }
+
+        if(collision.tag == "PlayerFireball")
+        {
+            boss.AttackHitPropertySelf(boss.playerFireballScript.damage, new Vector2(1, 0), 1, 0.5f, 12);
+            boss.playerFireballScript.boxCollider.enabled = false;
+            boss.SwitchState(boss.HitReactionState);
+        }
     }
 
     private void StunFinished(BossStateManager boss)

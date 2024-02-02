@@ -85,6 +85,8 @@ public class PlayerStateManager : MonoBehaviour
 
     public GameObject DarkenEffect;
 
+    public bool shouldPlaySuperbarMax;
+
     private void Awake()
     {
         input = new PlayerInputActions();
@@ -535,16 +537,23 @@ public class PlayerStateManager : MonoBehaviour
     {
         superCurrent += amount;
 
-        if(superCurrent > superMax)
+        if(superCurrent >= superMax)
         {
             // Prevent Super amount from overflowing.
             superCurrent = superMax;
+            if(shouldPlaySuperbarMax)
+            {
+                audioScript.PlaySuperBarReadySound();
+                shouldPlaySuperbarMax = false;
+            }
         }
 
-        if(superCurrent < 0)
+        if(superCurrent <= 0)
         {
             // Prevent Super amount from underflowing.
             superCurrent = 0;
+            shouldPlaySuperbarMax = true;
         }
     }
+
 }
