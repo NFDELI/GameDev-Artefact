@@ -27,6 +27,10 @@ public class BossIdleState : BossBaseState
             {
                 boss.defaultAiDecisionTimer = 0.8f;
             }
+            else
+            {
+                boss.defaultAiDecisionTimer = 1.7f;
+            }
             boss.aiDecisionTimer = boss.defaultAiDecisionTimer;
             boss.shouldResetAiTimer = true;
         }

@@ -571,4 +571,15 @@ public class BossStateManager : MonoBehaviour
             isBossConfirmedDead = true;
         }
     }
+
+    public void InstantAttackAIDelayed(float delay)
+    {
+        Invoke("InstantAttackAI", delay);
+    }
+
+    private void InstantAttackAI()
+    {
+        shouldResetAiTimer = false;
+        aiDecisionTimer = 0;
+    }
 }

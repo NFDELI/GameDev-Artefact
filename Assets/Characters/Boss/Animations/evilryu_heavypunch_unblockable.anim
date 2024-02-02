@@ -28,23 +28,23 @@ AnimationClip:
       value: {fileID: 21300000, guid: 59bfd6750e756bd42a3a8ff3a8c60fc1, type: 3}
     - time: 0.25
       value: {fileID: 21300000, guid: 59bfd6750e756bd42a3a8ff3a8c60fc1, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: 67c45645911945849b9a872a332f3b23, type: 3}
-    - time: 0.5833333
-      value: {fileID: 21300000, guid: e8a089f8d870ccd428dbcdf16382c078, type: 3}
-    - time: 0.6666667
-      value: {fileID: 21300000, guid: 1afb737af60684d4b8aa6693748f9fd5, type: 3}
     - time: 0.75
-      value: {fileID: 21300000, guid: 15336d51742424447aa7aca27c35f35f, type: 3}
+      value: {fileID: 21300000, guid: 67c45645911945849b9a872a332f3b23, type: 3}
     - time: 0.8333333
-      value: {fileID: 21300000, guid: 445a6b2667872a84eac04d0060c21f6e, type: 3}
+      value: {fileID: 21300000, guid: e8a089f8d870ccd428dbcdf16382c078, type: 3}
     - time: 0.9166667
-      value: {fileID: 21300000, guid: 49a00b6c9bdf7994498382eef1ee9574, type: 3}
+      value: {fileID: 21300000, guid: 1afb737af60684d4b8aa6693748f9fd5, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: 09d0370672d6b3c46978b17868baae06, type: 3}
+      value: {fileID: 21300000, guid: 15336d51742424447aa7aca27c35f35f, type: 3}
     - time: 1.0833334
-      value: {fileID: 21300000, guid: adcf29d64ff645c4c8024a26a74b356c, type: 3}
+      value: {fileID: 21300000, guid: 445a6b2667872a84eac04d0060c21f6e, type: 3}
     - time: 1.1666666
+      value: {fileID: 21300000, guid: 49a00b6c9bdf7994498382eef1ee9574, type: 3}
+    - time: 1.25
+      value: {fileID: 21300000, guid: 09d0370672d6b3c46978b17868baae06, type: 3}
+    - time: 1.3333334
+      value: {fileID: 21300000, guid: adcf29d64ff645c4c8024a26a74b356c, type: 3}
+    - time: 1.4166666
       value: {fileID: 21300000, guid: 44102fa8193225846b7a591028a3aa5d, type: 3}
     attribute: m_Sprite
     path: 
@@ -86,7 +86,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.25
+    m_StopTime: 1.5
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -106,28 +106,28 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.5
+  - time: 0.75
     functionName: PlayAttackSwingSound
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.5833333
+  - time: 0.8333333
     functionName: TurnOnUnblockableBoxCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.9166667
+  - time: 1.1666666
     functionName: TurnOffUnblockableBoxCollider
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 1.1666666
+  - time: 1.4166666
     functionName: FlagAttackAnimationChain
     data: 
     objectReferenceParameter: {fileID: 0}

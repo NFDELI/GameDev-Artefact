@@ -503,7 +503,7 @@ public class PlayerStateManager : MonoBehaviour
     public void ApplyHitPropertyShinFinal()
     {
         audioScript.PlaySuperAttackSound();
-        AttackHitProperty(5, new Vector2(20, 90), 13, 999f, 14);
+        AttackHitProperty(4, new Vector2(20, 90), 13, 999f, 14);
     }
 
     public void SuperTimeStart()

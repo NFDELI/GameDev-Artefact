@@ -8,8 +8,8 @@ public class PlayerHitReactionState : PlayerBaseState
     private float hitStunTime;
     private float hitDamage;
     private float blockSuperGain = 0.25f;
-    private float gettingHitSuperGain = 0.5f;
-    private float parryingSuperGain = 0.25f;
+    private float gettingHitSuperGain = 0.75f;
+    private float parryingSuperGain = 0.5f;
     private Vector2 hitForce;
     private bool timerStarted = false;
     public override void EnterState(PlayerStateManager player)
@@ -101,7 +101,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.audioScript.PlayPlayerPostureBreakVoice();
                 player.nextPlayerForceReceived = Vector2.zero;
                 hitForce = Vector2.zero;
-                player.bossStateManager.shouldResetAiTimer = false;
                 break;
             case 9:
                 // Dazed/Stunned.
@@ -110,8 +109,10 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 // Boss should immediately punish the player.
                 player.bossStateManager.shouldResetAiTimer = false;
-                player.bossStateManager.aiDecisionTimer = -2f;
+                player.bossStateManager.aiDecisionTimer = 0;
+                player.bossStateManager.InstantAttackAIDelayed(0.3f);
                 player.nextPlayerHitSoundIndex = -1;
+                Debug.LogError("Player Stunned!");
                 break;
             case 10:
                 // Get Up Animation.

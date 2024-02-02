@@ -31,14 +31,14 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     SpinningKickForce(player);
                 }
             }
-            else
+            else if (player.movementInput.y >= 0)
             {
                 // Left Special.
                 if (player.spriteFlip)
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");
-                    player.AttackHitProperty(3, new Vector2(15f , 70f), 12, 999, 5);
+                    player.AttackHitProperty(2, new Vector2(15f , 70f), 12, 999, 5);
                     SpinningKickForce(player);
                 }
                 else
