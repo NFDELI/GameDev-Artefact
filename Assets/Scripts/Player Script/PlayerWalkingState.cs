@@ -89,6 +89,8 @@ public class PlayerWalkingState : PlayerBaseState
                 // Player's posture is broken by posture-chip damage.
                 if(player.postureCurrent <= 0)
                 {
+                    player.nextPlayerDamageReceived = 0;
+                    player.nextPlayerHitStunDuration = 4;
                     player.nextPlayerHitReaction = 8;
                 }
             }

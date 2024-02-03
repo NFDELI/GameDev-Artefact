@@ -369,11 +369,9 @@ public class PlayerStateManager : MonoBehaviour
         {
             nextPlayerHitReaction = 9;
             nextPlayerHitStunDuration = 4;
-            wasBlocking = false;
-            SwitchState(HitReactionState);
-            ResetPosture();
-            //ResetPostureWithDelay(0.5f);
+            ResetPostureWithDelay(0.3f);
             attackBoxCollider.enabled = false;
+            SwitchState(HitReactionState);
         }
     }
 

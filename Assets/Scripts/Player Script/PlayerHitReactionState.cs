@@ -37,12 +37,15 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerHitReactionHigh");
                 timerStarted = true;
                 player.ChangeSuperAmount(gettingHitSuperGain);
+
+                Debug.LogError("TRIGGERED HIGH");
                 break;
             case 1:
                 // Get Hit Low.
                 player.animator.SetTrigger("triggerHitReactionLow");
                 timerStarted = true;
                 player.ChangeSuperAmount(gettingHitSuperGain);
+                Debug.LogError("TRIGGERED LOW");
                 break;
             case 2:
                 // Get Hit then Fall.
@@ -72,13 +75,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.wasBlocking = true;
                 successfulParry = false;
                 player.ChangeSuperAmount(blockSuperGain);
-
-                if (player.postureCurrent <= 0)
-                {
-                    player.nextPlayerHitReaction = 8;
-                    player.SwitchState(player.HitReactionState);
-                }
-
                 break;
             case 5:
                 // Low Block.
@@ -181,11 +177,12 @@ public class PlayerHitReactionState : PlayerBaseState
                 break;
             case 14:
                 // Player gets hit by Dragon Punch.
+                player.animator.SetTrigger("triggerLaunched");
                 player.rb.totalForce = Vector2.zero;
                 player.SetIsLaunchedWithDelay(0.4f);
-                player.animator.SetTrigger("triggerLaunched");
 
                 player.ChangeSuperAmount(gettingHitSuperGain);
+                Debug.LogError("TRIGGERED LAUNCHED");
                 break;
             default:
                 break;
@@ -270,11 +267,15 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 if(player.wasBlocking)
                 {
-                    Debug.LogWarning("WAS BLOCKING WAS CALLED");
                     // Ensures that the player goes into blocking state.
                     player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
+                    if (player.postureCurrent <= 0)
+                    {
+                        player.nextPlayerDamageReceived = 0;
+                        player.nextPlayerHitReaction = 8;
+                        player.nextPlayerHitStunDuration = 4;
+                    }
                 }
-
                 player.SwitchState(player.HitReactionState);
             }
             if(collision.tag == "BossAttackLow")
