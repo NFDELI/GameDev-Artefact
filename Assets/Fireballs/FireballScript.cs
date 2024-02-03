@@ -15,6 +15,9 @@ public class FireballScript : MonoBehaviour
     private int forceDirection = -1;
     public float stunDuration = 0.25f;
 
+    public bool isSuper = false;
+    public bool isFire = false; 
+
     private Vector2 standbyPosition;
     private Vector2 knockbackForce;
 
@@ -72,6 +75,10 @@ public class FireballScript : MonoBehaviour
         animator.SetBool("FireballTravel", true);
         animator.ResetTrigger("FireballHit");
         boxCollider.enabled = true;
+
+        // Reset the Flags.
+        isSuper = false;
+        isFire = false;
     }
     public void FireballHit()
     {

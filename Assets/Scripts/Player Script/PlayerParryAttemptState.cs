@@ -65,6 +65,7 @@ public class PlayerParryAttemptState : PlayerBaseState
             {
                 // Ensures that the player goes into successful parrying state.
                 player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 13, player.nextPlayerHitStunDuration, 8);
+                //player.bossStateManager.fireballScript.hitCount--;
             }
             player.SwitchState(player.HitReactionState);
         }

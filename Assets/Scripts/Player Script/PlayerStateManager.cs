@@ -367,12 +367,23 @@ public class PlayerStateManager : MonoBehaviour
         // This function is called in the animator.
         if (postureCurrent <= 0)
         {
-            nextPlayerHitReaction = 9;
+            nextPlayerHitReaction = 8;
             nextPlayerHitStunDuration = 4;
+            wasBlocking = false;
             SwitchState(HitReactionState);
-            postureCurrent = postureDefault;
-            attackBoxCollider.enabled = false;
+            ResetPostureWithDelay(1f);
+            //attackBoxCollider.enabled = false;
         }
+    }
+
+    public void ResetPostureWithDelay(float delay)
+    {
+        Invoke("ResetPosture", delay);
+    }
+
+    public void ResetPosture()
+    {
+        postureCurrent = postureDefault;
     }
 
     public void FellOnGroundSound()
@@ -475,6 +486,16 @@ public class PlayerStateManager : MonoBehaviour
             // Prevent Overflow of Posture.
             postureCurrent = postureDefault;
         }
+    }
+
+    public void LosePosture(float amount)
+    {
+        postureCurrent -= amount;
+        if (postureCurrent <= 0)
+        {
+            postureCurrent = 0;
+        }
+        //IsPostureBroken();
     }
 
     public void StopMovingAnimation()

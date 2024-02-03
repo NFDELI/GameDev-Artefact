@@ -33,6 +33,7 @@ public class BossRegularAttackState : BossBaseState
     // Phase-2 Attack Strings.
     int[] attackPatternSixThirteen = { 11, 10, 22, 6, 3, 5, 0 };
     int[] attackPatternSevenFifteen = { 11, 4, 23, 20, 0 };
+    int[] attackPatternThirteen = { 25, 26, 0 };
 
 
     int[] relaxAttackPattern = { 0 }; // Do nothing, allow the player to poke.
@@ -54,6 +55,9 @@ public class BossRegularAttackState : BossBaseState
         {
             // No attack pattern Forced.
             attackPatternChoice = UnityEngine.Random.Range(1, 9);
+
+            // Make sure to reset the flag.
+            boss.nextAttackPatternChoice = -1;
         }
         else
         {
@@ -62,7 +66,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging. (Uncomment next line to FORCE a Attack Pattern)
-        // attackPatternChoice = 5;
+        //attackPatternChoice = 150;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -153,6 +157,15 @@ public class BossRegularAttackState : BossBaseState
             case 120:
                 // Perform anti-Air.
                 attackPatternChosen = attackPatternTwelve;
+                break;
+            case 140:
+                // Perform Very far teleport then super hadoken.
+                boss.bossAntiAirBoxCollider2D.enabled = true;
+                attackPatternChosen = attackPatternThirteen;
+                break;
+            case 150:
+                // Dubugging Purposes Only!;
+                attackPatternChosen = attackPatternSix;
                 break;
             default:
                 break;
@@ -368,6 +381,25 @@ public class BossRegularAttackState : BossBaseState
                 boss.animator.SetTrigger("triggerAntiAir");
                 boss.AttackHitProperty(15, new Vector2(1f, 4f), 14, 999, 5);
                 boss.nextAttackPatternChoice = -1;
+                break;
+            case 25:
+                // Teleport FAR Away from the Player. (Phase 2 Scripted Event!)
+                if (boss.playerStateManager.rb.position.x > 0)
+                {
+                    // Go Left.
+                    teleportDirection = -1;
+                }
+                else
+                {
+                    // Go Right.
+                    teleportDirection = 1;
+                }
+                CallTeleport(boss, 0.9f);
+                break;
+            case 26:
+                // Shoot Out SuperFireball.
+                boss.fireballScript.isSuper = true;
+                boss.animator.SetTrigger("triggerSuperFireball");
                 break;
             default:
                 break;

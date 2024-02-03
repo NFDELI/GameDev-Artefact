@@ -12,6 +12,8 @@ public class PlayerHitReactionState : PlayerBaseState
     private float parryingSuperGain = 0.5f;
     private Vector2 hitForce;
     private bool timerStarted = false;
+    private bool successfulParry = false;
+
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Hit Reaction State");
@@ -24,6 +26,8 @@ public class PlayerHitReactionState : PlayerBaseState
         hitStunTime = player.nextPlayerHitStunDuration;
         hitForce = player.nextPlayerForceReceived;
         hitDamage = player.nextPlayerDamageReceived;
+
+        player.spriteRenderer.color = Color.white;
         //player.spriteRenderer.color = Color.red;
 
         switch (hitReactionIndex)
@@ -61,9 +65,11 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
                 hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
-                player.postureCurrent -= 0.5f;
+                //player.LosePosture(0.5f);
 
+                player.postureCurrent -= 0.5f;
                 player.wasBlocking = true;
+                successfulParry = false;
                 player.ChangeSuperAmount(blockSuperGain);
                 break;
             case 5:
@@ -75,8 +81,11 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Ensure that the player takes less damage while blocking and take less knockback.
                 hitDamage = hitDamage / 4;
                 hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
+                //player.LosePosture(0.5f);
                 player.postureCurrent -= 0.5f;
                 player.ChangeSuperAmount(blockSuperGain);
+
+                successfulParry = false;
                 break;
             case 6:
                 // High Parry.
@@ -85,6 +94,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.bossStateManager.TakePostureDamage(1f);
                 player.GainPosture();
                 player.ChangeSuperAmount(parryingSuperGain);
+                successfulParry = true;
                 break;
             case 7:
                 // Low Parry.
@@ -93,9 +103,11 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.bossStateManager.TakePostureDamage(1f);
                 player.GainPosture();
                 player.ChangeSuperAmount(parryingSuperGain);
+                successfulParry = true;
                 break;
             case 8:
                 // Guard/Posture/Grab Break.
+                player.wasBlocking = false;
                 player.animator.SetTrigger("triggerPostureBreak");
                 timerStarted = true;
                 player.audioScript.PlayPlayerPostureBreakVoice();
@@ -104,6 +116,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 break;
             case 9:
                 // Dazed/Stunned.
+                player.wasBlocking = false;
                 player.animator.SetTrigger("triggerStunned");
                 timerStarted = true;
 
@@ -128,6 +141,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 hitStunTime = player.bossStateManager.fireballScript.stunDuration;
 
                 player.ChangeSuperAmount(gettingHitSuperGain);
+                successfulParry = false;
                 break;
             case 12:
                 // Blocks Fireball Attack.
@@ -136,7 +150,12 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.nextPlayerHitSoundIndex = 11;
                 hitStunTime = 0.25f;
                 hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
-                hitDamage = player.bossStateManager.fireballScript.damage / 4;
+                hitDamage = player.bossStateManager.fireballScript.damage * 0.25f;
+                //player.LosePosture(0.5f);
+
+                player.postureCurrent -= 0.5f;
+                player.wasBlocking = true;
+                successfulParry = false;
 
                 player.ChangeSuperAmount(blockSuperGain);
                 break;
@@ -147,6 +166,8 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.GainPosture();
 
                 player.ChangeSuperAmount(parryingSuperGain);
+                successfulParry = true;
+                player.wasBlocking = false;
                 break;
             case 14:
                 // Player gets hit by Dragon Punch.
@@ -239,6 +260,7 @@ public class PlayerHitReactionState : PlayerBaseState
 
                 if(player.wasBlocking)
                 {
+                    Debug.LogWarning("WAS BLOCKING WAS CALLED");
                     // Ensures that the player goes into blocking state.
                     player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
                 }
@@ -256,7 +278,17 @@ public class PlayerHitReactionState : PlayerBaseState
             }
             if (collision.tag == "BossFireball")
             {
-                player.nextPlayerHitReaction = 11;
+                timerStarted = false;
+                if (player.wasBlocking && player.postureCurrent > 0)
+                {
+                    // Ensures that the player goes into blocking state.
+                    player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 12, player.nextPlayerHitStunDuration, 7);
+                }
+                else
+                {
+                    player.nextPlayerHitReaction = 11;
+                }
+
                 player.SwitchState(player.HitReactionState);
             }
 
@@ -281,4 +313,14 @@ public class PlayerHitReactionState : PlayerBaseState
 
         //player.SwitchState(player.IdleState);
     }
+
+    public override void OnParryPerformed(PlayerStateManager player)
+    {
+        if(successfulParry)
+        {
+            player.SwitchState(player.ParryAttemptState);
+            Debug.LogWarning("ATTEMPTED SUCCESSFUL PARRY");
+        }
+    }
+
 }

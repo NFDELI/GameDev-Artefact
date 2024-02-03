@@ -71,6 +71,11 @@ public class AudioScript : MonoBehaviour
     public AudioClip SuperBarReadySound;
     public AudioClip SuperBarNotReadySound;
 
+    public AudioClip EvilRyuSuperChargingVoice;
+    public AudioClip EvilRyuSuperFireballShootVoice;
+
+    public AudioClip GroundShakeSound;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -336,6 +341,21 @@ public class AudioScript : MonoBehaviour
     public void PlaySuperBarNotReadySound()
     {
         source.PlayOneShot(SuperBarNotReadySound);
+    }
+
+    public void PlayEvilRyuSuperChargingVoice()
+    {
+        source.PlayOneShot(EvilRyuSuperChargingVoice);
+    }
+
+    public void PlayEvilRyuSuperFireballShootVoice()
+    {
+        source.PlayOneShot(EvilRyuSuperFireballShootVoice);
+    }
+
+    public void PlayGroundShakeSound()
+    {
+        source.PlayOneShot(GroundShakeSound);
     }
 
 }

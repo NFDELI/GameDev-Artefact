@@ -31,6 +31,9 @@ public class BossIntroductionState : BossBaseState
             boss.isAiEnabled = false;
             boss.animator.SetTrigger("triggerPhaseTwo");
             boss.postureDefault = 8;
+            boss.postureCurrent = boss.postureDefault;
+
+
 
             // Player Responded.
             boss.playerStateManager.SwitchState(boss.playerStateManager.IntroductionState);

@@ -100,6 +100,7 @@ public class BossStateManager : MonoBehaviour
     public float phaseTwoHealthThreshold;
 
     public CameraShakeScript cameraShakeScript;
+    public GameObject bossSuperFireballEffect;
 
     public bool isBossConfirmedDead; 
 
@@ -581,5 +582,36 @@ public class BossStateManager : MonoBehaviour
     {
         shouldResetAiTimer = false;
         aiDecisionTimer = 0;
+    }
+
+    public void CallCameraShake()
+    {
+        // This function is made to allow the animator to access this function.
+        cameraShakeScript.CameraShake();
+    }
+
+    public void PlaySuperFireballChargeVoice()
+    {
+        audioScript.PlayEvilRyuSuperChargingVoice();
+    }
+
+    public void PlaySuperFireballShootVoice()
+    {
+        audioScript.PlayEvilRyuSuperFireballShootVoice();
+    }
+
+    public void PlayGroundShakeSound()
+    {
+        audioScript.PlayGroundShakeSound();
+    }
+
+    public void TurnOnSuperFireballParticle()
+    {
+        bossSuperFireballEffect.SetActive(true);
+    }
+
+    public void TurnOffSuperFireballParticle()
+    {
+        bossSuperFireballEffect.SetActive(false);
     }
 }
