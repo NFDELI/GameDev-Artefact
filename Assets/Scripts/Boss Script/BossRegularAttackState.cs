@@ -61,8 +61,8 @@ public class BossRegularAttackState : BossBaseState
             attackPatternChoice = boss.nextAttackPatternChoice;
         }
 
-        // Override Attack Pattern Choice for Debugging.
-        attackPatternChoice = 5;
+        // Override Attack Pattern Choice for Debugging. (Uncomment next line to FORCE a Attack Pattern)
+        // attackPatternChoice = 5;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)

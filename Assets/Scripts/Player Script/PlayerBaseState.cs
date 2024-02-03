@@ -11,4 +11,5 @@ public abstract class PlayerBaseState
     public virtual void OnParryPerformed(PlayerStateManager player) { }
     public virtual void OnRegularAttackPerformed(PlayerStateManager player) { }
     public virtual void OnSpecialAttackPerformed(PlayerStateManager player) { }
+    public virtual void OnReloadScenePerformed(PlayerStateManager player) { }
 }

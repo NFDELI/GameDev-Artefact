@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Transactions;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.Windows;
 
 public class PlayerStateManager : MonoBehaviour
@@ -98,6 +99,7 @@ public class PlayerStateManager : MonoBehaviour
         input.Player.Parry.performed += OnParryPerformed;
         input.Player.NormalAttack.performed += OnRegularAttackPerformed;
         input.Player.SpecialAttack.performed += OnSpecialAttackPerformed;
+        input.Player.ReloadScene.performed += OnReloadScenePerformed;
     }
 
     private void OnDisable()
@@ -106,6 +108,7 @@ public class PlayerStateManager : MonoBehaviour
         input.Player.Parry.performed -= OnParryPerformed;
         input.Player.NormalAttack.performed -= OnRegularAttackPerformed;
         input.Player.SpecialAttack.performed -= OnSpecialAttackPerformed;
+        input.Player.ReloadScene.performed -= OnReloadScenePerformed;
     }
 
     // Start is called before the first frame update
@@ -311,6 +314,12 @@ public class PlayerStateManager : MonoBehaviour
     private void OnSpecialAttackPerformed(InputAction.CallbackContext value)
     {
         currentState.OnSpecialAttackPerformed(this);
+    }
+
+    private void OnReloadScenePerformed(InputAction.CallbackContext value)
+    {
+        SceneManager.LoadScene("MainScene");
+        currentState.OnReloadScenePerformed(this);
     }
 
     public void PlayerLandingTrue()
