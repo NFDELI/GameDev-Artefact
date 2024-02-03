@@ -367,12 +367,13 @@ public class PlayerStateManager : MonoBehaviour
         // This function is called in the animator.
         if (postureCurrent <= 0)
         {
-            nextPlayerHitReaction = 8;
+            nextPlayerHitReaction = 9;
             nextPlayerHitStunDuration = 4;
             wasBlocking = false;
             SwitchState(HitReactionState);
-            ResetPostureWithDelay(1f);
-            //attackBoxCollider.enabled = false;
+            ResetPosture();
+            //ResetPostureWithDelay(0.5f);
+            attackBoxCollider.enabled = false;
         }
     }
 

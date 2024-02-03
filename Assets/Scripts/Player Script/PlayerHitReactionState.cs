@@ -54,7 +54,7 @@ public class PlayerHitReactionState : PlayerBaseState
             case 4:
                 // High Block.
                 player.animator.SetTrigger("triggerBlockHigh");
-                timerStarted= true;
+                timerStarted = true;
                 //player.spriteRenderer.color = Color.yellow;
 
                 if (hitStunTime == 999)
@@ -68,9 +68,17 @@ public class PlayerHitReactionState : PlayerBaseState
                 //player.LosePosture(0.5f);
 
                 player.postureCurrent -= 0.5f;
+
                 player.wasBlocking = true;
                 successfulParry = false;
                 player.ChangeSuperAmount(blockSuperGain);
+
+                if (player.postureCurrent <= 0)
+                {
+                    player.nextPlayerHitReaction = 8;
+                    player.SwitchState(player.HitReactionState);
+                }
+
                 break;
             case 5:
                 // Low Block.
@@ -84,7 +92,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 //player.LosePosture(0.5f);
                 player.postureCurrent -= 0.5f;
                 player.ChangeSuperAmount(blockSuperGain);
-
                 successfulParry = false;
                 break;
             case 6:
@@ -113,6 +120,9 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.audioScript.PlayPlayerPostureBreakVoice();
                 player.nextPlayerForceReceived = Vector2.zero;
                 hitForce = Vector2.zero;
+
+                hitDamage = 0;
+
                 break;
             case 9:
                 // Dazed/Stunned.
@@ -153,7 +163,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 hitDamage = player.bossStateManager.fireballScript.damage * 0.25f;
                 //player.LosePosture(0.5f);
 
-                player.postureCurrent -= 0.5f;
+                player.postureCurrent -= 0.6f;
                 player.wasBlocking = true;
                 successfulParry = false;
 
@@ -232,7 +242,7 @@ public class PlayerHitReactionState : PlayerBaseState
             }
         }
 
-        if(player.health <= 0)
+        if (player.health <= 0)
         {
             // Player is Dead
             player.SwitchState(player.IntroductionState);
@@ -278,7 +288,6 @@ public class PlayerHitReactionState : PlayerBaseState
             }
             if (collision.tag == "BossFireball")
             {
-                timerStarted = false;
                 if (player.wasBlocking && player.postureCurrent > 0)
                 {
                     // Ensures that the player goes into blocking state.

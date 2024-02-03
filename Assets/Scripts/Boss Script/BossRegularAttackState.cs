@@ -165,7 +165,7 @@ public class BossRegularAttackState : BossBaseState
                 break;
             case 150:
                 // Dubugging Purposes Only!;
-                attackPatternChosen = attackPatternSix;
+                attackPatternChosen = attackPatternThirteen;
                 break;
             default:
                 break;

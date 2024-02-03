@@ -87,10 +87,13 @@ public class PlayerWalkingState : PlayerBaseState
                 player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
 
                 // Player's posture is broken by posture-chip damage.
-                player.IsPostureBroken();
+                if(player.postureCurrent <= 0)
+                {
+                    player.nextPlayerHitReaction = 8;
+                }
             }
 
-            //player.SwitchState(player.HitReactionState);
+            player.SwitchState(player.HitReactionState);
         }
 
         // Gets Hit by Low Attacks.
