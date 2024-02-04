@@ -118,11 +118,16 @@ public class BossFireballScript : MonoBehaviour
         animator.SetBool("FireballTravel", false);
         if (isSuper && hitCount <= 0)
         {
+            animator.SetBool("SuperFireballTravel", false);
             animator.SetTrigger("SuperFireballHit");
             isSuper = false;
         }
 
-        animator.SetTrigger("FireballHit");
+        if(!isSuper && hitCount <= 0)
+        {
+            animator.SetTrigger("FireballHit");
+        }
+
         boxCollider.enabled = false;
 
         if(hitCount > 0)
