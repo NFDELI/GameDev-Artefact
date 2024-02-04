@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Transactions;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -21,6 +22,8 @@ public class PlayerStateManager : MonoBehaviour
     public PlayerHitReactionState HitReactionState = new PlayerHitReactionState();
     public PlayerParryAttemptState ParryAttemptState = new PlayerParryAttemptState();
     public PlayerIntroductionState IntroductionState = new PlayerIntroductionState();
+    public PlayerBlockState BlockState = new PlayerBlockState();
+    public PlayerPostureBrokenState PlayerPostureBroken = new PlayerPostureBrokenState();
 
     // Audio Script
     public AudioScript audioScript;
@@ -87,6 +90,9 @@ public class PlayerStateManager : MonoBehaviour
     public GameObject DarkenEffect;
 
     public bool shouldPlaySuperbarMax;
+    public bool shouldHighBlock = false;
+    public bool shouldLowBlock = false;
+    public bool shouldFireballBlock = false;
 
     private void Awake()
     {
@@ -585,4 +591,9 @@ public class PlayerStateManager : MonoBehaviour
         }
     }
 
+    public void AnimationStunned()
+    {
+        animator.SetTrigger("triggerStunned");
+        ResetPostureWithDelay(0.3f);
+    }
 }

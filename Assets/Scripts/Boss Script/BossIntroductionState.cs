@@ -33,6 +33,9 @@ public class BossIntroductionState : BossBaseState
             boss.postureDefault = 8;
             boss.postureCurrent = boss.postureDefault;
 
+            // Teleport Far Away then do Super Hadoken.
+            boss.nextAttackPatternChoice = 140;
+
 
 
             // Player Responded.

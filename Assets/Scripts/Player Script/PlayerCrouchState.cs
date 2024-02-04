@@ -30,20 +30,11 @@ public class PlayerCrouchState : PlayerBaseState
         // Blocks Low Attacks While Crouching.
         if (collision.tag == "BossAttackLow")
         {
-            if (player.animator.GetBool("isCrouch"))
-            {
-                // Player's posture is broken.
-                if (player.postureCurrent <= 0)
-                {
-                    player.nextPlayerHitReaction = 8;
-                }
-
-                // Ensures that the player goes into blocking state.
-                player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 5, player.nextPlayerHitStunDuration, 7);
-            }
-
             player.animator.SetBool("isCrouch", false);
-            player.SwitchState(player.HitReactionState);
+            player.shouldLowBlock = true;
+            player.shouldHighBlock = false;
+            player.shouldFireballBlock = false;
+            player.SwitchState(player.BlockState);
         }
         else if(collision.tag == "BossAttackHigh")
         {

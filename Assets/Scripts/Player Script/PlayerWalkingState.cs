@@ -84,23 +84,17 @@ public class PlayerWalkingState : PlayerBaseState
             if (player.animator.GetBool("isWalkBackwards"))
             {
                 // Ensures that the player goes into blocking state.
-                player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
-
-                // Player's posture is broken by posture-chip damage.
-                if(player.postureCurrent <= 0)
-                {
-                    player.nextPlayerDamageReceived = 0;
-                    player.nextPlayerHitStunDuration = 4;
-                    player.nextPlayerHitReaction = 8;
-                }
+                player.shouldHighBlock = true;
+                player.shouldLowBlock = false;
+                player.SwitchState(player.BlockState);
             }
-
-            player.SwitchState(player.HitReactionState);
         }
 
         // Gets Hit by Low Attacks.
         if(collision.tag == "BossAttackLow")
         {
+            player.shouldHighBlock = false;
+            player.shouldLowBlock = false;
             player.SwitchState(player.HitReactionState);
         }
 
@@ -109,30 +103,24 @@ public class PlayerWalkingState : PlayerBaseState
             // Fireball have special states/attributes.
             if (player.animator.GetBool("isWalkBackwards"))
             {
-                if (player.postureCurrent <= 0)
-                {
-                    player.nextPlayerHitReaction = 8;
-                }
-                else
-                {
-                    player.nextPlayerHitReaction = 12;
-                }
+                player.shouldFireballBlock = true;
+                player.shouldHighBlock = false;
+                player.shouldLowBlock = false;
+                player.SwitchState(player.BlockState);
             }
             else
             {
                 player.nextPlayerHitReaction = 11;
+                player.SwitchState(player.HitReactionState);
             }
-            player.SwitchState(player.HitReactionState);
         }
 
         // Unblockable attacks cannot be blocked. (Posture Break the Player.)
         if (collision.tag == "BossAttackUnblockable")
         {
-            // Player sacrificed Posture, so no damage is taken.
-            player.postureCurrent = 0;
-            player.nextPlayerDamageReceived = 0;
-            player.nextPlayerHitReaction = 8;
-            player.SwitchState(player.HitReactionState);
+            StopMovingAnimation(player);
+            player.audioScript.SoundIndexPlay(player.nextPlayerHitSoundIndex);
+            player.SwitchState(player.PlayerPostureBroken);
         }
     }
 

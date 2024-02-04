@@ -7,7 +7,6 @@ public class PlayerHitReactionState : PlayerBaseState
     private int hitReactionIndex;
     private float hitStunTime;
     private float hitDamage;
-    private float blockSuperGain = 0.25f;
     private float gettingHitSuperGain = 0.75f;
     private float parryingSuperGain = 0.5f;
     private Vector2 hitForce;
@@ -54,41 +53,7 @@ public class PlayerHitReactionState : PlayerBaseState
             case 3:
                 // Grabbed.
                 break;
-            case 4:
-                // High Block.
-                player.animator.SetTrigger("triggerBlockHigh");
-                timerStarted = true;
-                //player.spriteRenderer.color = Color.yellow;
-
-                if (hitStunTime == 999)
-                {
-                    hitStunTime = 0.9f;
-                }
-
-                // Ensure that the player takes less damage while blocking and take less knockback.
-                hitDamage = hitDamage / 4;
-                hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
-                //player.LosePosture(0.5f);
-
-                player.postureCurrent -= 0.5f;
-
-                player.wasBlocking = true;
-                successfulParry = false;
-                player.ChangeSuperAmount(blockSuperGain);
-                break;
             case 5:
-                // Low Block.
-                player.animator.SetTrigger("triggerBlockLow");
-                timerStarted = true;
-                player.spriteRenderer.color = Color.yellow;
-
-                // Ensure that the player takes less damage while blocking and take less knockback.
-                hitDamage = hitDamage / 4;
-                hitForce = new Vector2(hitForce.x / 2, hitForce.y / 3);
-                //player.LosePosture(0.5f);
-                player.postureCurrent -= 0.5f;
-                player.ChangeSuperAmount(blockSuperGain);
-                successfulParry = false;
                 break;
             case 6:
                 // High Parry.
@@ -108,31 +73,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.ChangeSuperAmount(parryingSuperGain);
                 successfulParry = true;
                 break;
-            case 8:
-                // Guard/Posture/Grab Break.
-                player.wasBlocking = false;
-                player.animator.SetTrigger("triggerPostureBreak");
-                timerStarted = true;
-                player.audioScript.PlayPlayerPostureBreakVoice();
-                player.nextPlayerForceReceived = Vector2.zero;
-                hitForce = Vector2.zero;
-
-                hitDamage = 0;
-
-                break;
-            case 9:
-                // Dazed/Stunned.
-                player.wasBlocking = false;
-                player.animator.SetTrigger("triggerStunned");
-                timerStarted = true;
-
-                // Boss should immediately punish the player.
-                player.bossStateManager.shouldResetAiTimer = false;
-                player.bossStateManager.aiDecisionTimer = 0;
-                player.bossStateManager.InstantAttackAIDelayed(0.3f);
-                player.nextPlayerHitSoundIndex = -1;
-                Debug.LogError("Player Stunned!");
-                break;
             case 10:
                 // Get Up Animation.
                 player.animator.SetTrigger("triggerGetUp");
@@ -150,20 +90,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 successfulParry = false;
                 break;
             case 12:
-                // Blocks Fireball Attack.
-                player.animator.SetTrigger("triggerBlockHigh");
-                timerStarted = true;
-                player.nextPlayerHitSoundIndex = 11;
-                hitStunTime = 0.25f;
-                hitForce = player.bossStateManager.fireballScript.knockbackForce / 2;
-                hitDamage = player.bossStateManager.fireballScript.damage * 0.25f;
-                //player.LosePosture(0.5f);
-
-                player.postureCurrent -= 0.6f;
-                player.wasBlocking = true;
-                successfulParry = false;
-
-                player.ChangeSuperAmount(blockSuperGain);
                 break;
             case 13:
                 // Parry a Fireball. (Does not do posture damage to the boss)
@@ -264,18 +190,6 @@ public class PlayerHitReactionState : PlayerBaseState
             if (collision.tag == "BossAttackHigh")
             {
                 timerStarted = false;
-
-                if(player.wasBlocking)
-                {
-                    // Ensures that the player goes into blocking state.
-                    player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 4, player.nextPlayerHitStunDuration, 7);
-                    if (player.postureCurrent <= 0)
-                    {
-                        player.nextPlayerDamageReceived = 0;
-                        player.nextPlayerHitReaction = 8;
-                        player.nextPlayerHitStunDuration = 4;
-                    }
-                }
                 player.SwitchState(player.HitReactionState);
             }
             if(collision.tag == "BossAttackLow")
@@ -289,16 +203,7 @@ public class PlayerHitReactionState : PlayerBaseState
             }
             if (collision.tag == "BossFireball")
             {
-                if (player.wasBlocking && player.postureCurrent > 0)
-                {
-                    // Ensures that the player goes into blocking state.
-                    player.AttackHitPropertySelf(player.nextPlayerDamageReceived, player.nextPlayerForceReceived, 12, player.nextPlayerHitStunDuration, 7);
-                }
-                else
-                {
-                    player.nextPlayerHitReaction = 11;
-                }
-
+                player.nextPlayerHitReaction = 11;
                 player.SwitchState(player.HitReactionState);
             }
 
