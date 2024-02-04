@@ -36,8 +36,6 @@ public class BossIntroductionState : BossBaseState
             // Teleport Far Away then do Super Hadoken.
             boss.nextAttackPatternChoice = 140;
 
-
-
             // Player Responded.
             boss.playerStateManager.SwitchState(boss.playerStateManager.IntroductionState);
         }

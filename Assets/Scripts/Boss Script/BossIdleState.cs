@@ -76,20 +76,26 @@ public class BossIdleState : BossBaseState
             boss.bossAntiAirBoxCollider2D.enabled = false;
 
             // Choose which action to do.
-        
-            // Do not engage if player is lying down on the floor.
-            if(!boss.playerStateManager.isInvincible)
+            if (boss.nextAttackPatternChoice == 140)
             {
-                if(isAttackDistanceChosenClose)
+                boss.SwitchState(boss.RegularAttackState);
+            }
+            else
+            {
+                // Do not engage if player is lying down on the floor.
+                if (!boss.playerStateManager.isInvincible)
                 {
-                    // Boss chooses to approach the player for close range attack.
-                    boss.SwitchState(boss.WalkingState);
-                }
-                else
-                {
-                    // Boss chooses to attack the player from far range.
-                    boss.nextAttackPatternChoice = 100;
-                    boss.SwitchState(boss.RegularAttackState);
+                    if (isAttackDistanceChosenClose)
+                    {
+                        // Boss chooses to approach the player for close range attack.
+                        boss.SwitchState(boss.WalkingState);
+                    }
+                    else
+                    {
+                        // Boss chooses to attack the player from far range.
+                        boss.nextAttackPatternChoice = 100;
+                        boss.SwitchState(boss.RegularAttackState);
+                    }
                 }
             }
         

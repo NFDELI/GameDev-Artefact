@@ -115,12 +115,13 @@ public class BossFireballScript : MonoBehaviour
     public void FireballHit()
     {
         hitCount--;
-        if(isSuper && hitCount <= 0)
+        animator.SetBool("FireballTravel", false);
+        if (isSuper && hitCount <= 0)
         {
             animator.SetTrigger("SuperFireballHit");
+            isSuper = false;
         }
 
-        animator.SetBool("FireballTravel", false);
         animator.SetTrigger("FireballHit");
         boxCollider.enabled = false;
 
@@ -142,16 +143,16 @@ public class BossFireballScript : MonoBehaviour
 
     public void FireballReset()
     {
+        // Reset Flags.
+        isSuper = false;
+        isFire = false;
+
         isSpawned = false;
         speed = defaultSpeed;
         rb.position = standbyPosition;
         animator.SetBool("FireballTravel", true);
         animator.ResetTrigger("FireballHit");
         boxCollider.enabled = true;
-
-        // Reset Flags.
-        isSuper = false;
-        isFire = false; 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

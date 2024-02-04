@@ -5062,7 +5062,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 65
+  health: 30
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5

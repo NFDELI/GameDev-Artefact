@@ -66,7 +66,7 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Override Attack Pattern Choice for Debugging. (Uncomment next line to FORCE a Attack Pattern)
-         attackPatternChoice = 4;
+        // attackPatternChoice = 4;
 
         // Choose a Random Attack Pattern.
         switch (attackPatternChoice)
@@ -162,6 +162,7 @@ public class BossRegularAttackState : BossBaseState
                 // Perform Very far teleport then super hadoken.
                 boss.bossAntiAirBoxCollider2D.enabled = true;
                 attackPatternChosen = attackPatternThirteen;
+                boss.nextAttackPatternChoice = -1;
                 break;
             case 150:
                 // Dubugging Purposes Only!;
