@@ -81,6 +81,7 @@ public class PlayerWalkingState : PlayerBaseState
         // Blocks High Attacks.
         if(collision.tag == "BossAttackHigh")
         {
+            StopMovingAnimation(player);
             if (player.animator.GetBool("isWalkBackwards"))
             {
                 // Ensures that the player goes into blocking state.
@@ -88,11 +89,16 @@ public class PlayerWalkingState : PlayerBaseState
                 player.shouldLowBlock = false;
                 player.SwitchState(player.BlockState);
             }
+            else
+            {
+                player.SwitchState(player.HitReactionState);
+            }
         }
 
         // Gets Hit by Low Attacks.
         if(collision.tag == "BossAttackLow")
         {
+            StopMovingAnimation(player);
             player.shouldHighBlock = false;
             player.shouldLowBlock = false;
             player.SwitchState(player.HitReactionState);
@@ -100,6 +106,7 @@ public class PlayerWalkingState : PlayerBaseState
 
         if(collision.tag == "BossFireball")
         {
+            StopMovingAnimation(player);
             // Fireball have special states/attributes.
             if (player.animator.GetBool("isWalkBackwards"))
             {

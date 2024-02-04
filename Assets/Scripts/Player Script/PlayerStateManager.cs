@@ -75,6 +75,8 @@ public class PlayerStateManager : MonoBehaviour
     // Reference to Boss's State Manager.
     public BossStateManager bossStateManager;
 
+    public GameObject bossGameObject;
+
     // New Input System Varaibles.
     public PlayerInputActions input = null;
 
@@ -106,6 +108,7 @@ public class PlayerStateManager : MonoBehaviour
         input.Player.NormalAttack.performed += OnRegularAttackPerformed;
         input.Player.SpecialAttack.performed += OnSpecialAttackPerformed;
         input.Player.ReloadScene.performed += OnReloadScenePerformed;
+        input.Player.TrainingMode.performed += OnTrainingModePerformed;
     }
 
     private void OnDisable()
@@ -115,6 +118,7 @@ public class PlayerStateManager : MonoBehaviour
         input.Player.NormalAttack.performed -= OnRegularAttackPerformed;
         input.Player.SpecialAttack.performed -= OnSpecialAttackPerformed;
         input.Player.ReloadScene.performed -= OnReloadScenePerformed;
+        input.Player.TrainingMode.performed -= OnTrainingModePerformed;
     }
 
     // Start is called before the first frame update
@@ -328,6 +332,11 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnReloadScenePerformed(this);
     }
 
+    private void OnTrainingModePerformed(InputAction.CallbackContext value)
+    {
+        bossGameObject.SetActive(false);
+    }
+
     public void PlayerLandingTrue()
     {
         isLanding = true;
@@ -357,14 +366,20 @@ public class PlayerStateManager : MonoBehaviour
         postureCurrent -= postureDamage;
         Debug.Log("Posture Reduced!");
 
-        if (postureCurrent <= 0)
+        //if (postureCurrent <= 0)
+        //{
+        //    postureCurrent = 0;
+        //    nextPlayerHitStunDuration = 4;
+        //    nextPlayerHitReaction = 8;
+        //    nextPlayerDamageReceived = 0;
+        //    nextPlayerForceReceived = new Vector2(1.5f * -forceDirection, 0f);
+        //    SwitchState(HitReactionState);
+        //}
+
+        if(postureCurrent <= 0)
         {
             postureCurrent = 0;
-            nextPlayerHitStunDuration = 4;
-            nextPlayerHitReaction = 8;
-            nextPlayerDamageReceived = 0;
-            nextPlayerForceReceived = new Vector2(1.5f * -forceDirection, 0f);
-            SwitchState(HitReactionState);
+            SwitchState(PlayerPostureBroken);
         }
     }
 

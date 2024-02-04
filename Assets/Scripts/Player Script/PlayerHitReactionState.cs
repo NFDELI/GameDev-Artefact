@@ -233,6 +233,7 @@ public class PlayerHitReactionState : PlayerBaseState
     {
         if(successfulParry)
         {
+            successfulParry = false;
             player.SwitchState(player.ParryAttemptState);
             Debug.LogWarning("ATTEMPTED SUCCESSFUL PARRY");
         }

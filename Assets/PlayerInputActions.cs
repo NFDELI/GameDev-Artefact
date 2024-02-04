@@ -89,6 +89,15 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TrainingMode"",
+                    ""type"": ""Button"",
+                    ""id"": ""7a8339bd-fe96-462b-b379-63ff97e7369e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -430,6 +439,17 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""ReloadScene"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c17ce39d-01e9-49e4-88af-b12750b16e44"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""TrainingMode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1024,6 +1044,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_NormalAttack = m_Player.FindAction("NormalAttack", throwIfNotFound: true);
         m_Player_SpecialAttack = m_Player.FindAction("SpecialAttack", throwIfNotFound: true);
         m_Player_ReloadScene = m_Player.FindAction("ReloadScene", throwIfNotFound: true);
+        m_Player_TrainingMode = m_Player.FindAction("TrainingMode", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1104,6 +1125,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_NormalAttack;
     private readonly InputAction m_Player_SpecialAttack;
     private readonly InputAction m_Player_ReloadScene;
+    private readonly InputAction m_Player_TrainingMode;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -1115,6 +1137,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @NormalAttack => m_Wrapper.m_Player_NormalAttack;
         public InputAction @SpecialAttack => m_Wrapper.m_Player_SpecialAttack;
         public InputAction @ReloadScene => m_Wrapper.m_Player_ReloadScene;
+        public InputAction @TrainingMode => m_Wrapper.m_Player_TrainingMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1145,6 +1168,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ReloadScene.started += instance.OnReloadScene;
             @ReloadScene.performed += instance.OnReloadScene;
             @ReloadScene.canceled += instance.OnReloadScene;
+            @TrainingMode.started += instance.OnTrainingMode;
+            @TrainingMode.performed += instance.OnTrainingMode;
+            @TrainingMode.canceled += instance.OnTrainingMode;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1170,6 +1196,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @ReloadScene.started -= instance.OnReloadScene;
             @ReloadScene.performed -= instance.OnReloadScene;
             @ReloadScene.canceled -= instance.OnReloadScene;
+            @TrainingMode.started -= instance.OnTrainingMode;
+            @TrainingMode.performed -= instance.OnTrainingMode;
+            @TrainingMode.canceled -= instance.OnTrainingMode;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1359,6 +1388,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnNormalAttack(InputAction.CallbackContext context);
         void OnSpecialAttack(InputAction.CallbackContext context);
         void OnReloadScene(InputAction.CallbackContext context);
+        void OnTrainingMode(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

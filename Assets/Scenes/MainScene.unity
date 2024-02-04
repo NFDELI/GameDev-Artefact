@@ -5062,7 +5062,7 @@ MonoBehaviour:
   canAttackChain: 0
   forceDirection: 1
   canGetUp: 0
-  health: 30
+  health: 65
   postureDefault: 6
   postureCurrent: 6
   movementSpeed: 1.5
@@ -5526,6 +5526,10 @@ PrefabInstance:
       propertyPath: superCurrent
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: bossGameObject
+      value: 
+      objectReference: {fileID: 2007554644}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: fireballScript
       value: 

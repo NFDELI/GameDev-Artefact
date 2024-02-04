@@ -84,7 +84,7 @@ public class BossHitReactionState : BossBaseState
                 boss.playerStateManager.TakePostureDamage(1f);
                 boss.audioScript.PlayParryAttackSound();
                 boss.GainPosture(0.5f);
-
+                boss.spriteRenderer.color = Color.blue;
                 break;
             case 7:
                 // Low Parry.

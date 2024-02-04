@@ -53,11 +53,6 @@ public class PlayerRegularAttackState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        // Check for Special Attack Input.
-        if (Input.GetKeyDown(KeyCode.I) && player.canAttackChain)
-        {
-            player.SwitchState(player.SpecialAttackState);
-        }
     }
 
     public override void OnCollisionEnter(PlayerStateManager player, Collision collision)
@@ -97,6 +92,15 @@ public class PlayerRegularAttackState : PlayerBaseState
             player.SwitchState(player.RegularAttackState);
         }
     }
+
+    public override void OnSpecialAttackPerformed(PlayerStateManager player)
+    {
+        if (player.canAttackChain)
+        {
+            player.SwitchState(player.SpecialAttackState);
+        }
+    }
+
     public override void OnParryPerformed(PlayerStateManager player)
     {
         if(player.canAttackChain)
