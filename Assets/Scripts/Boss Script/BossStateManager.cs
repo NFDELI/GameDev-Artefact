@@ -74,8 +74,8 @@ public class BossStateManager : MonoBehaviour
 
     // Boss AI Variables.
     public bool isAiEnabled = true;
-    public float aiDecisionTimer = 2f;
-    public float defaultAiDecisionTimer = 2f;
+    public float aiDecisionTimer = 3000f;
+    public float defaultAiDecisionTimer = 3000f;
 
     // When this number goes to 0, boss will start parrying everything until it is reset.
     public int blocksUntilParry = 3;
@@ -102,7 +102,11 @@ public class BossStateManager : MonoBehaviour
     public CameraShakeScript cameraShakeScript;
     public GameObject bossSuperFireballEffect;
 
-    public bool isBossConfirmedDead; 
+    public bool isBossConfirmedDead;
+
+    // Getting Player Reference
+    private GameObject playerGameObject;
+    private PlayerStateManager playerManager;
 
     // Start is called before the first frame update
     void Start()
@@ -111,6 +115,12 @@ public class BossStateManager : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         bossBoxCollider2D = GetComponent<BoxCollider2D>();
+        playerGameObject = GameObject.Find("Player");
+
+        if (playerGameObject == null)
+        {
+            Debug.LogWarning("Player Object not found");
+        }
 
         phaseTwoHealthThreshold = health / 2;
 
@@ -129,17 +139,20 @@ public class BossStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnTriggerEnter2D(this, collision);
-        if(collision.tag == "Player")
-        {
-            isNearPlayer = true;
-        }
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Player")
+        if (collision.tag == "BossAntiAirCheck")
         {
-            isNearPlayer = false;
+            // Boss does Dragon Punch.
+            nextAttackPatternChoice = 120;
+            animator.SetBool("isWalkTowards", false);
+            animator.SetBool("isWalkBackwards", false);
+
+            // Prevent the player from constantly being comboed.
+            bossAntiAirBoxCollider2D.enabled = false;
+            SwitchState(RegularAttackState);
+
+            // Re-enable the Anti-Air Box after the player landed.
+            canAntiAirAgain = false;
         }
     }
 
@@ -158,16 +171,6 @@ public class BossStateManager : MonoBehaviour
             // Boss is on the right of the boss.
             spriteFlip = false;
         }
-
-        // Need to Move this Health check during damage check.
-        //if(health <= 0 && currentState != DeathState)
-        //{
-        //    // Boss loses all HP and Dies.
-        //    currentState = DeathState;
-        //    currentState.EnterState(this);
-        //
-        //    // Boss wins one round.
-        //}
 
         // Ensures that the attack force is applied in the correct Direction.
         if (!spriteRenderer.flipX)

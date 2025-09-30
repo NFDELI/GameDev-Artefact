@@ -1328,6 +1328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 755074769}
   - component: {fileID: 755074770}
+  - component: {fileID: 755074771}
   m_Layer: 11
   m_Name: BossRangeAttackCheckBox
   m_TagString: BossRangeCheck
@@ -1395,6 +1396,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.51120365, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &755074771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755074768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c6164f99e583549b912f80e6bcf99b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &772667952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,6 +2010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043501489}
   - component: {fileID: 1043501490}
+  - component: {fileID: 1043501491}
   m_Layer: 11
   m_Name: AntiAirRangeCheck
   m_TagString: BossAntiAirCheck
@@ -2013,8 +2027,8 @@ Transform:
   m_GameObject: {fileID: 1043501488}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.207, y: -0.826, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.11637, y: -1.24, z: 0}
+  m_LocalScale: {x: 1.3625, y: 1.3875, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2007554646}
@@ -2064,6 +2078,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 0.7}
   m_EdgeRadius: 0
+--- !u!114 &1043501491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1043501488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f36a43dc154da7d49a83c3aa8aaaf134, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073022589
 GameObject:
   m_ObjectHideFlags: 0
@@ -5085,13 +5111,13 @@ MonoBehaviour:
   bossAntiAirBoxCollider2D: {fileID: 1043501490}
   playerStateManager: {fileID: 3992531850973660271}
   playerFireballScript: {fileID: 1937929084}
-  isAiEnabled: 1
-  aiDecisionTimer: 1.7
-  defaultAiDecisionTimer: 1.7
+  isAiEnabled: 0
+  aiDecisionTimer: 3000
+  defaultAiDecisionTimer: 3000
   blocksUntilParry: 3
   blocksUntilParryDefault: 3
   hasReachedPlayer: 0
-  isNearPlayer: 1
+  isNearPlayer: 0
   rangeCheckBox: {fileID: 755074770}
   longRangeBox: {fileID: 1154588120}
   isVulnerable: 1

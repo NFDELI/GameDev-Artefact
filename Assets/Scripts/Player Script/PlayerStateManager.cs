@@ -144,31 +144,6 @@ public class PlayerStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         currentState.OnTriggerEnter2D(this, collision);
-        if(collision.tag == "BossRangeCheck")
-        {
-            if(!isInvincible)
-            {
-                // The player is in range of boss's attack.
-                bossStateManager.hasReachedPlayer = true;
-                bossStateManager.animator.SetBool("isWalkTowards", false);
-                bossStateManager.animator.SetBool("isWalkBackwards", false);
-                bossStateManager.SwitchState(bossStateManager.RegularAttackState);
-            }
-        }
-        if(collision.tag == "BossAntiAirCheck")
-        {
-            // Boss does Dragon Punch.
-            bossStateManager.nextAttackPatternChoice = 120;
-            bossStateManager.animator.SetBool("isWalkTowards", false);
-            bossStateManager.animator.SetBool("isWalkBackwards", false);
-
-            // Prevent the player from constantly being comboed.
-            bossStateManager.bossAntiAirBoxCollider2D.enabled = false;
-            bossStateManager.SwitchState(bossStateManager.RegularAttackState);
-
-            // Re-enable the Anti-Air Box after the player landed.
-            bossStateManager.canAntiAirAgain = false;
-        }
     }
 
     // Update is called once per frame

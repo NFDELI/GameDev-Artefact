@@ -4,7 +4,7 @@ public class BossIntroductionState : BossBaseState
 {
     public override void EnterState(BossStateManager boss)
     {
-        Debug.LogError("Boss Introduction State");
+        // Debug.LogError("Boss Introduction State");
         if(boss.health <= 0)
         {
             // Boss Loses
