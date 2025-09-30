@@ -128,7 +128,7 @@ public class PlayerStateManager : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // currentState = IdleState;
+        // currentState = IdleState;0
         currentState = IntroductionState;
 
         postureCurrent = postureDefault;
@@ -365,16 +365,6 @@ public class PlayerStateManager : MonoBehaviour
         // Player takes Posture damage.
         postureCurrent -= postureDamage;
         Debug.Log("Posture Reduced!");
-
-        //if (postureCurrent <= 0)
-        //{
-        //    postureCurrent = 0;
-        //    nextPlayerHitStunDuration = 4;
-        //    nextPlayerHitReaction = 8;
-        //    nextPlayerDamageReceived = 0;
-        //    nextPlayerForceReceived = new Vector2(1.5f * -forceDirection, 0f);
-        //    SwitchState(HitReactionState);
-        //}
 
         if(postureCurrent <= 0)
         {
