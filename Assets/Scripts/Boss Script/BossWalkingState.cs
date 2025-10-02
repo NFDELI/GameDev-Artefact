@@ -1,10 +1,17 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossWalkingState : BossBaseState
 {
+    //protected override void Start()
+    //{
+    //    base.Start();
+    //}
+
     public override void EnterState(BossStateManager boss)
     {
         Debug.Log("Boss Entered Walking State");
+        base.Start();
         boss.hasReachedPlayer = false;
         boss.rangeCheckBox.enabled = true;
     }
@@ -63,6 +70,13 @@ public class BossWalkingState : BossBaseState
                 // Crouch.
                 StopMovingAnimation(boss);
                 boss.SwitchState(boss.CrouchState);
+            }
+
+            if (playerManager.currentState == playerManager.JumpingState)
+            {
+                boss.SwitchState(boss.IdleState);
+                StopMovingAnimation(boss);
+                Debug.LogWarning("Jumping Detected");
             }
         }
     }

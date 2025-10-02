@@ -105,8 +105,8 @@ public class BossStateManager : MonoBehaviour
     public bool isBossConfirmedDead;
 
     // Getting Player Reference
-    private GameObject playerGameObject;
-    private PlayerStateManager playerManager;
+    public GameObject playerGameObject;
+    public PlayerStateManager playerManager;
 
     // Start is called before the first frame update
     void Start()
@@ -163,12 +163,12 @@ public class BossStateManager : MonoBehaviour
 
         if(rb.position.x < playerRb.position.x)
         {
-            // Boss is on the left of the boss.
+            // Player is on the right of the boss.
             spriteFlip = true;
         }
         else
         {
-            // Boss is on the right of the boss.
+            // Player is on the left of the boss.
             spriteFlip = false;
         }
 

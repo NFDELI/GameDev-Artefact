@@ -11,7 +11,7 @@ using UnityEngine.Windows;
 public class PlayerStateManager : MonoBehaviour
 {
     // State Machine States.
-    PlayerBaseState currentState;
+    public PlayerBaseState currentState;
     public PlayerIdleState IdleState = new PlayerIdleState();
     public PlayerWalkingState WalkingState = new PlayerWalkingState();
     public PlayerJumpingState JumpingState = new PlayerJumpingState();

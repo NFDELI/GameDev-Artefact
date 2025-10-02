@@ -842,6 +842,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &441842895
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 441842896}
+  - component: {fileID: 441842897}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &441842896
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441842895}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.06586327, y: 0.018586447, z: -0.08102557}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &441842897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 441842895}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8edc31dd89177134a8f1d6a55daab437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerReference: {fileID: 1084491898}
+  bossReference: {fileID: 2007554644}
 --- !u!1 &449182295
 GameObject:
   m_ObjectHideFlags: 0
@@ -2251,6 +2297,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1084491898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6046234461313306555, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+  m_PrefabInstance: {fileID: 3992531850973660254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1084524694
 GameObject:
   m_ObjectHideFlags: 0
@@ -5111,7 +5162,7 @@ MonoBehaviour:
   bossAntiAirBoxCollider2D: {fileID: 1043501490}
   playerStateManager: {fileID: 3992531850973660271}
   playerFireballScript: {fileID: 1937929084}
-  isAiEnabled: 0
+  isAiEnabled: 1
   aiDecisionTimer: 3000
   defaultAiDecisionTimer: 3000
   blocksUntilParry: 3
@@ -5131,6 +5182,8 @@ MonoBehaviour:
   cameraShakeScript: {fileID: 519420036}
   bossSuperFireballEffect: {fileID: 1638678157}
   isBossConfirmedDead: 0
+  playerGameObject: {fileID: 0}
+  playerManager: {fileID: 0}
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5596,7 +5649,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
   m_PrefabInstance: {fileID: 3992531850973660254}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1084491898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 701625dc1e0ad93428c0ddba3a8a3bbe, type: 3}
@@ -5612,7 +5665,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8622644590958482894, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
   m_PrefabInstance: {fileID: 3992531850973660254}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1084491898}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
@@ -5637,3 +5690,4 @@ SceneRoots:
   - {fileID: 1439397168}
   - {fileID: 255949369}
   - {fileID: 897492249}
+  - {fileID: 441842896}
