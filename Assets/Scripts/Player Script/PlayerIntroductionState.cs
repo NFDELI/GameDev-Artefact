@@ -11,7 +11,7 @@ public class PlayerIntroductionState : PlayerBaseState
 
         if (player.health <= 0)
         {
-            player.rb.velocity = Vector2.zero;
+            player.rb.linearVelocity = Vector2.zero;
             player.isLaunched = false;
             player.animator.SetTrigger("triggerLose");
             player.TurnOffPlayerCollisionBoxes();

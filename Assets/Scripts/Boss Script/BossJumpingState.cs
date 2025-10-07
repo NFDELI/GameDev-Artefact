@@ -8,7 +8,7 @@ public class BossJumpingState : BossBaseState
         if(boss.movementInput.x == 0)
         {
             // Neutral Jump.
-            boss.rb.AddForce(new Vector2(boss.rb.velocity.x, boss.jumpForce), ForceMode2D.Impulse);
+            boss.rb.AddForce(new Vector2(boss.rb.linearVelocity.x, boss.jumpForce), ForceMode2D.Impulse);
             boss.animator.SetTrigger("JumpNeutral");
         }
         else
@@ -45,7 +45,7 @@ public class BossJumpingState : BossBaseState
 
     public override void UpdateState(BossStateManager boss)
     {
-        if(boss.isLanded || (boss.rb.velocity.y == 0))
+        if(boss.isLanded || (boss.rb.linearVelocity.y == 0))
         {
             // Boss has Landed.
             boss.SwitchState(boss.IdleState);

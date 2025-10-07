@@ -134,6 +134,7 @@ public class BossFireballScript : MonoBehaviour
         {
             ReTriggerCollisionBoxWithDelay(0.15f);
         }
+        isSpawned = false;
     }
 
     public void ReTriggerCollisionBoxWithDelay(float delay)

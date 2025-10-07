@@ -15,7 +15,7 @@ public class PlayerIdleState : PlayerBaseState
         player.isLanded = true;
         player.isInvincible = false;
         player.isUnblockableCounter = false;
-        player.rb.velocity = new Vector2(0, 0);
+        player.rb.linearVelocity = new Vector2(0, 0);
         player.attackCounter = 1;
         player.wasBlocking = false;
         player.bossStateManager.nextHitReceiveSuper = false;

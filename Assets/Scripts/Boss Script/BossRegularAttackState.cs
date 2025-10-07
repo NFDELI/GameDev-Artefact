@@ -171,6 +171,9 @@ public class BossRegularAttackState : BossBaseState
             default:
                 break;
         }
+
+        // Force Boss to Repeat an attack pattern here!
+        // attackPatternChosen = attackPatternSix;
     }
 
     public override void UpdateState(BossStateManager boss)
@@ -222,7 +225,7 @@ public class BossRegularAttackState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-        if (collision.tag == "PlayerAttackHigh" || collision.tag == "Fireball")
+        if (collision.tag == "PlayerAttackHigh" || collision.tag == "PlayerFireball")
         {
             if (boss.playerStateManager.isUnblockableCounter)
             {

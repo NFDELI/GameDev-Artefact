@@ -74,8 +74,9 @@ public class BossStateManager : MonoBehaviour
 
     // Boss AI Variables.
     public bool isAiEnabled = true;
-    public float aiDecisionTimer = 3000f;
-    public float defaultAiDecisionTimer = 3000f;
+    public float aiDecisionTimer = 1f;
+    public float defaultAiDecisionTimer = 1f;
+    public float p2DefaultAiDecisionTimer = 0.7f;
 
     // When this number goes to 0, boss will start parrying everything until it is reset.
     public int blocksUntilParry = 3;
@@ -201,6 +202,11 @@ public class BossStateManager : MonoBehaviour
             currentState = HitReactionState;
             nextBossHitReaction = 0;
             currentState.EnterState(this);
+        }
+
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.LogWarning("Boss State is: " + currentState);
         }
     }
 
@@ -616,5 +622,40 @@ public class BossStateManager : MonoBehaviour
     public void TurnOffSuperFireballParticle()
     {
         bossSuperFireballEffect.SetActive(false);
+    }
+
+    public void BossIdleDefense(BossStateManager boss, Collider2D collision)
+    {
+        if (collision.tag == "PlayerAttackHigh")
+        {
+            if (boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the incoming attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 6, 0, 10);
+            }
+            else
+            {
+                // Boss blocks the incoming attack.
+                boss.AttackHitPropertySelf(boss.nextBossDamageReceived * 0.25f, Vector2.zero, 4, -1, 7);
+            }
+
+            // React to the player's Regular attack.
+            boss.SwitchState(boss.HitReactionState);
+        }
+        if (collision.tag == "PlayerFireball")
+        {
+            // React to the player's Fireball attack.
+            if (boss.blocksUntilParry <= 0)
+            {
+                // Boss parries the fireball attack.
+                boss.AttackHitPropertySelf(0, Vector2.zero, 11, 0, 8);
+            }
+            else
+            {
+                // Boss blocks the fireball attack.
+                boss.AttackHitPropertySelf(boss.playerFireballScript.damage * 0.25f, Vector2.zero, 4, boss.playerFireballScript.stunDuration, 11);
+            }
+            boss.SwitchState(boss.HitReactionState);
+        }
     }
 }

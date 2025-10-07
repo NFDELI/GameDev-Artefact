@@ -187,7 +187,7 @@ public class BossHitReactionState : BossBaseState
             boss.bossAirBoxCollider2D.enabled = true;
 
             // Boss's body has reached its peak.
-            if (boss.rb.velocity.y < 0)
+            if (boss.rb.linearVelocity.y < 0)
             {
                 boss.animator.SetTrigger("triggerPeaked");
             }

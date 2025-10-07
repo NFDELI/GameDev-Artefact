@@ -18,7 +18,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     player.animator.SetTrigger("triggerSpecialThree");
                     player.AttackHitProperty(3, new Vector2(20f, 85f), 13, 999, 5);
                     player.isUnblockableCounter = true;
-                    player.rb.velocity = Vector2.zero;
+                    player.rb.linearVelocity = Vector2.zero;
                 }
                 else
                 {
@@ -46,7 +46,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     player.animator.SetTrigger("triggerSpecialThree");
                     player.AttackHitProperty(3, new Vector2(20f, 85f), 13, 999, 5);
                     player.isUnblockableCounter = true;
-                    player.rb.velocity = Vector2.zero;
+                    player.rb.linearVelocity = Vector2.zero;
                 }
             }
             if(player.movementInput.y < 0)
@@ -59,7 +59,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
                     player.bossStateManager.nextHitReceiveSuper = true;
                     player.animator.SetTrigger("triggerSuperSpecialOne");
                     player.isUnblockableCounter = true;
-                    player.rb.velocity = Vector2.zero;
+                    player.rb.linearVelocity = Vector2.zero;
                     player.superCurrent = 0;
                 }
                 else

@@ -10,7 +10,7 @@ public class PlayerJumpingState : PlayerBaseState
         if(player.movementInput.x == 0)
         {
             // Neutral Jump.
-            player.rb.AddForce(new Vector2(player.rb.velocity.x, player.jumpForce), ForceMode2D.Impulse);
+            player.rb.AddForce(new Vector2(player.rb.linearVelocity.x, player.jumpForce), ForceMode2D.Impulse);
             player.animator.SetTrigger("JumpNeutral");
             player.audioScript.PlayJumpSound();
         }
@@ -48,7 +48,7 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void UpdateState(PlayerStateManager player)
     {
-        if(player.isLanded || (player.rb.velocity.y == 0))
+        if(player.isLanded || (player.rb.linearVelocity.y == 0))
         {
             // Player has Landed.
             player.SwitchState(player.IdleState);
@@ -65,7 +65,7 @@ public class PlayerJumpingState : PlayerBaseState
         if(collision.tag == "BossAttackHigh")
         {
             player.rb.totalForce = Vector2.zero;
-            player.rb.velocity = Vector2.zero;
+            player.rb.linearVelocity = Vector2.zero;
 
             // Player is already in the air, don't send him flying.
             player.nextPlayerForceReceived = new Vector2(player.nextPlayerForceReceived.x, player.nextPlayerForceReceived.y / 2);
@@ -74,20 +74,20 @@ public class PlayerJumpingState : PlayerBaseState
         if (collision.tag == "BossAttackLow")
         {
             player.rb.totalForce = Vector2.zero;
-            player.rb.velocity = Vector2.zero;
+            player.rb.linearVelocity = Vector2.zero;
             player.SwitchState(player.HitReactionState);
         }
         if (collision.tag == "BossFireball")
         {
             player.rb.totalForce = Vector2.zero;
-            player.rb.velocity = Vector2.zero;
+            player.rb.linearVelocity = Vector2.zero;
             player.nextPlayerHitReaction = 11;
             player.SwitchState(player.HitReactionState);
         }
         if (collision.tag == "BossAttackUnblockable")
         {
             player.rb.totalForce = Vector2.zero;
-            player.rb.velocity = Vector2.zero;
+            player.rb.linearVelocity = Vector2.zero;
             player.SwitchState(player.HitReactionState);
         }
     }

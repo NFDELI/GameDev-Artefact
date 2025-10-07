@@ -77,7 +77,7 @@ public class BossSpecialAttackState : BossBaseState
 
     public override void OnTriggerEnter2D(BossStateManager boss, Collider2D collision)
     {
-
+        boss.BossIdleDefense(boss, collision);
     }
 
     private void DragonPunchForce(BossStateManager boss)

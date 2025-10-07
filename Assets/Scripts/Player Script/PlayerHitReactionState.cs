@@ -159,7 +159,7 @@ public class PlayerHitReactionState : PlayerBaseState
             player.playerAirCollider2D.enabled = true;
 
             // Player's body has reached its peak.
-            if (player.rb.velocity.y < 0)
+            if (player.rb.linearVelocity.y < 0)
             {
                 player.animator.SetTrigger("triggerPeaked");
             }

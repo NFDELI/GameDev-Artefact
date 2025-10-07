@@ -173,6 +173,11 @@ public class PlayerStateManager : MonoBehaviour
             forceDirection = 1;
             playerBoxCollider2D.offset = new Vector2(0.053f, -0.78f);
         }
+
+        if (UnityEngine.Input.GetKeyDown(KeyCode.T))
+        {
+            Debug.LogWarning("Player State is: " + currentState);
+        }
     }
 
     public void SwitchState(PlayerBaseState state)

@@ -10,7 +10,7 @@ public class BossIntroductionState : BossBaseState
             // Boss Loses
             boss.animator.SetTrigger("triggerLose");
             boss.CallDeathAnimationWithDelay(2f);
-            boss.rb.velocity = Vector2.zero;
+            boss.rb.linearVelocity = Vector2.zero;
             boss.isLaunched = false;
             boss.isPhaseTwo = false;
             boss.attackHighBoxCollider2D.enabled = false;
@@ -26,7 +26,7 @@ public class BossIntroductionState : BossBaseState
         else if(boss.isPhaseTwo)
         {
             // Play fall down animation, then get back up.
-            boss.rb.velocity = Vector2.zero;
+            boss.rb.linearVelocity = Vector2.zero;
             boss.isLaunched = false;
             boss.isAiEnabled = false;
             boss.animator.SetTrigger("triggerPhaseTwo");
