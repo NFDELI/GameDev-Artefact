@@ -1,3 +1,4 @@
+using UnityEditor;
 using UnityEngine;
 
 public class PlayerJumpingState : PlayerBaseState
@@ -90,5 +91,11 @@ public class PlayerJumpingState : PlayerBaseState
             player.rb.linearVelocity = Vector2.zero;
             player.SwitchState(player.HitReactionState);
         }
+    }
+
+    public override void OnRegularAttackPerformed(PlayerStateManager player)
+    {
+        player.animator.SetTrigger("triggerJumpAttack");
+        player.AttackHitProperty(15, new Vector2(15f, 0), 0, 1.5f, 5);
     }
 }

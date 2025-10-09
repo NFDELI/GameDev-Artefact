@@ -107,7 +107,6 @@ public class BossStateManager : MonoBehaviour
 
     // Getting Player Reference
     public GameObject playerGameObject;
-    public PlayerStateManager playerManager;
 
     // Start is called before the first frame update
     void Start()
