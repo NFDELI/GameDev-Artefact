@@ -280,10 +280,10 @@ AnimatorStateMachine:
     m_Position: {x: -560, y: 220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7822494217920947405}
-    m_Position: {x: -525, y: 285, z: 0}
+    m_Position: {x: -580, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5649059075258599246}
-    m_Position: {x: -300, y: 600, z: 0}
+    m_Position: {x: -300, y: 570, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: -4393909282540741970}
@@ -794,7 +794,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: player_jump_kick
+  m_Name: player_jump_punch
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

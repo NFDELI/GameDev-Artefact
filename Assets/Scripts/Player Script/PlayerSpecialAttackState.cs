@@ -12,7 +12,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
             // Right Special.
             if(player.movementInput.x > 0)
             {
-                if(player.spriteFlip)
+                if(player.shouldFlip)
                 {
                     // Dragon Punch.
                     player.animator.SetTrigger("triggerSpecialThree");
@@ -33,7 +33,7 @@ public class PlayerSpecialAttackState : PlayerBaseState
             else if (player.movementInput.y >= 0)
             {
                 // Left Special.
-                if (player.spriteFlip)
+                if (player.shouldFlip)
                 {
                     // Tatsu. Spinning Kick.
                     player.animator.SetTrigger("triggerSpecialTwo");

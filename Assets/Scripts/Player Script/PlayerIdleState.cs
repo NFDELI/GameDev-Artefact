@@ -46,18 +46,6 @@ public class PlayerIdleState : PlayerBaseState
             }
         }
 
-        // Sprite-Flip Check.
-        if(player.spriteFlip)
-        {
-            player.spriteRenderer.flipX = true;
-            player.attackBoxCollider.offset = new Vector2(0.95f, 0);
-        }
-        else
-        {
-            player.spriteRenderer.flipX = false;
-            player.attackBoxCollider.offset = new Vector2(0, 0);
-        }
-
         if(player.bossStateManager.health <= 0)
         {
             player.SwitchState(player.IntroductionState);

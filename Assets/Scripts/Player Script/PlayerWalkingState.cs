@@ -24,7 +24,7 @@ public class PlayerWalkingState : PlayerBaseState
             if(player.movementInput.x > 0)
             {
                 // Move Right.
-                if(player.spriteFlip)
+                if(player.shouldFlip)
                 {
                     player.animator.SetBool("isWalkTowards", true);
                     player.animator.SetBool("isWalkBackwards", false);
@@ -42,7 +42,7 @@ public class PlayerWalkingState : PlayerBaseState
             else if(player.movementInput.x < 0)
             {
                 // Move Left.
-                if(player.spriteFlip) 
+                if(player.shouldFlip) 
                 {
                     player.animator.SetBool("isWalkBackwards", true);
                     player.animator.SetBool("isWalkTowards", false);

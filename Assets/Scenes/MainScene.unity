@@ -4066,6 +4066,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1766057865}
   m_CullTransparentMesh: 1
+--- !u!1 &1775158895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4768404041565664799, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+  m_PrefabInstance: {fileID: 1937929083}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1802579863
 GameObject:
   m_ObjectHideFlags: 0
@@ -4604,7 +4609,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 664599685427908436, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.79744
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 664599685427908436, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4647,21 +4652,33 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: damage
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: ownerObject
+      value: 
+      objectReference: {fileID: 1084491898}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: ownerSprite
       value: 
       objectReference: {fileID: 3992531850973660267}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: defaultSpeed
-      value: 1.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: stunDuration
       value: 0.25
       objectReference: {fileID: 0}
+    - target: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
+      propertyPath: fireballObject
+      value: 
+      objectReference: {fileID: 1775158895}
     - target: {fileID: 4768404041565664799, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
       propertyPath: m_Name
       value: PFireball
@@ -4692,7 +4709,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3956336060985293597, guid: 1503347e478bfeb40975b16a989c9c93, type: 3}
   m_PrefabInstance: {fileID: 1937929083}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1775158895}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 807f4aaa214fe604b8c5a62a29c0da66, type: 3}
@@ -5801,6 +5818,10 @@ PrefabInstance:
       propertyPath: bossStateManager
       value: 
       objectReference: {fileID: 2007554650}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: playerGameObject
+      value: 
+      objectReference: {fileID: 1084491898}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

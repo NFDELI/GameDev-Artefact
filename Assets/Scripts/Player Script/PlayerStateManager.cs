@@ -40,7 +40,7 @@ public class PlayerStateManager : MonoBehaviour
     public Animator animator;
     public SpriteRenderer spriteRenderer;
     public bool isLanded = true;
-    public bool spriteFlip = false;
+    public bool shouldFlip = false;
     public int attackCounter = 1;
     public bool canAttackChain = false;
     public int forceDirection = 1;
@@ -77,6 +77,9 @@ public class PlayerStateManager : MonoBehaviour
 
     public GameObject bossGameObject;
 
+    [SerializeField]
+    public GameObject playerGameObject;
+
     // New Input System Varaibles.
     public PlayerInputActions input = null;
 
@@ -95,6 +98,9 @@ public class PlayerStateManager : MonoBehaviour
     public bool shouldHighBlock = false;
     public bool shouldLowBlock = false;
     public bool shouldFireballBlock = false;
+
+    private Vector3 lookRight = new Vector3((float)-1, 1, 1);
+    private Vector3 lookLeft = new Vector3((float)1, 1, 1);
 
     private void Awake()
     {
@@ -127,8 +133,7 @@ public class PlayerStateManager : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // currentState = IdleState;0
+        
         currentState = IntroductionState;
 
         postureCurrent = postureDefault;
@@ -154,30 +159,33 @@ public class PlayerStateManager : MonoBehaviour
         if(rb.position.x < bossRb.position.x)
         {
             // Player is on the left of the boss.
-            spriteFlip = true;
+            shouldFlip = true;
         }
         else
         {
             // Player is on the right of the boss.
-            spriteFlip = false;
+            shouldFlip = false;
         }
 
         // Ensures that the attack force is applied in the correct Direction.
-        if(!spriteRenderer.flipX)
-        {
-            forceDirection = -1;
-            playerBoxCollider2D.offset = new Vector2(-0.053f, -0.78f);
-        }
-        else
-        {
-            forceDirection = 1;
-            playerBoxCollider2D.offset = new Vector2(0.053f, -0.78f);
-        }
+        flipCharacter();
 
         if (UnityEngine.Input.GetKeyDown(KeyCode.T))
         {
             Debug.LogWarning("Player State is: " + currentState);
         }
+    }
+
+    public void flipCharacter()
+    {
+        if (shouldFlip)
+        {
+            forceDirection = 1;
+            playerGameObject.transform.localScale = lookLeft;
+            return;
+        }
+        forceDirection = -1;
+        playerGameObject.transform.localScale = lookRight;
     }
 
     public void SwitchState(PlayerBaseState state)
@@ -326,7 +334,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void PlayerLandingFalse()
     {
-        if (spriteFlip)
+        if (shouldFlip)
         {
             jumpDirection = true;
         }
@@ -383,7 +391,7 @@ public class PlayerStateManager : MonoBehaviour
 
     public void TurnOnAttackBoxOffset()
     {
-        if(spriteFlip)
+        if(shouldFlip)
         {
             attackBoxCollider.offset = new Vector2(0.95f, 0.6f);
         }

@@ -22,12 +22,16 @@ public class FireballScript : MonoBehaviour
     private Vector2 knockbackForce;
 
     public Rigidbody2D rb;
-    private SpriteRenderer spriteRenderer;
     private Animator animator;
     public BoxCollider2D boxCollider;
 
     [SerializeField]
-    private SpriteRenderer ownerSprite;
+    private GameObject ownerObject;
+    [SerializeField]
+    private GameObject fireballObject;
+
+    private Vector3 goingRightScale;
+    private Vector3 goingLeftScale;
 
     public bool isSpawned = false;
 
@@ -35,11 +39,12 @@ public class FireballScript : MonoBehaviour
     {
         // Fireball is spawned.
         rb = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
 
         standbyPosition = new Vector2(0, -2);
+        goingRightScale = new Vector3((float)0.8, (float)0.8, (float)0.8);
+        goingLeftScale = new Vector3((float)-0.8, (float)0.8, (float)0.8);
         speed = defaultSpeed;
     }
 
@@ -53,18 +58,15 @@ public class FireballScript : MonoBehaviour
     public void FireballSpawned()
     {
         isSpawned = true;
-        spriteRenderer.flipX = ownerSprite.flipX;
         boxCollider.enabled = true;
-        if (spriteRenderer.flipX)
-        {
-            forceDirection = 1;
-            boxCollider.offset = new Vector2(-0.2f, -1.28f);
-        }
-        else
+        if (ownerObject.transform.localScale.x < 0)
         {
             forceDirection = -1;
-            boxCollider.offset = new Vector2(0.2f, -1.28f);
+            fireballObject.transform.localScale = goingRightScale;
+            return;
         }
+        forceDirection = 1;
+        fireballObject.transform.localScale = goingLeftScale;
     }
 
     public void FireballReset()
