@@ -121,20 +121,21 @@ public class BossFireballScript : MonoBehaviour
             animator.SetBool("SuperFireballTravel", false);
             animator.SetTrigger("SuperFireballHit");
             isSuper = false;
+            isSpawned = false;
         }
 
         if(!isSuper && hitCount <= 0)
         {
             animator.SetTrigger("FireballHit");
+            isSpawned = false;
         }
 
         boxCollider.enabled = false;
 
-        if(hitCount > 0)
+        if (hitCount > 0)
         {
             ReTriggerCollisionBoxWithDelay(0.15f);
         }
-        isSpawned = false;
     }
 
     public void ReTriggerCollisionBoxWithDelay(float delay)

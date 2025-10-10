@@ -3,8 +3,11 @@ using UnityEngine;
 
 public class PlayerJumpingState : PlayerBaseState
 {
+    bool canJumpAttack = true;
     public override void EnterState(PlayerStateManager player)
     {
+        // Resets the CanJumpAttack Bool.
+        canJumpAttack = true;
         player.isLanded = false;
         player.playerBoxCollider2D.enabled = false;
         player.playerAirCollider2D.enabled = true;
@@ -95,7 +98,15 @@ public class PlayerJumpingState : PlayerBaseState
 
     public override void OnRegularAttackPerformed(PlayerStateManager player)
     {
-        player.animator.SetTrigger("triggerJumpAttack");
-        player.AttackHitProperty(15, new Vector2(15f, 0), 0, 1.5f, 5);
+        if(canJumpAttack)
+        {
+            player.animator.SetTrigger("triggerJumpAttack");
+            player.attackCounter++;
+            player.AttackHitProperty(15, new Vector2(15f, 0), 0, 1.5f, 5);
+            player.audioScript.PlayMediumAttackSound();
+            canJumpAttack = false;
+            return;
+        }
+        return;
     }
 }

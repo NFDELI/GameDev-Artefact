@@ -1665,7 +1665,7 @@ MonoBehaviour:
   defaultSpeed: 1.7
   superSpeed: 2
   defaultDamage: 10
-  superDamage: 6
+  superDamage: 30
   damage: 10
   defaultHitCount: 1
   hitCount: 1
@@ -1676,7 +1676,7 @@ MonoBehaviour:
   isFire: 0
   knockbackForce: {x: 0, y: 0}
   rb: {fileID: 772667958}
-  playerStateManager: {fileID: 0}
+  playerStateManager: {fileID: 3992531850973660271}
   ownerSprite: {fileID: 2007554645}
   isSpawned: 0
 --- !u!1 &854062720
@@ -3115,7 +3115,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1439397166}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -5353,15 +5353,15 @@ MonoBehaviour:
   isVulnerable: 1
   shouldResetAiTimer: 1
   isLaunched: 0
-  nextAttackPatternChoice: -1
+  nextAttackPatternChoice: 140
   canAntiAirAgain: 0
-  isPhaseTwo: 0
+  isPhaseTwo: 1
   initiatePhaseTwo: 0
   phaseTwoHealthThreshold: 0
   cameraShakeScript: {fileID: 519420036}
   bossSuperFireballEffect: {fileID: 1638678157}
   isBossConfirmedDead: 0
-  playerGameObject: {fileID: 0}
+  playerGameObject: {fileID: 1084491898}
 --- !u!114 &2007554651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5775,6 +5775,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 3992531850973660278}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: superMax
       value: 12
       objectReference: {fileID: 0}
@@ -5810,6 +5814,10 @@ PrefabInstance:
       propertyPath: postureDefault
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 3992531850973660267}
     - target: {fileID: 8180965022550339384, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
       propertyPath: canvasReference
       value: 
@@ -5872,6 +5880,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &3992531850973660278 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8403135422501672686, guid: 4a5b39d80ae42c4469abaebbea2a47aa, type: 3}
+  m_PrefabInstance: {fileID: 3992531850973660254}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

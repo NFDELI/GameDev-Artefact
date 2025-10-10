@@ -91,7 +91,6 @@ public class PlayerBlockState : PlayerBaseState
         // Blocks Low Attacks While Crouching.
         if (collision.tag == "BossAttackLow")
         {
-            ResetBlockBooleans(player);
             if (player.shouldLowBlock)
             {
                 player.SwitchState(player.BlockState);
@@ -100,11 +99,11 @@ public class PlayerBlockState : PlayerBaseState
             {
                 player.SwitchState(player.HitReactionState);
             }
+            ResetBlockBooleans(player);
         }
 
         if (collision.tag == "BossAttackHigh")
         {
-            ResetBlockBooleans(player);
             if (player.shouldHighBlock)
             {
                 player.SwitchState(player.BlockState);
@@ -113,12 +112,12 @@ public class PlayerBlockState : PlayerBaseState
             {
                 player.SwitchState(player.HitReactionState);
             }
+            ResetBlockBooleans(player);
         }
 
         if (collision.tag == "BossFireball")
         {
-            ResetBlockBooleans(player);
-            if (player.shouldHighBlock)
+            if (player.shouldFireballBlock)
             {
                 player.SwitchState(player.BlockState);
             }
@@ -126,6 +125,7 @@ public class PlayerBlockState : PlayerBaseState
             {
                 player.SwitchState(player.HitReactionState);
             }
+           //  ResetBlockBooleans(player);
         }
 
         if(player.postureCurrent <= 0)

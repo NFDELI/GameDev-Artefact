@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerPostureBrokenState : PlayerBaseState
 {
-    float postureBrokenStunTime = 10f;
+    float postureBrokenStunTime = 4f;
     public override void EnterState(PlayerStateManager player)
     {
         Debug.Log("Entered Posture Broken State");

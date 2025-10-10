@@ -203,6 +203,15 @@ public class BossStateManager : MonoBehaviour
             currentState.EnterState(this);
         }
 
+        if (Input.GetKeyDown(KeyCode.Y))
+        {
+            aiDecisionTimer = 99999;
+            defaultAiDecisionTimer = 99999;
+            isAiEnabled = false;
+            canAntiAirAgain = false;
+            bossAntiAirBoxCollider2D.enabled = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.T))
         {
             Debug.LogWarning("Boss State is: " + currentState);
