@@ -76,6 +76,8 @@ public class AudioScript : MonoBehaviour
 
     public AudioClip GroundShakeSound;
 
+    public AudioClip TatsuSound;
+
     public void PlayJumpSound()
     {
         source.PlayOneShot(JumpSound);
@@ -358,4 +360,8 @@ public class AudioScript : MonoBehaviour
         source.PlayOneShot(GroundShakeSound);
     }
 
+    public void PlayTatsuSound()
+    {
+        source.PlayOneShot(TatsuSound);
+    }
 }

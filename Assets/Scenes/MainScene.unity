@@ -1192,6 +1192,7 @@ MonoBehaviour:
   EvilRyuSuperChargingVoice: {fileID: 8300000, guid: d7f74c265f1d10c4c94b8858a0fa75d4, type: 3}
   EvilRyuSuperFireballShootVoice: {fileID: 8300000, guid: e3c4f3fd81693cc419792d02f1721175, type: 3}
   GroundShakeSound: {fileID: 8300000, guid: 8bacee9a72660de4f8ea06a12c952e77, type: 3}
+  TatsuSound: {fileID: 8300000, guid: 027de31116d58a5459b7a0e59fba3b30, type: 3}
 --- !u!95 &519420035
 Animator:
   serializedVersion: 7

@@ -589,4 +589,9 @@ public class PlayerStateManager : MonoBehaviour
         animator.SetTrigger("triggerStunned");
         ResetPostureWithDelay(0.3f);
     }
+
+    public void PlayTatsuSound()
+    {
+        audioScript.PlayTatsuSound();
+    }
 }
