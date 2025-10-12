@@ -97,6 +97,9 @@ public class BossFireballScript : MonoBehaviour
             speed = defaultSpeed;
             hitCount = defaultHitCount;
 
+            animator.SetBool("FireballTravel", true);
+            animator.SetBool("SuperFireballTravel", false);
+
             // Spawn Regular Fireball.
             if (spriteRenderer.flipX)
             {

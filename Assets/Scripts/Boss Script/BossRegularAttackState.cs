@@ -173,7 +173,15 @@ public class BossRegularAttackState : BossBaseState
         }
 
         // Force Boss to Repeat an attack pattern here!
-        // attackPatternChosen = attackPatternSix;
+        int test = UnityEngine.Random.Range(0, 2);
+        if (test == 1)
+        {
+            attackPatternChosen = attackPatternSix;
+        }
+        else
+        {
+            attackPatternChosen = attackPatternThirteen;
+        }
     }
 
     public override void UpdateState(BossStateManager boss)
@@ -250,6 +258,7 @@ public class BossRegularAttackState : BossBaseState
     public void PerformAttack(BossStateManager boss, int attackId)
     {
         // The 'attackId' determines the next attack being performed. 
+        boss.fireballScript.isSuper = false;
         switch (attackId)
         {
             case 0:

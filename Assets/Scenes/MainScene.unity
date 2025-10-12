@@ -5354,7 +5354,7 @@ MonoBehaviour:
   isVulnerable: 1
   shouldResetAiTimer: 1
   isLaunched: 0
-  nextAttackPatternChoice: 140
+  nextAttackPatternChoice: -1
   canAntiAirAgain: 0
   isPhaseTwo: 1
   initiatePhaseTwo: 0
