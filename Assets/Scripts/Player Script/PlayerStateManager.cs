@@ -294,6 +294,34 @@ public class PlayerStateManager : MonoBehaviour
         nextPlayerHitSoundIndex = hitsoundId;
     }
 
+    public void RegularParryProperty(bool isPartial = false)
+    {
+        nextPlayerDamageReceived = 0;
+        nextPlayerForceReceived = (nextPlayerForceReceived / 2) * (forceDirection);
+        nextPlayerHitReaction = isPartial ? 5 : 6;
+        // Stun duration stays the same.
+        nextPlayerHitSoundIndex = isPartial ? 15 : 8;
+    }
+
+    public void PerfectLowParryProperty()
+    {
+        nextPlayerDamageReceived = 0;
+        nextPlayerForceReceived = (nextPlayerForceReceived / 3) * (forceDirection);
+        nextPlayerHitReaction = 6;
+        GainPosture();
+        // Stun duration stays the same.
+        nextPlayerHitSoundIndex = 8;
+    }
+
+    public void FireBallParryProperty()
+    {
+        nextPlayerDamageReceived = 0;
+        nextPlayerForceReceived = (nextPlayerForceReceived / 2) * (forceDirection);
+        nextPlayerHitReaction = 13;
+        // Stun duration stays the same.
+        nextPlayerHitSoundIndex = 8;
+    }
+
     private void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();

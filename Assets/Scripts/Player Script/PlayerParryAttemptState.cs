@@ -1,29 +1,21 @@
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerParryAttemptState : PlayerBaseState
 {
     private bool isHighParryAttempt = false; 
-    private bool isLowParryAttempt = false; 
+    private bool isLowParryAttempt = false;
+
     public override void EnterState(PlayerStateManager player)
     {
-        Debug.Log("Entered Parry State");
-
         player.StopMovingAnimation();
-
         if (player.movementInput.y < 0)
         {
-            isLowParryAttempt = true;
-            isHighParryAttempt = false;
-
-            player.animator.SetTrigger("triggerParryLowAttempt");
+            AttemptLowParry(player);
+            return;
         }
-        else
-        {
-            isHighParryAttempt = true;
-            isLowParryAttempt = false;
-            player.animator.SetTrigger("triggerParryHighAttempt");
-        }
-
+        AttemptHighParry(player);
     }
 
     public override void UpdateState(PlayerStateManager player)
@@ -40,40 +32,56 @@ public class PlayerParryAttemptState : PlayerBaseState
     {
         if (collision.tag == "BossAttackHigh")
         {
-            if (isHighParryAttempt)
-            {
-              // Ensures that the player goes into successful parrying state.
-              player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 6, player.nextPlayerHitStunDuration, 8);
-            }
-
-            // Parry success is also part of HitReactionState.
-            player.SwitchState(player.HitReactionState);
+            ParryCheck(player, HitLevel.HIGH);
         }
-        else if (collision.tag == "BossAttackLow")
+        if (collision.tag == "BossAttackLow")
         {
-            if (isLowParryAttempt)
-            {
-                // Ensures that the player goes into successful low state.
-                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 7, player.nextPlayerHitStunDuration, 8);
-            }
-            player.SwitchState(player.HitReactionState);
+            ParryCheck(player, HitLevel.LOW);
         }
-
-        if(collision.tag == "BossFireball")
+        if (collision.tag == "BossFireball")
         {
-            if(isHighParryAttempt)
-            {
-                // Ensures that the player goes into successful parrying state.
-                player.AttackHitPropertySelf(0, player.nextPlayerForceReceived / 2, 13, player.nextPlayerHitStunDuration, 8);
-                //player.bossStateManager.fireballScript.hitCount--;
-            }
-            player.SwitchState(player.HitReactionState);
+            ParryCheck(player, HitLevel.FIREBALL);
         }
-
         // Unblockable attacks cannot be blocked or parried.
-        if (collision.tag == "BossAttackUnblockable")
+        player.SwitchState(player.HitReactionState);
+    }
+
+    private void AttemptLowParry(PlayerStateManager player)
+    {
+        isLowParryAttempt = true;
+        isHighParryAttempt = false;
+        player.animator.SetTrigger("triggerParryLowAttempt");
+    }
+
+    private void AttemptHighParry(PlayerStateManager player)
+    {
+        isLowParryAttempt = false;
+        isHighParryAttempt = true;
+        player.animator.SetTrigger("triggerParryHighAttempt");
+    }
+
+    private void ParryCheck(PlayerStateManager player, HitLevel hitLevel)
+    {
+        if (hitLevel == HitLevel.HIGH)
         {
-            player.SwitchState(player.HitReactionState);
+            if (isHighParryAttempt) { player.RegularParryProperty(); return; }
+            if (isLowParryAttempt) { player.RegularParryProperty(true); return; }
+        }
+        if(hitLevel == HitLevel.LOW)
+        {
+            if (isHighParryAttempt) { player.RegularParryProperty(true); return; }
+            if (isLowParryAttempt) { player.PerfectLowParryProperty(); return; }
+        }
+        if(hitLevel == HitLevel.FIREBALL)
+        {
+            if (isHighParryAttempt) { player.FireBallParryProperty(); return; }
         }
     }
+
+    private enum HitLevel
+    {
+        HIGH,
+        LOW,
+        FIREBALL,
+    };
 }

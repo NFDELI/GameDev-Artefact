@@ -172,11 +172,11 @@ public class BossRegularAttackState : BossBaseState
                 break;
         }
 
-        // Force Boss to Repeat an attack pattern here!
-        int test = UnityEngine.Random.Range(0, 2);
+        //Force Boss to Repeat an attack pattern here!
+        int test = 1; // UnityEngine.Random.Range(0, 2);
         if (test == 1)
         {
-            attackPatternChosen = attackPatternSix;
+            attackPatternChosen = attackPatternSevenFifteen;
         }
         else
         {

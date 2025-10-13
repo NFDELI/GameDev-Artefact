@@ -132,6 +132,9 @@ public class AudioScript : MonoBehaviour
             case 14:
                 PlaySuperHitSoundEnding();
                 break;
+            case 15:
+                PlayArmorSound();
+                break;
             default:
                 break;
         }

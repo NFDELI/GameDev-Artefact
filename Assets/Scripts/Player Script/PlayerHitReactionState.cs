@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class PlayerHitReactionState : PlayerBaseState
@@ -9,6 +7,9 @@ public class PlayerHitReactionState : PlayerBaseState
     private float hitDamage;
     private float gettingHitSuperGain = 0.75f;
     private float parryingSuperGain = 0.5f;
+    private float partialParrySuperGain = 0.25f;
+    private float regularPostureDamage = 1f;
+    private float partialPostureDamage = 0.5f;
     private Vector2 hitForce;
     private bool timerStarted = false;
     private bool successfulParry = false;
@@ -53,13 +54,27 @@ public class PlayerHitReactionState : PlayerBaseState
             case 3:
                 // Grabbed.
                 break;
+            case 4:
+                // Partial Low Parry.
+                player.animator.SetTrigger("triggerParryLow");
+                player.spriteRenderer.color = Color.blue;
+                player.bossStateManager.TakePostureDamage(partialPostureDamage);
+                player.ChangeSuperAmount(partialParrySuperGain);
+                successfulParry = true;
+                break;
             case 5:
+                // Partial High Parry.
+                player.animator.SetTrigger("triggerParryHigh");
+                player.spriteRenderer.color = Color.blue;
+                player.bossStateManager.TakePostureDamage(partialPostureDamage);
+                player.ChangeSuperAmount(partialParrySuperGain);
+                successfulParry = true;
                 break;
             case 6:
                 // High Parry.
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
-                player.bossStateManager.TakePostureDamage(1f);
+                player.bossStateManager.TakePostureDamage(regularPostureDamage);
                 player.GainPosture();
                 player.ChangeSuperAmount(parryingSuperGain);
                 successfulParry = true;
@@ -68,7 +83,7 @@ public class PlayerHitReactionState : PlayerBaseState
                 // Low Parry.
                 player.animator.SetTrigger("triggerParryLow");
                 player.spriteRenderer.color = Color.blue;
-                player.bossStateManager.TakePostureDamage(1f);
+                player.bossStateManager.TakePostureDamage(partialPostureDamage);
                 player.GainPosture();
                 player.ChangeSuperAmount(parryingSuperGain);
                 successfulParry = true;
@@ -96,7 +111,6 @@ public class PlayerHitReactionState : PlayerBaseState
                 player.animator.SetTrigger("triggerParryHigh");
                 player.spriteRenderer.color = Color.blue;
                 player.GainPosture();
-
                 player.ChangeSuperAmount(parryingSuperGain);
                 successfulParry = true;
                 player.wasBlocking = false;
